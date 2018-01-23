@@ -171,6 +171,8 @@ namespace ProductsDistribution.Controllers
             return View();
         }
 
+       
+
 
         //
         // POST: /Account/Register
@@ -514,6 +516,8 @@ namespace ProductsDistribution.Controllers
                 }
                 context.HttpContext.GetOwinContext().Authentication.Challenge(properties, LoginProvider);
             }
+
+           
 
         }
         #endregion

@@ -46,6 +46,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="DataAnnotationsExtensions, Version=5.0.1.20, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\DataAnnotationsExtensions.5.0.1.20\lib\NETFramework40\DataAnnotationsExtensions.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=1.0.7.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.7\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
     </Reference>
@@ -303,6 +306,24 @@
     <EmbeddedResource Include="Migrations\201712271915124_true.resx">
       <DependentUpon>201712271915124_true.cs</DependentUpon>
     </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ProductsDistribution.Core\ProductsDistribution.Core.csproj">
+      <Project>{a2a33d9b-8082-4840-85f7-bfb6c0ef628e}</Project>
+      <Name>ProductsDistribution.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ProductsDistribution.Data\ProductsDistribution.Data.csproj">
+      <Project>{2592fe35-0817-4447-a386-8e19a8bf9ed9}</Project>
+      <Name>ProductsDistribution.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ProductsDistribution.Models\ProductsDistribution.Models.csproj">
+      <Project>{feeddfb0-a8dc-4923-acdd-53d0c0c79ae0}</Project>
+      <Name>ProductsDistribution.Models</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ProductsDistribution.Services\ProductsDistribution.Services.csproj">
+      <Project>{314145b8-362f-4e6b-8e16-365d4c57aa8c}</Project>
+      <Name>ProductsDistribution.Services</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

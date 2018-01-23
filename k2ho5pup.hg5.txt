@@ -1,0 +1,206 @@
+﻿
+# Please enter the commit message for your changes. Lines starting
+# with '#' will be ignored, and an empty message aborts the commit.
+# On branch master
+# Changes to be committed:
+#	modified:   .vs/ProductsDistribution/v15/.suo
+#	modified:   .vs/ProductsDistribution/v15/Server/sqlite3/storage.ide
+#	modified:   .vs/config/applicationhost.config
+#	new file:   ProductsDistribution.Core/Announcement/Models/AnnouncementDTO.cs
+#	new file:   ProductsDistribution.Core/Announcement/Models/AnnouncementModel.cs
+#	new file:   ProductsDistribution.Core/AnnouncementToProduct/Models/AnnouncementToProductDTO.cs
+#	new file:   ProductsDistribution.Core/Category/Models/CategoryDTO.cs
+#	new file:   ProductsDistribution.Core/Category/Models/CategoryModel.cs
+#	new file:   ProductsDistribution.Core/Producer/Models/ProducerDTO.cs
+#	new file:   ProductsDistribution.Core/Producer/Models/ProducerModel.cs
+#	new file:   ProductsDistribution.Core/ProducerToProduct/Models/ProducerToProductDTO.cs
+#	new file:   ProductsDistribution.Core/Product/Models/ProductDTO.cs
+#	new file:   ProductsDistribution.Core/Product/Models/ProductModel.cs
+#	new file:   ProductsDistribution.Core/ProductsDistribution.Core.csproj
+#	new file:   ProductsDistribution.Core/ProductsDistribution.Core.csproj.user
+#	new file:   ProductsDistribution.Core/Properties/AssemblyInfo.cs
+#	new file:   ProductsDistribution.Core/Query/Models/QueryDTO.cs
+#	new file:   ProductsDistribution.Core/Query/Models/QueryModel.cs
+#	new file:   ProductsDistribution.Core/QueryToProduct/Models/QueryToProductDTO.cs
+#	new file:   ProductsDistribution.Core/Web.Debug.config
+#	new file:   ProductsDistribution.Core/Web.Release.config
+#	new file:   ProductsDistribution.Core/Web.config
+#	new file:   ProductsDistribution.Core/bin/EntityFramework.SqlServer.dll
+#	new file:   ProductsDistribution.Core/bin/EntityFramework.dll
+#	new file:   ProductsDistribution.Core/bin/Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+#	new file:   ProductsDistribution.Core/bin/Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+#	new file:   ProductsDistribution.Core/obj/Debug/DesignTimeResolveAssemblyReferencesInput.cache
+#	new file:   ProductsDistribution.Core/obj/Debug/ProductsDistribution.Core.csproj.CoreCompileInputs.cache
+#	new file:   ProductsDistribution.Core/obj/Debug/TemporaryGeneratedFile_036C0B5B-1481-4323-8D20-8F5ADCB23D92.cs
+#	new file:   ProductsDistribution.Core/obj/Debug/TemporaryGeneratedFile_5937a670-0e60-4077-877b-f7221da3dda1.cs
+#	new file:   ProductsDistribution.Core/obj/Debug/TemporaryGeneratedFile_E7A71F73-0F8D-4B9B-B56E-8E70B10BC5D3.cs
+#	new file:   ProductsDistribution.Core/packages.config
+#	new file:   ProductsDistribution.Data/Contracts/IAnnouncementRepository.cs
+#	new file:   ProductsDistribution.Data/Contracts/IProducerRepository.cs
+#	new file:   ProductsDistribution.Data/Contracts/IProductRepository.cs
+#	new file:   ProductsDistribution.Data/Contracts/IQueryRepository.cs
+#	new file:   ProductsDistribution.Data/Contracts/IRepository.cs
+#	new file:   ProductsDistribution.Data/Contracts/IUserRepository.cs
+#	new file:   ProductsDistribution.Data/ProductsDistribution.Data.csproj
+#	new file:   ProductsDistribution.Data/ProductsDistribution.Data.csproj.user
+#	new file:   ProductsDistribution.Data/Properties/AssemblyInfo.cs
+#	new file:   ProductsDistribution.Data/Web.Debug.config
+#	new file:   ProductsDistribution.Data/Web.Release.config
+#	new file:   ProductsDistribution.Data/Web.config
+#	new file:   ProductsDistribution.Data/bin/EntityFramework.SqlServer.dll
+#	new file:   ProductsDistribution.Data/bin/EntityFramework.dll
+#	new file:   ProductsDistribution.Data/bin/Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+#	new file:   ProductsDistribution.Data/bin/Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+#	new file:   ProductsDistribution.Data/obj/Debug/DesignTimeResolveAssemblyReferencesInput.cache
+#	new file:   ProductsDistribution.Data/obj/Debug/ProductsDistribution.Data.csproj.CoreCompileInputs.cache
+#	new file:   ProductsDistribution.Data/obj/Debug/TemporaryGeneratedFile_036C0B5B-1481-4323-8D20-8F5ADCB23D92.cs
+#	new file:   ProductsDistribution.Data/obj/Debug/TemporaryGeneratedFile_5937a670-0e60-4077-877b-f7221da3dda1.cs
+#	new file:   ProductsDistribution.Data/obj/Debug/TemporaryGeneratedFile_E7A71F73-0F8D-4B9B-B56E-8E70B10BC5D3.cs
+#	new file:   ProductsDistribution.Data/packages.config
+#	new file:   ProductsDistribution.Models/Announcement.cs
+#	new file:   ProductsDistribution.Models/AnnouncementToProduct.cs
+#	new file:   ProductsDistribution.Models/Category.cs
+#	new file:   ProductsDistribution.Models/Producer.cs
+#	new file:   ProductsDistribution.Models/ProducerToProduct.cs
+#	new file:   ProductsDistribution.Models/Product.cs
+#	new file:   ProductsDistribution.Models/ProductsDistribution.Models.csproj
+#	new file:   ProductsDistribution.Models/ProductsDistribution.Models.csproj.user
+#	new file:   ProductsDistribution.Models/Properties/AssemblyInfo.cs
+#	new file:   ProductsDistribution.Models/Query.cs
+#	new file:   ProductsDistribution.Models/QueryToProduct.cs
+#	new file:   ProductsDistribution.Models/Scripts/jquery-1.8.0.intellisense.js
+#	new file:   ProductsDistribution.Models/Scripts/jquery-1.8.0.js
+#	new file:   ProductsDistribution.Models/Scripts/jquery-1.8.0.min.js
+#	new file:   ProductsDistribution.Models/Scripts/jquery.validate-vsdoc.js
+#	new file:   ProductsDistribution.Models/Scripts/jquery.validate.js
+#	new file:   ProductsDistribution.Models/Scripts/jquery.validate.min.js
+#	new file:   ProductsDistribution.Models/Scripts/jquery.validate.unobtrusive.js
+#	new file:   ProductsDistribution.Models/Scripts/jquery.validate.unobtrusive.min.js
+#	new file:   ProductsDistribution.Models/Scripts/mvcvalidationextensions.unobtrusive.js
+#	new file:   ProductsDistribution.Models/User.cs
+#	new file:   ProductsDistribution.Models/Web.Debug.config
+#	new file:   ProductsDistribution.Models/Web.Release.config
+#	new file:   ProductsDistribution.Models/Web.config
+#	new file:   ProductsDistribution.Models/bin/DataAnnotationsExtensions.dll
+#	new file:   ProductsDistribution.Models/bin/EntityFramework.SqlServer.dll
+#	new file:   ProductsDistribution.Models/bin/EntityFramework.dll
+#	new file:   ProductsDistribution.Models/bin/Microsoft.AspNet.Identity.Core.dll
+#	new file:   ProductsDistribution.Models/bin/Microsoft.AspNet.Identity.EntityFramework.dll
+#	new file:   ProductsDistribution.Models/bin/Microsoft.AspNet.Scaffolding.EntityFramework.12.0.dll
+#	new file:   ProductsDistribution.Models/bin/Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+#	new file:   ProductsDistribution.Models/bin/Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+#	new file:   ProductsDistribution.Models/bin/Microsoft.IdentityModel.Extensions.dll
+#	new file:   ProductsDistribution.Models/bin/Microsoft.Web.Infrastructure.dll
+#	new file:   ProductsDistribution.Models/bin/MvcValidationExtensions.dll
+#	new file:   ProductsDistribution.Models/bin/System.Web.Helpers.dll
+#	new file:   ProductsDistribution.Models/bin/System.Web.Mvc.dll
+#	new file:   ProductsDistribution.Models/bin/System.Web.Razor.dll
+#	new file:   ProductsDistribution.Models/bin/System.Web.WebPages.Deployment.dll
+#	new file:   ProductsDistribution.Models/bin/System.Web.WebPages.Razor.dll
+#	new file:   ProductsDistribution.Models/bin/System.Web.WebPages.dll
+#	new file:   ProductsDistribution.Models/obj/Debug/DesignTimeResolveAssemblyReferencesInput.cache
+#	new file:   ProductsDistribution.Models/obj/Debug/ProductsDistribution.Models.csproj.CoreCompileInputs.cache
+#	new file:   ProductsDistribution.Models/obj/Debug/TemporaryGeneratedFile_036C0B5B-1481-4323-8D20-8F5ADCB23D92.cs
+#	new file:   ProductsDistribution.Models/obj/Debug/TemporaryGeneratedFile_5937a670-0e60-4077-877b-f7221da3dda1.cs
+#	new file:   ProductsDistribution.Models/obj/Debug/TemporaryGeneratedFile_E7A71F73-0F8D-4B9B-B56E-8E70B10BC5D3.cs
+#	new file:   ProductsDistribution.Models/obj/Debug/build.force
+#	new file:   ProductsDistribution.Models/packages.config
+#	new file:   ProductsDistribution.Services/ProductsDistribution.Services.csproj
+#	new file:   ProductsDistribution.Services/ProductsDistribution.Services.csproj.user
+#	new file:   ProductsDistribution.Services/Properties/AssemblyInfo.cs
+#	new file:   ProductsDistribution.Services/Web.Debug.config
+#	new file:   ProductsDistribution.Services/Web.Release.config
+#	new file:   ProductsDistribution.Services/Web.config
+#	new file:   ProductsDistribution.Services/bin/EntityFramework.SqlServer.dll
+#	new file:   ProductsDistribution.Services/bin/EntityFramework.dll
+#	new file:   ProductsDistribution.Services/bin/Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+#	new file:   ProductsDistribution.Services/bin/Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+#	new file:   ProductsDistribution.Services/obj/Debug/DesignTimeResolveAssemblyReferencesInput.cache
+#	new file:   ProductsDistribution.Services/obj/Debug/ProductsDistribution.Services.csproj.CoreCompileInputs.cache
+#	new file:   ProductsDistribution.Services/obj/Debug/TemporaryGeneratedFile_036C0B5B-1481-4323-8D20-8F5ADCB23D92.cs
+#	new file:   ProductsDistribution.Services/obj/Debug/TemporaryGeneratedFile_5937a670-0e60-4077-877b-f7221da3dda1.cs
+#	new file:   ProductsDistribution.Services/obj/Debug/TemporaryGeneratedFile_E7A71F73-0F8D-4B9B-B56E-8E70B10BC5D3.cs
+#	new file:   ProductsDistribution.Services/packages.config
+#	modified:   ProductsDistribution.sln
+#	modified:   ProductsDistribution/App_Data/aspnet-ProductsDistribution-20171204115905.mdf
+#	modified:   ProductsDistribution/App_Data/aspnet-ProductsDistribution-20171204115905_log.ldf
+#	new file:   ProductsDistribution/Content/Images/logo.jpg
+#	modified:   ProductsDistribution/Content/bootstrap.css
+#	modified:   ProductsDistribution/Controllers/AccountController.cs
+#	modified:   ProductsDistribution/Controllers/RolesController.cs
+#	modified:   ProductsDistribution/Models/AccountViewModels.cs
+#	modified:   ProductsDistribution/Models/IdentityModels.cs
+#	modified:   ProductsDistribution/ProductsDistribution.csproj
+#	modified:   ProductsDistribution/Views/Roles/Index.cshtml
+#	modified:   ProductsDistribution/Views/Shared/_Layout.cshtml
+#	modified:   ProductsDistribution/Views/Shared/_LoginPartial.cshtml
+#	modified:   ProductsDistribution/Web.config
+#	new file:   ProductsDistribution/bin/DataAnnotationsExtensions.dll
+#	modified:   ProductsDistribution/bin/ProductsDistribution.dll
+#	modified:   ProductsDistribution/bin/ProductsDistribution.pdb
+#	modified:   ProductsDistribution/obj/Debug/DesignTimeResolveAssemblyReferencesInput.cache
+#	modified:   ProductsDistribution/obj/Debug/ProductsDistribution.csproj.CoreCompileInputs.cache
+#	modified:   ProductsDistribution/obj/Debug/ProductsDistribution.csproj.GenerateResource.Cache
+#	modified:   ProductsDistribution/obj/Debug/ProductsDistribution.dll
+#	modified:   ProductsDistribution/obj/Debug/ProductsDistribution.pdb
+#	modified:   ProductsDistribution/packages.config
+#	new file:   packages/DataAnnotationsExtensions.5.0.1.20/DataAnnotationsExtensions.5.0.1.20.nupkg
+#	new file:   packages/DataAnnotationsExtensions.5.0.1.20/lib/NETFramework40/DataAnnotationsExtensions.dll
+#	new file:   packages/EntityFramework.6.2.0/EntityFramework.6.2.0.nupkg
+#	new file:   packages/EntityFramework.6.2.0/content/net40/App.config.transform
+#	new file:   packages/EntityFramework.6.2.0/content/net40/Web.config.transform
+#	new file:   packages/EntityFramework.6.2.0/lib/net40/EntityFramework.SqlServer.dll
+#	new file:   packages/EntityFramework.6.2.0/lib/net40/EntityFramework.SqlServer.xml
+#	new file:   packages/EntityFramework.6.2.0/lib/net40/EntityFramework.dll
+#	new file:   packages/EntityFramework.6.2.0/lib/net40/EntityFramework.xml
+#	new file:   packages/EntityFramework.6.2.0/lib/net45/EntityFramework.SqlServer.dll
+#	new file:   packages/EntityFramework.6.2.0/lib/net45/EntityFramework.SqlServer.xml
+#	new file:   packages/EntityFramework.6.2.0/lib/net45/EntityFramework.dll
+#	new file:   packages/EntityFramework.6.2.0/lib/net45/EntityFramework.xml
+#	new file:   packages/EntityFramework.6.2.0/tools/EntityFramework.PowerShell.Utility.dll
+#	new file:   packages/EntityFramework.6.2.0/tools/EntityFramework.PowerShell.dll
+#	new file:   packages/EntityFramework.6.2.0/tools/EntityFramework.psd1
+#	new file:   packages/EntityFramework.6.2.0/tools/EntityFramework.psm1
+#	new file:   packages/EntityFramework.6.2.0/tools/about_EntityFramework.help.txt
+#	new file:   packages/EntityFramework.6.2.0/tools/init.ps1
+#	new file:   packages/EntityFramework.6.2.0/tools/install.ps1
+#	new file:   packages/EntityFramework.6.2.0/tools/migrate.exe
+#	new file:   packages/Microsoft.AspNet.Mvc.5.2.2/Content/Web.config.install.xdt
+#	new file:   packages/Microsoft.AspNet.Mvc.5.2.2/Content/Web.config.uninstall.xdt
+#	new file:   packages/Microsoft.AspNet.Mvc.5.2.2/Microsoft.AspNet.Mvc.5.2.2.nupkg
+#	new file:   packages/Microsoft.AspNet.Mvc.5.2.2/lib/net45/System.Web.Mvc.dll
+#	new file:   packages/Microsoft.AspNet.Mvc.5.2.2/lib/net45/System.Web.Mvc.xml
+#	new file:   packages/Microsoft.AspNet.Razor.3.2.2/Microsoft.AspNet.Razor.3.2.2.nupkg
+#	new file:   packages/Microsoft.AspNet.Razor.3.2.2/lib/net45/System.Web.Razor.dll
+#	new file:   packages/Microsoft.AspNet.Razor.3.2.2/lib/net45/System.Web.Razor.xml
+#	new file:   packages/Microsoft.AspNet.WebPages.3.2.2/Content/Web.config.install.xdt
+#	new file:   packages/Microsoft.AspNet.WebPages.3.2.2/Content/Web.config.uninstall.xdt
+#	new file:   packages/Microsoft.AspNet.WebPages.3.2.2/Microsoft.AspNet.WebPages.3.2.2.nupkg
+#	new file:   packages/Microsoft.AspNet.WebPages.3.2.2/lib/net45/System.Web.Helpers.dll
+#	new file:   packages/Microsoft.AspNet.WebPages.3.2.2/lib/net45/System.Web.Helpers.xml
+#	new file:   packages/Microsoft.AspNet.WebPages.3.2.2/lib/net45/System.Web.WebPages.Deployment.dll
+#	new file:   packages/Microsoft.AspNet.WebPages.3.2.2/lib/net45/System.Web.WebPages.Deployment.xml
+#	new file:   packages/Microsoft.AspNet.WebPages.3.2.2/lib/net45/System.Web.WebPages.Razor.dll
+#	new file:   packages/Microsoft.AspNet.WebPages.3.2.2/lib/net45/System.Web.WebPages.Razor.xml
+#	new file:   packages/Microsoft.AspNet.WebPages.3.2.2/lib/net45/System.Web.WebPages.dll
+#	new file:   packages/Microsoft.AspNet.WebPages.3.2.2/lib/net45/System.Web.WebPages.xml
+#	new file:   packages/Microsoft.jQuery.Unobtrusive.Validation.3.2.2/Content/Scripts/jquery.validate.unobtrusive.js
+#	new file:   packages/Microsoft.jQuery.Unobtrusive.Validation.3.2.2/Content/Scripts/jquery.validate.unobtrusive.min.js
+#	new file:   packages/Microsoft.jQuery.Unobtrusive.Validation.3.2.2/Microsoft.jQuery.Unobtrusive.Validation.3.2.2.nupkg
+#	new file:   packages/MvcValidationExtensions.1.1.4.0/MvcValidationExtensions.1.1.4.0.nupkg
+#	new file:   packages/MvcValidationExtensions.1.1.4.0/content/Scripts/mvcvalidationextensions.unobtrusive.js
+#	new file:   packages/MvcValidationExtensions.1.1.4.0/lib/net45/MvcValidationExtensions.dll
+#	new file:   packages/jQuery.1.8.0/Content/Scripts/jquery-1.8.0-vsdoc.js
+#	new file:   packages/jQuery.1.8.0/Content/Scripts/jquery-1.8.0.js
+#	new file:   packages/jQuery.1.8.0/Content/Scripts/jquery-1.8.0.min.js
+#	new file:   packages/jQuery.1.8.0/Tools/common.ps1
+#	new file:   packages/jQuery.1.8.0/Tools/install.ps1
+#	new file:   packages/jQuery.1.8.0/Tools/jquery-1.8.0.intellisense.js
+#	new file:   packages/jQuery.1.8.0/Tools/uninstall.ps1
+#	new file:   packages/jQuery.1.8.0/jQuery.1.8.0.nupkg
+#	new file:   packages/jQuery.Validation.1.8.0.1/Content/Scripts/jquery.validate-vsdoc.js
+#	new file:   packages/jQuery.Validation.1.8.0.1/Content/Scripts/jquery.validate.js
+#	new file:   packages/jQuery.Validation.1.8.0.1/Content/Scripts/jquery.validate.min.js
+#	new file:   packages/jQuery.Validation.1.8.0.1/jQuery.Validation.1.8.0.1.nupkg
+#
+

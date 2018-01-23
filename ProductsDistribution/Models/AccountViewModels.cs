@@ -1,5 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.Linq;
+using System.Web.Mvc;
 
 namespace ProductsDistribution.Models
 {
@@ -46,7 +48,7 @@ namespace ProductsDistribution.Models
         public string Email { get; set; }
     }
 
-    public class LoginViewModel
+    public class LoginViewModel 
     {
         [Required]
         [Display(Name = "Email")]
@@ -60,6 +62,9 @@ namespace ProductsDistribution.Models
 
         [Display(Name = "Remember me?")]
         public bool RememberMe { get; set; }
+
+       
+       
     }
 
     public class RegisterViewModel
@@ -77,7 +82,7 @@ namespace ProductsDistribution.Models
 
         [DataType(DataType.Password)]
         [Display(Name = "Confirm password")]
-        [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
+        [System.ComponentModel.DataAnnotations.Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
         public string ConfirmPassword { get; set; }
     }
 
@@ -96,7 +101,7 @@ namespace ProductsDistribution.Models
 
         [DataType(DataType.Password)]
         [Display(Name = "Confirm password")]
-        [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
+        [System.ComponentModel.DataAnnotations.Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
         public string ConfirmPassword { get; set; }
 
         public string Code { get; set; }

@@ -3,6 +3,7 @@ using System.Security.Claims;
 using System.Threading.Tasks;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
+using System.Collections.Generic;
 
 namespace ProductsDistribution.Models
 {
@@ -10,6 +11,7 @@ namespace ProductsDistribution.Models
     public class ApplicationUser : IdentityUser
     {
         public bool? IsEnabled { get; set; }
+
 
 
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<ApplicationUser> manager)

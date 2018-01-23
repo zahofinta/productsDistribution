@@ -214,7 +214,7 @@ namespace MyDatabase.Controllers
                 var rolelist = context.Roles.OrderBy(r => r.Name).ToList().Select(rr => new SelectListItem { Value = rr.Name.ToString(), Text = rr.Name }).ToList();
                 ViewBag.Roles = rolelist;
                 var userlist = context.Users.OrderBy(u => u.UserName).ToList().Select(uu =>
-                new SelectListItem { Value = uu.UserName.ToString(), Text = uu.UserName }).ToList();
+               new SelectListItem { Value = uu.UserName.ToString(), Text = uu.UserName }).ToList();
                 ViewBag.Users = userlist;
                 ViewBag.Message = "User is successfully deactivated!";
                 context.SaveChanges();
@@ -242,5 +242,8 @@ namespace MyDatabase.Controllers
             return View("Index");
         }
 
+        
+
+       
     }
 }
