@@ -16,8 +16,9 @@ namespace MyDatabase.Controllers
         public ActionResult Index()
         {
             // Populate Dropdown Lists
-            var context = new ProductsDistribution.Models.ApplicationDbContext();
-
+            var context = new ProductsDistribution.Data.ProductsDistributionDBContext();
+            
+            
             var rolelist = context.Roles.OrderBy(r => r.Name).ToList().Select(rr =>
             new SelectListItem { Value = rr.Name.ToString(), Text = rr.Name }).ToList();
             ViewBag.Roles = rolelist;
@@ -48,7 +49,7 @@ namespace MyDatabase.Controllers
 
             try
             {
-                var context = new ProductsDistribution.Models.ApplicationDbContext();
+                var context = new ProductsDistribution.Data.ProductsDistributionDBContext();
                 context.Roles.Add(new Microsoft.AspNet.Identity.EntityFramework.IdentityRole()
                 {
                     Name = collection["RoleName"]
@@ -66,7 +67,7 @@ namespace MyDatabase.Controllers
         [Authorize(Roles = "Administrator")]
         public ActionResult Delete(string RoleName)
         {
-            var context = new ProductsDistribution.Models.ApplicationDbContext();
+            var context = new ProductsDistribution.Data.ProductsDistributionDBContext();
             var thisRole = context.Roles.Where(r => r.Name.Equals(RoleName, StringComparison.CurrentCultureIgnoreCase)).FirstOrDefault();
             context.Roles.Remove(thisRole);
             context.SaveChanges();
@@ -78,7 +79,7 @@ namespace MyDatabase.Controllers
         [Authorize(Roles = "Administrator")]
         public ActionResult Edit(string roleName)
         {
-            var context = new ProductsDistribution.Models.ApplicationDbContext();
+            var context = new ProductsDistribution.Data.ProductsDistributionDBContext();
             var thisRole = context.Roles.Where(r => r.Name.Equals(roleName, StringComparison.CurrentCultureIgnoreCase)).FirstOrDefault();
 
             return View(thisRole);
@@ -93,7 +94,7 @@ namespace MyDatabase.Controllers
         {
             try
             {
-                var context = new ProductsDistribution.Models.ApplicationDbContext();
+                var context = new ProductsDistribution.Data.ProductsDistributionDBContext();
                 context.Entry(role).State = System.Data.Entity.EntityState.Modified;
                 context.SaveChanges();
 
@@ -112,17 +113,17 @@ namespace MyDatabase.Controllers
         [Authorize(Roles = "Administrator")]
         public ActionResult RoleAddToUser(string UserName, string RoleName)
         {
-            var context = new ProductsDistribution.Models.ApplicationDbContext();
+            var context = new ProductsDistribution.Data.ProductsDistributionDBContext();
 
             if (context == null)
             {
                 throw new ArgumentNullException("context", "Context must not be null.");
             }
+         
+            User user = context.Users.Where(u => u.UserName.Equals(UserName, StringComparison.CurrentCultureIgnoreCase)).FirstOrDefault();
 
-            ApplicationUser user = context.Users.Where(u => u.UserName.Equals(UserName, StringComparison.CurrentCultureIgnoreCase)).FirstOrDefault();
-
-            var userStore = new UserStore<ApplicationUser>(context);
-            var userManager = new UserManager<ApplicationUser>(userStore);
+            var userStore = new UserStore<User>(context);
+            var userManager = new UserManager<User>(userStore);
             userManager.AddToRole(user.Id, RoleName);
 
 
@@ -147,11 +148,11 @@ namespace MyDatabase.Controllers
         {
             if (!string.IsNullOrWhiteSpace(UserName))
             {
-                var context = new ProductsDistribution.Models.ApplicationDbContext();
-                ApplicationUser user = context.Users.Where(u => u.UserName.Equals(UserName, StringComparison.CurrentCultureIgnoreCase)).FirstOrDefault();
+                var context = new ProductsDistribution.Data.ProductsDistributionDBContext();
+                User user = context.Users.Where(u => u.UserName.Equals(UserName, StringComparison.CurrentCultureIgnoreCase)).FirstOrDefault();
 
-                var userStore = new UserStore<ApplicationUser>(context);
-                var userManager = new UserManager<ApplicationUser>(userStore);
+                var userStore = new UserStore<User>(context);
+                var userManager = new UserManager<User>(userStore);
                 ViewBag.RolesForThisUser = userManager.GetRoles(user.Id);
 
 
@@ -174,11 +175,11 @@ namespace MyDatabase.Controllers
         public ActionResult DeleteRoleForUser(string UserName, string RoleName)
         {
             var account = new AccountController();
-            var context = new ProductsDistribution.Models.ApplicationDbContext();
-            ApplicationUser user = context.Users.Where(u => u.UserName.Equals(UserName, StringComparison.CurrentCultureIgnoreCase)).FirstOrDefault();
+            var context = new ProductsDistribution.Data.ProductsDistributionDBContext();
+            User user = context.Users.Where(u => u.UserName.Equals(UserName, StringComparison.CurrentCultureIgnoreCase)).FirstOrDefault();
 
-            var userStore = new UserStore<ApplicationUser>(context);
-            var userManager = new UserManager<ApplicationUser>(userStore);
+            var userStore = new UserStore<User>(context);
+            var userManager = new UserManager<User>(userStore);
 
 
             if (userManager.IsInRole(user.Id, RoleName))
@@ -207,10 +208,10 @@ namespace MyDatabase.Controllers
         {
             if (!string.IsNullOrWhiteSpace(UserName))
             {
-                var context = new ProductsDistribution.Models.ApplicationDbContext();
-                ApplicationUser user = context.Users.Where(u => u.UserName.Equals(UserName, StringComparison.CurrentCultureIgnoreCase)).FirstOrDefault();
-
-                user.IsEnabled = false;
+                var context = new ProductsDistribution.Data.ProductsDistributionDBContext();
+                User user = context.Users.Where(u => u.UserName.Equals(UserName, StringComparison.CurrentCultureIgnoreCase)).FirstOrDefault();
+              
+                user.isEnabled = false;
                 var rolelist = context.Roles.OrderBy(r => r.Name).ToList().Select(rr => new SelectListItem { Value = rr.Name.ToString(), Text = rr.Name }).ToList();
                 ViewBag.Roles = rolelist;
                 var userlist = context.Users.OrderBy(u => u.UserName).ToList().Select(uu =>
@@ -226,10 +227,10 @@ namespace MyDatabase.Controllers
         {
             if (!string.IsNullOrWhiteSpace(UserName))
             {
-                var context = new ProductsDistribution.Models.ApplicationDbContext();
-                ApplicationUser user = context.Users.Where(u => u.UserName.Equals(UserName, StringComparison.CurrentCultureIgnoreCase)).FirstOrDefault();
+                var context = new ProductsDistribution.Data.ProductsDistributionDBContext();
+                User user = context.Users.Where(u => u.UserName.Equals(UserName, StringComparison.CurrentCultureIgnoreCase)).FirstOrDefault();
 
-                user.IsEnabled = true;
+                user.isEnabled = true;
                 var rolelist = context.Roles.OrderBy(r => r.Name).ToList().Select(rr => new SelectListItem { Value = rr.Name.ToString(), Text = rr.Name }).ToList();
                 ViewBag.Roles = rolelist;
                 var userlist = context.Users.OrderBy(u => u.UserName).ToList().Select(uu =>

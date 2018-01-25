@@ -42,7 +42,7 @@ namespace ProductsDistribution.Models
 
         public string department { get; set; }
         [Required]
-        public string username { get; set; }
+       // public string username { get; set; }
 
         public bool isEnabled { get; set; }
 
@@ -64,6 +64,14 @@ namespace ProductsDistribution.Models
         {
             get { return this.announcements; }
             set { this.announcements = value; }
+        }
+
+        public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<User> manager)
+        {
+            // Note the authenticationType must match the one defined in CookieAuthenticationOptions.AuthenticationType
+            var userIdentity = await manager.CreateIdentityAsync(this, DefaultAuthenticationTypes.ApplicationCookie);
+            // Add custom user claims here
+            return userIdentity;
         }
 
     }

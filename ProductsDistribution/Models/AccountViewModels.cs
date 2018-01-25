@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using DataAnnotationsExtensions;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web.Mvc;
@@ -71,19 +72,42 @@ namespace ProductsDistribution.Models
     {
         [Required]
         [EmailAddress]
-        [Display(Name = "Email")]
+        [Display(Name = "Имейл")]
         public string Email { get; set; }
 
         [Required]
         [StringLength(100, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 6)]
         [DataType(DataType.Password)]
-        [Display(Name = "Password")]
+        [Display(Name = "Парола")]
         public string Password { get; set; }
 
         [DataType(DataType.Password)]
-        [Display(Name = "Confirm password")]
+        [Display(Name = "Потвърдете паролата")]
         [System.ComponentModel.DataAnnotations.Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
         public string ConfirmPassword { get; set; }
+
+        [Required]
+        [Display(Name = "Име")]
+        public string first_name { get; set; }
+        [Required]
+        [Display(Name = "Фамилия")]
+        public string surname { get; set; }
+        [Required]
+        [Display(Name = "Пол")]
+        public Gender gender { get; set; }
+        [Required]
+        [Display(Name = "Години")]
+        [Min(1, ErrorMessage = "Please enter age greater than 1")]
+        public int years { get; set; }
+        [Required]
+        [Display(Name = "Адрес")]
+        public string post_address { get; set; }
+        [Required]
+        [Display(Name = "Организация")]
+        public string organization { get; set; }
+        [Display(Name = "Отдел")]
+        public string department { get; set; }
+
     }
 
     public class ResetPasswordViewModel

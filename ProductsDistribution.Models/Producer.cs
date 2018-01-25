@@ -13,7 +13,7 @@ namespace ProductsDistribution.Models
         [Required]
         public string producer_name { get; set; }
 
-        [Required(ErrorMessage = "Telephone Number Required")
+        [Required(ErrorMessage = "Telephone Number Required")]
         [RegularExpression(@"^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$", ErrorMessage = "Entered phone format is not valid.")]
         public string telephone_number { get; set; }
         [Required]

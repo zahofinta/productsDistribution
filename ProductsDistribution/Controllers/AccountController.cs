@@ -9,6 +9,7 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using ProductsDistribution.Models;
+using System.Data.Entity.Validation;
 
 namespace ProductsDistribution.Controllers
 {
@@ -85,7 +86,7 @@ namespace ProductsDistribution.Controllers
             }
 
             var user = await UserManager.FindByNameAsync(model.Email);
-            if (user.IsEnabled == true || user.IsEnabled == null)
+            if (user.isEnabled == true || user.isEnabled == null)
             {
                 if (user != null)
                 {
@@ -183,7 +184,34 @@ namespace ProductsDistribution.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser { UserName = model.Email, Email = model.Email, IsEnabled = true };
+                var user = new User {
+                    UserName = model.Email,
+                    Email = model.Email,
+                    isEnabled = true,
+                    first_name = model.first_name,
+                    surname = model.surname,
+                    years = model.years,
+                    gender = model.gender,
+                    post_address = model.post_address,
+                    organization = model.organization,
+                    department = model.department,
+                    rating = 0
+                };
+                /*var result = (dynamic)null;
+                try
+                {
+                   result = await UserManager.CreateAsync(user, model.Password);
+                }
+                catch (DbEntityValidationException ex)
+                {
+                    foreach (var entityValidationErrors in ex.EntityValidationErrors)
+                    {
+                        foreach (var validationError in entityValidationErrors.ValidationErrors)
+                        {
+                            Response.Write("Property: " + validationError.PropertyName + " Error: " + validationError.ErrorMessage);
+                        }
+                    }
+                }*/
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
@@ -404,7 +432,7 @@ namespace ProductsDistribution.Controllers
                 {
                     return View("ExternalLoginFailure");
                 }
-                var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
+                var user = new User { UserName = model.Email, Email = model.Email };
                 var result = await UserManager.CreateAsync(user);
                 if (result.Succeeded)
                 {
