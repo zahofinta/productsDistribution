@@ -78,3 +78,4 @@ D:\СТ\Дипломна работа\ProductsDistribution asp net core mvc 2.x\
 D:\СТ\Дипломна работа\ProductsDistribution asp net core mvc 2.x\ProductsDistribution\ProductsDistribution.Models\bin\Microsoft.VisualStudio.Text.UI.Wpf.xml
 D:\СТ\Дипломна работа\ProductsDistribution asp net core mvc 2.x\ProductsDistribution\ProductsDistribution.Models\obj\Debug\ProductsDistribution.Models.dll
 D:\СТ\Дипломна работа\ProductsDistribution asp net core mvc 2.x\ProductsDistribution\ProductsDistribution.Models\obj\Debug\ProductsDistribution.Models.pdb
+D:\СТ\Дипломна работа\ProductsDistribution asp net core mvc 2.x\ProductsDistribution\ProductsDistribution.Models\bin\System.Linq.Dynamic.dll

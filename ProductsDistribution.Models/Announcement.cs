@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
 
@@ -11,14 +12,13 @@ namespace ProductsDistribution.Models
     public class Announcement
     {
         [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int announcement_id { get; set; }
         [Required]
         [DataType(DataType.Date)]
         public DateTime arrive_date { get; set; }
 
         public bool isEnabled { get; set; }
-
-        public float rating { get; set; }
 
         public Status status { get; set; }
 

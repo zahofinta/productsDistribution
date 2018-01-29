@@ -70,6 +70,9 @@
     <Reference Include="MvcValidationExtensions, Version=1.1.4.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\MvcValidationExtensions.1.1.4.0\lib\net45\MvcValidationExtensions.dll</HintPath>
     </Reference>
+    <Reference Include="System.Linq.Dynamic, Version=1.0.6132.35681, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Linq.Dynamic.1.0.7\lib\net40\System.Linq.Dynamic.dll</HintPath>
+    </Reference>
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />

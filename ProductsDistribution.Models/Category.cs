@@ -4,15 +4,18 @@ using System.Linq;
 using System.Web;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Linq.Dynamic;
 
 namespace ProductsDistribution.Models
 {
     public class Category
     {
         private ICollection<Product> products;
-        [Key]
+        [Key][DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int category_id { get; set; }
         [Required]
+        [StringLength(50)]
+        [Index("category_nameIndex",IsUnique=true)]
         public string category_name { get; set; }
         [Required]
         public string category_description { get; set; }

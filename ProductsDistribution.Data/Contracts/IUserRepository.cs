@@ -5,7 +5,7 @@ using System.Web;
 
 namespace ProductsDistribution.Data.Contracts
 {
-    public class IUserRepository
+    public interface IUserRepository
     {
     }
 }

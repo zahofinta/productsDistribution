@@ -13,7 +13,7 @@ namespace ProductsDistribution.Data
 {
     public class ProductsDistributionDBContext : IdentityDbContext<User>
     {
-        public ProductsDistributionDBContext() :base("DefaultConnection")
+        public ProductsDistributionDBContext() :base("DefaultConnection", throwIfV1Schema: false)
         {
 
         }

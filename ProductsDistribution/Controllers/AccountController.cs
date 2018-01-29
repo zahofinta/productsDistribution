@@ -18,15 +18,17 @@ namespace ProductsDistribution.Controllers
     {
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
+        private IAuthenticationManager _authenticationManager;
 
         public AccountController()
         {
         }
 
-        public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager )
+        public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager, IAuthenticationManager authenticationManager)
         {
             UserManager = userManager;
             SignInManager = signInManager;
+            this._authenticationManager = authenticationManager;
         }
 
         public ApplicationSignInManager SignInManager

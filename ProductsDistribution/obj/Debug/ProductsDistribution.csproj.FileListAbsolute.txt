@@ -82,3 +82,8 @@ D:\СТ\Дипломна работа\ProductsDistribution asp net core mvc 2.x\
 D:\СТ\Дипломна работа\ProductsDistribution asp net core mvc 2.x\ProductsDistribution\ProductsDistribution\bin\ProductsDistribution.Models.dll.config
 D:\СТ\Дипломна работа\ProductsDistribution asp net core mvc 2.x\ProductsDistribution\ProductsDistribution\bin\ProductsDistribution.Services.pdb
 D:\СТ\Дипломна работа\ProductsDistribution asp net core mvc 2.x\ProductsDistribution\ProductsDistribution\bin\ProductsDistribution.Services.dll.config
+D:\СТ\Дипломна работа\ProductsDistribution asp net core mvc 2.x\ProductsDistribution\ProductsDistribution\bin\Unity.Abstractions.dll
+D:\СТ\Дипломна работа\ProductsDistribution asp net core mvc 2.x\ProductsDistribution\ProductsDistribution\bin\Unity.Container.dll
+D:\СТ\Дипломна работа\ProductsDistribution asp net core mvc 2.x\ProductsDistribution\ProductsDistribution\bin\Unity.Mvc.dll
+D:\СТ\Дипломна работа\ProductsDistribution asp net core mvc 2.x\ProductsDistribution\ProductsDistribution\bin\WebActivatorEx.dll
+D:\СТ\Дипломна работа\ProductsDistribution asp net core mvc 2.x\ProductsDistribution\ProductsDistribution\bin\Unity.Mvc.xml
