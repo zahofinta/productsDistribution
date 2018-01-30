@@ -13,7 +13,7 @@ namespace ProductsDistribution.Models.InputModels
     {
 
 
-        
+        [Required]
         public string category_name { get; set; }
         [Required]
         public string category_description { get; set; }

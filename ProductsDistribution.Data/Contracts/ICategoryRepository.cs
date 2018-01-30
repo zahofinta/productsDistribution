@@ -10,7 +10,9 @@ namespace ProductsDistribution.Data.Contracts
     public interface ICategoryRepository : IRepository<Category>
     {
         int GetCategoryId(string categoryName);
-        IEnumerable<string> GetAllCategoryNames();
+        List<string> GetAllCategoryNames();
+
+        List<string> GetAllSubCategories(string categoryName);
 
     }
 }

@@ -17,8 +17,8 @@ namespace ProductsDistribution.Services.Contracts
         //CategoryDTO DeleteCategory(CategoryDTO item);
         void Update(CategoryDTO category);
 
-        IEnumerable<string> GetAllCategoryNames();
+        List<string> GetAllCategoryNames();
 
-
+        List<string> GetAllSubCategoriesByName(string categoryName);
     }
 }

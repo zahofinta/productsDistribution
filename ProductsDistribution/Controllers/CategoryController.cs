@@ -27,7 +27,7 @@ namespace ProductsDistribution.Controllers
         {
             return View();
         }
-        private IEnumerable<CategoryViewModel> MapCategories(IEnumerable<CategoryDTO> categoriesDTO)
+        /*private IEnumerable<CategoryViewModel> MapCategories(IEnumerable<CategoryDTO> categoriesDTO)
         {
             var categories = new List<CategoryViewModel>();
 
@@ -42,7 +42,7 @@ namespace ProductsDistribution.Controllers
             }
 
             return categories;
-        }
+        }*/
         public ActionResult AddNewCategory()
         {
             CategoryInputModel inputModel = new CategoryInputModel
@@ -139,13 +139,22 @@ namespace ProductsDistribution.Controllers
             //}
             return View(inputModel);
         }
-        /*public ActionResult DisplayCategories()
+        public ActionResult DisplayCategories()
         {
-           
-            var categoriesDTO = this.categoryService.GetAllCategories();
-            var categories = this.MapCategories(categoriesDTO);
+            List<string> all_category_names = categoryService.GetAllCategoryNames();
+            List<CategoryViewModel> viewModel = new List<CategoryViewModel>();
+            //List<List<string>> all_subcategory_names = new List<List<string>>();
+            foreach(string categoryName in all_category_names.ToList())
+            {
+              
+                CategoryViewModel element = new CategoryViewModel();
+                element.category_name = categoryName;
+                element.sub_categories = categoryService.GetAllSubCategoriesByName(categoryName);   
+                viewModel.Add(element);
+                
+            }
 
-            return this.PartialView("_DisplayCategories", categories);
-        }*/
+            return View(viewModel);
+        }
     }
 }

@@ -89,12 +89,15 @@ namespace ProductsDistribution.Services
         {
            return  CategoryRepository.GetCategoryId(categoryName);
         }
-       public IEnumerable<string> GetAllCategoryNames()
+       public List<string> GetAllCategoryNames()
         {
             return CategoryRepository.GetAllCategoryNames();
         }
 
-        
+        public List<string> GetAllSubCategoriesByName(string categoryName)
+        {
+            return CategoryRepository.GetAllSubCategories(categoryName);
+        }
     }
     
 }

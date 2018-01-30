@@ -12,6 +12,17 @@ namespace ProductsDistribution.Models.ViewModels
        
         public string category_name { get; set; }
 
+        public List<string> sub_categories { get; set; }
+
+        public CategoryViewModel(List<string> sub_categories)
+        {
+            this.sub_categories = sub_categories;
+        }
+
+        public CategoryViewModel()
+        {
+
+        }
       
     }
 }
