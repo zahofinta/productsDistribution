@@ -8,6 +8,7 @@ using System.Security.Claims;
 using System.Threading.Tasks;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
+using System.Data.Entity.ModelConfiguration.Conventions;
 
 namespace ProductsDistribution.Data
 {
@@ -17,7 +18,24 @@ namespace ProductsDistribution.Data
         {
 
         }
-        static ProductsDistributionDBContext()
+        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        {
+          
+            
+            //  modelBuilder.Entity<Category>().HasOptional(x => x.parent_Category).WithMany(x => x.children).HasForeignKey(x => x.Category_parent_id).WillCascadeOnDelete(true);
+
+            base.OnModelCreating(modelBuilder);
+
+          
+          //  modelBuilder.Conventions.Remove<OneToManyCascadeDeleteConvention>();
+
+            //modelBuilder.Entity<Category>().HasMany(i => i.children)
+            //.WithOptional(i => i.parent_Category)
+            //.HasForeignKey(i => i.Category_parent_id)
+            //.WillCascadeOnDelete(false);
+        }
+        
+            static ProductsDistributionDBContext()
         {
             Database.SetInitializer<ProductsDistributionDBContext>(new CreateDatabaseIfNotExists<ProductsDistributionDBContext>());
         }

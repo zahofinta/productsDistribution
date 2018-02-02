@@ -50,15 +50,29 @@ namespace ProductsDistribution.Controllers
                 categories = GetCategories()
             };
             return View(inputModel);
-            
-          //  return View("AddNewCategory");
+
+            //  return View("AddNewCategory");
         }
 
-      private IEnumerable<SelectListItem> GetCategories()
+        private IEnumerable<SelectListItem> GetCategories()
         {
             var categories = this.categoryService.GetAllCategoryNames();
-           
+
             return new SelectList(categories);
+        }
+
+        public Category MapCategory(CategoryDTO category)
+        {
+            return new Category()
+            {
+                category_id = category.category_id,
+                category_name = category.category_name,
+                category_description = category.category_description,
+                Category_parent_id = category.CategoryDTO_parent_id,
+                children = this.categoryService.GetFullSubCategories(category.category_name)
+
+
+            };
         }
 
         [HttpPost]
@@ -75,7 +89,7 @@ namespace ProductsDistribution.Controllers
             }
             // var all_category_names = this.categoryService.GetAllCategoryNames();
             inputModel.categories = GetCategories();
-            
+
             string selected_category = inputModel.selectedCategory;
             try
             {
@@ -109,34 +123,12 @@ namespace ProductsDistribution.Controllers
             when (e.InnerException?.InnerException is SqlException sqlEx &&
             (sqlEx.Number == 2601 || sqlEx.Number == 2627))
             {
-             
+
                 ModelState.AddModelError("category_name", "Категорията вече съществува");
                 return View(inputModel);
             }
-            
-            //if (selected_category != null)
-            //{
-            //    int parent_id_selected = this.categoryService.GetCategoryId(selected_category);
 
-            //    this.categoryService.AddNewCategory(new CategoryDTO
-            //    {
 
-            //        category_name = inputModel.category_name,
-            //        category_description = inputModel.category_description,
-            //        CategoryDTO_parent_id = parent_id_selected
-
-            //    });
-            //}
-            //else
-            //{
-            //    this.categoryService.AddNewCategory(new CategoryDTO
-            //    {
-
-            //        category_name = inputModel.category_name,
-            //        category_description = inputModel.category_description,
-
-            //    });
-            //}
             return View(inputModel);
         }
         public ActionResult DisplayCategories()
@@ -144,17 +136,140 @@ namespace ProductsDistribution.Controllers
             List<string> all_category_names = categoryService.GetAllCategoryNames();
             List<CategoryViewModel> viewModel = new List<CategoryViewModel>();
             //List<List<string>> all_subcategory_names = new List<List<string>>();
-            foreach(string categoryName in all_category_names.ToList())
+            foreach (string categoryName in all_category_names.ToList())
             {
-              
+
                 CategoryViewModel element = new CategoryViewModel();
+                element.category_id = this.categoryService.GetCategoryId(categoryName);
                 element.category_name = categoryName;
-                element.sub_categories = categoryService.GetAllSubCategoriesByName(categoryName);   
+                element.sub_categories = categoryService.GetAllSubCategoriesByName(categoryName);
                 viewModel.Add(element);
-                
+
             }
 
             return View(viewModel);
+        }
+
+        /* public ActionResult EditCategory()
+         {
+             CategoryInputEditModel inputModel = new CategoryInputEditModel
+             {
+                 categories = GetCategories()
+             };
+             return View(inputModel);
+
+             //  return View("AddNewCategory");
+         }*/
+        [HttpGet]
+        public ActionResult Delete(int id)
+        {
+            CategoryDTO category = this.categoryService.GetById(id);
+            //vsichki kategorii koito sa deca na category
+            List<CategoryDTO> all_children_for_category = this.categoryService.GetAllSubCategoriesById(id);
+            foreach(CategoryDTO cat in all_children_for_category)
+            {
+                cat.CategoryDTO_parent_id = null;
+                this.categoryService.DeleteCategory(cat);
+            }
+            /*  var deletedItem = this.categoryService.DeleteCategory(new CategoryDTO()
+              {
+                category_id= id
+              });*/
+            this.categoryService.DeleteCategory(category);
+            
+            
+          //  return Json(deletedItem,JsonRequestBehavior.AllowGet);
+            return this.DisplayCategories();
+        }
+
+        CategoryInputEditModel MapCategoryDTOToCategoryInputEditModel(CategoryDTO category)
+        {
+            return new CategoryInputEditModel()
+            {
+                category_id = category.category_id,
+                category_name = category.category_name,
+                category_description = category.category_description,
+                categories = GetCategories(),
+                
+            };
+
+        }
+        [HttpGet]
+        public ActionResult EditView(int id)
+        {
+            var category = this.categoryService.GetById(id);
+         
+            CategoryInputEditModel model = MapCategoryDTOToCategoryInputEditModel(category);
+           // string selected_category = model.selectedCategory;
+            return View(model);
+           
+        }
+        [HttpPost]
+        public ActionResult EditView(int id,CategoryInputEditModel inputEditModel)
+        {
+            if (!this.ModelState.IsValid)
+            {
+                Response.StatusCode = 400; // Replace .AddHeader
+                var error = new
+                {
+                    Message = "Request is not valid!"
+                };
+                return Json(error);
+            }
+            // var all_category_names = this.categoryService.GetAllCategoryNames();
+            inputEditModel.categories = GetCategories();
+           
+            this.categoryService.Update(new CategoryDTO()
+            {
+                category_id = id,
+                category_name = inputEditModel.category_name,
+                category_description = inputEditModel.category_description
+                
+            });
+                
+
+            //string selected_category = inputEditModel.selectedCategory;
+            
+            //try
+            //{
+            //    if (selected_category != null)
+            //    {
+            //        int parent_id_selected = this.categoryService.GetCategoryId(selected_category);
+                    
+            //        this.categoryService.Update(new CategoryDTO
+            //        {
+                     
+            //            category_name = inputEditModel.category_name,
+            //            category_description = inputEditModel.category_description,
+            //            CategoryDTO_parent_id = parent_id_selected
+
+            //        });
+                    
+            //    }
+            //    else
+            //    {
+            //        this.categoryService.Update(new CategoryDTO
+            //        {
+                        
+            //            category_name = inputEditModel.category_name,
+            //            category_description = inputEditModel.category_description,
+
+            //        });
+            //    }
+
+            //}
+            //catch (DbUpdateException e)
+
+            //when (e.InnerException?.InnerException is SqlException sqlEx &&
+            //(sqlEx.Number == 2601 || sqlEx.Number == 2627))
+            //{
+
+            //    ModelState.AddModelError("category_name", "Категорията вече съществува");
+            //    return View(inputEditModel);
+            //}
+
+
+            return View(inputEditModel);
         }
     }
 }

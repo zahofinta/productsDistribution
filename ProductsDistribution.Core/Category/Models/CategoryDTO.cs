@@ -19,11 +19,12 @@ namespace ProductsDistribution.Core.Category.Models
     
     public int? CategoryDTO_parent_id { get; set; }
 
-    
-    
-    
+   // public ICollection<CategoryDTO> children { get; set; }
 
-    
 
-}
+
+
+
+
+    }
 }

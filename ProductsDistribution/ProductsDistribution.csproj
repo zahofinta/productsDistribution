@@ -216,6 +216,7 @@
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\InputModels\AnnouncementInputModel.cs" />
+    <Compile Include="Models\InputModels\CategoryInputEditModel.cs" />
     <Compile Include="Models\InputModels\CategoryInputModel.cs" />
     <Compile Include="Models\InputModels\ProducerInputModel.cs" />
     <Compile Include="Models\InputModels\ProductInputModel.cs" />
@@ -300,6 +301,7 @@
     <Content Include="Views\Roles\Edit.cshtml" />
     <Content Include="Views\Category\AddNewCategory.cshtml" />
     <Content Include="Views\Category\DisplayCategories.cshtml" />
+    <Content Include="Views\Category\EditView.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

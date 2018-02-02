@@ -58,7 +58,8 @@ namespace ProductsDistribution.Services
 
         public void Update(CategoryDTO category)
         {
-            var categoryToUpdate = this.categoryRepository.Get(x => x.category_id == category.category_id);
+            var categoryToUpdate = this.categoryRepository.Get(x=>x.category_id == category.category_id);
+            
             categoryToUpdate.category_name = category.category_name;
             categoryToUpdate.category_description = category.category_description;
             categoryToUpdate.Category_parent_id = category.CategoryDTO_parent_id;
@@ -98,6 +99,56 @@ namespace ProductsDistribution.Services
         {
             return CategoryRepository.GetAllSubCategories(categoryName);
         }
+
+        public CategoryDTO GetCategoryByCategoryName(string categoryName)
+        {
+            return CategoryRepository.GetCategoryByName(categoryName);
+        }
+
+        public Category MapCategory(CategoryDTO category)
+        {
+            return new Category()
+            {
+                category_id = category.category_id,
+                category_name = category.category_name,
+                category_description = category.category_description,
+                Category_parent_id = category.CategoryDTO_parent_id,
+                children = GetFullSubCategories(category.category_name)
+
+
+            };
+        }
+        public void DeleteCategory(CategoryDTO item)
+        {
+            var category = this.categoryRepository.Get(x => x.category_id == item.category_id);
+
+             if (item == null)
+             {
+                 throw new ArgumentException("Cannot find category with id: " + item.category_id);
+             }
+             
+            this.categoryRepository.Delete(category);
+           /* return new CategoryDTO()
+            {
+                category_id = category.category_id,
+                category_description = category.category_description,
+                category_name = category.category_name,
+                CategoryDTO_parent_id = category.Category_parent_id
+            };*/
+
+
+        }
+
+        public List<Category> GetFullSubCategories(string categoryName)
+        {
+            return CategoryRepository.GetFullSubCategories(categoryName);
+        }
+
+        public List<CategoryDTO> GetAllSubCategoriesById(int id)
+        {
+            return CategoryRepository.GetAllSubCategoriesById(id);
+        }
     }
+    
     
 }

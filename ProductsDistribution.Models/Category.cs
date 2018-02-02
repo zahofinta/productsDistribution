@@ -22,7 +22,8 @@ namespace ProductsDistribution.Models
 
         [ForeignKey("parent_Category")]
         public int? Category_parent_id { get; set; }
-
+        
+        
         public Category parent_Category { get; set; }
 
         public ICollection<Category> children { get; set; }

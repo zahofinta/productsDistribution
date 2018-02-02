@@ -8,8 +8,9 @@ namespace ProductsDistribution.Models.ViewModels
 {
     public class CategoryViewModel
     {
+
         
-       
+        public int category_id { get; set; }
         public string category_name { get; set; }
 
         public List<string> sub_categories { get; set; }

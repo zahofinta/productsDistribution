@@ -1,4 +1,5 @@
 ﻿using ProductsDistribution.Core.Category.Models;
+using ProductsDistribution.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,5 +21,14 @@ namespace ProductsDistribution.Services.Contracts
         List<string> GetAllCategoryNames();
 
         List<string> GetAllSubCategoriesByName(string categoryName);
+
+        CategoryDTO GetCategoryByCategoryName(string categoryName);
+
+        // CategoryDTO DeleteCategory(CategoryDTO item);
+        void DeleteCategory(CategoryDTO item);
+
+         List<Category> GetFullSubCategories(string categoryName);
+
+        List<CategoryDTO> GetAllSubCategoriesById(int id);
     }
 }

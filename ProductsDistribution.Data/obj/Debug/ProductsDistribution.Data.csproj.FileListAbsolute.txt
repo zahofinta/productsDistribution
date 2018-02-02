@@ -22,6 +22,6 @@ D:\СТ\Дипломна работа\ProductsDistribution asp net core mvc 2.x\
 D:\СТ\Дипломна работа\ProductsDistribution asp net core mvc 2.x\ProductsDistribution\ProductsDistribution.Data\obj\Debug\ProductsDistribution.Data.csprojResolveAssemblyReference.cache
 D:\СТ\Дипломна работа\ProductsDistribution asp net core mvc 2.x\ProductsDistribution\ProductsDistribution.Data\obj\Debug\ProductsDistribution.Data.dll
 D:\СТ\Дипломна работа\ProductsDistribution asp net core mvc 2.x\ProductsDistribution\ProductsDistribution.Data\obj\Debug\ProductsDistribution.Data.pdb
-D:\СТ\Дипломна работа\ProductsDistribution asp net core mvc 2.x\ProductsDistribution\ProductsDistribution.Data\obj\Debug\ProductsDistribution.Data.Migrations.InitialCreate.resources
-D:\СТ\Дипломна работа\ProductsDistribution asp net core mvc 2.x\ProductsDistribution\ProductsDistribution.Data\obj\Debug\ProductsDistribution.Data.csproj.GenerateResource.Cache
 D:\СТ\Дипломна работа\ProductsDistribution asp net core mvc 2.x\ProductsDistribution\ProductsDistribution.Data\bin\Microsoft.ExceptionMessageBox.dll
+D:\СТ\Дипломна работа\ProductsDistribution asp net core mvc 2.x\ProductsDistribution\ProductsDistribution.Data\obj\Debug\ProductsDistribution.Data.Migrations.Initial_Create.resources
+D:\СТ\Дипломна работа\ProductsDistribution asp net core mvc 2.x\ProductsDistribution\ProductsDistribution.Data\obj\Debug\ProductsDistribution.Data.csproj.GenerateResource.Cache

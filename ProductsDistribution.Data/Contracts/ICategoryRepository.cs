@@ -14,5 +14,11 @@ namespace ProductsDistribution.Data.Contracts
 
         List<string> GetAllSubCategories(string categoryName);
 
+        CategoryDTO GetCategoryByName(string categoryName);
+
+        List<CategoryDTO> GetAllSubCategoriesById(int id);
+
+        
+
     }
 }
