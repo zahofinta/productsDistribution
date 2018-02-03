@@ -27,22 +27,7 @@ namespace ProductsDistribution.Controllers
         {
             return View();
         }
-        /*private IEnumerable<CategoryViewModel> MapCategories(IEnumerable<CategoryDTO> categoriesDTO)
-        {
-            var categories = new List<CategoryViewModel>();
-
-            foreach (var category in categoriesDTO)
-            {
-                categories.Add(new CategoryViewModel
-                {
-                    
-                    category_name= category.category_name
-                   
-                });
-            }
-
-            return categories;
-        }*/
+      
         public ActionResult AddNewCategory()
         {
             CategoryInputModel inputModel = new CategoryInputModel
@@ -51,7 +36,7 @@ namespace ProductsDistribution.Controllers
             };
             return View(inputModel);
 
-            //  return View("AddNewCategory");
+         
         }
 
         private IEnumerable<SelectListItem> GetCategories()
@@ -87,7 +72,6 @@ namespace ProductsDistribution.Controllers
                 };
                 return Json(error);
             }
-            // var all_category_names = this.categoryService.GetAllCategoryNames();
             inputModel.categories = GetCategories();
 
             string selected_category = inputModel.selectedCategory;
@@ -129,13 +113,13 @@ namespace ProductsDistribution.Controllers
             }
 
 
-            return View(inputModel);
+             return RedirectToAction("DisplayCategories"); 
+            
         }
         public ActionResult DisplayCategories()
         {
             List<string> all_category_names = categoryService.GetAllCategoryNames();
             List<CategoryViewModel> viewModel = new List<CategoryViewModel>();
-            //List<List<string>> all_subcategory_names = new List<List<string>>();
             foreach (string categoryName in all_category_names.ToList())
             {
 
@@ -150,16 +134,7 @@ namespace ProductsDistribution.Controllers
             return View(viewModel);
         }
 
-        /* public ActionResult EditCategory()
-         {
-             CategoryInputEditModel inputModel = new CategoryInputEditModel
-             {
-                 categories = GetCategories()
-             };
-             return View(inputModel);
-
-             //  return View("AddNewCategory");
-         }*/
+      
         [HttpGet]
         public ActionResult Delete(int id)
         {
@@ -171,15 +146,11 @@ namespace ProductsDistribution.Controllers
                 cat.CategoryDTO_parent_id = null;
                 this.categoryService.DeleteCategory(cat);
             }
-            /*  var deletedItem = this.categoryService.DeleteCategory(new CategoryDTO()
-              {
-                category_id= id
-              });*/
+         
             this.categoryService.DeleteCategory(category);
             
-            
-          //  return Json(deletedItem,JsonRequestBehavior.AllowGet);
-            return this.DisplayCategories();
+
+            return Redirect(Request.UrlReferrer.ToString());
         }
 
         CategoryInputEditModel MapCategoryDTOToCategoryInputEditModel(CategoryDTO category)
@@ -200,7 +171,7 @@ namespace ProductsDistribution.Controllers
             var category = this.categoryService.GetById(id);
          
             CategoryInputEditModel model = MapCategoryDTOToCategoryInputEditModel(category);
-           // string selected_category = model.selectedCategory;
+          
             return View(model);
            
         }
@@ -218,58 +189,54 @@ namespace ProductsDistribution.Controllers
             }
             // var all_category_names = this.categoryService.GetAllCategoryNames();
             inputEditModel.categories = GetCategories();
-           
-            this.categoryService.Update(new CategoryDTO()
+
+            string selected_category = inputEditModel.selectedCategory;
+            try
             {
-                category_id = id,
-                category_name = inputEditModel.category_name,
-                category_description = inputEditModel.category_description
-                
-            });
-                
+                if (selected_category != null)
+                {
+                    int parent_id_selected = this.categoryService.GetCategoryId(selected_category);
 
-            //string selected_category = inputEditModel.selectedCategory;
-            
-            //try
-            //{
-            //    if (selected_category != null)
-            //    {
-            //        int parent_id_selected = this.categoryService.GetCategoryId(selected_category);
-                    
-            //        this.categoryService.Update(new CategoryDTO
-            //        {
-                     
-            //            category_name = inputEditModel.category_name,
-            //            category_description = inputEditModel.category_description,
-            //            CategoryDTO_parent_id = parent_id_selected
+                    this.categoryService.Update(new CategoryDTO
+                    {
+                        category_id = id,
+                        category_name = inputEditModel.category_name,
+                        category_description = inputEditModel.category_description,
+                        CategoryDTO_parent_id = parent_id_selected
 
-            //        });
-                    
-            //    }
-            //    else
-            //    {
-            //        this.categoryService.Update(new CategoryDTO
-            //        {
-                        
-            //            category_name = inputEditModel.category_name,
-            //            category_description = inputEditModel.category_description,
+                    });
+                }
+                else
+                {
+                    this.categoryService.Update(new CategoryDTO
+                    {
+                        category_id = id,
+                        category_name = inputEditModel.category_name,
+                        category_description = inputEditModel.category_description,
 
-            //        });
-            //    }
+                    });
+                }
 
-            //}
-            //catch (DbUpdateException e)
+            }
+            catch (DbUpdateException e)
 
-            //when (e.InnerException?.InnerException is SqlException sqlEx &&
-            //(sqlEx.Number == 2601 || sqlEx.Number == 2627))
-            //{
+            when (e.InnerException?.InnerException is SqlException sqlEx &&
+            (sqlEx.Number == 2601 || sqlEx.Number == 2627))
+            {
 
-            //    ModelState.AddModelError("category_name", "Категорията вече съществува");
-            //    return View(inputEditModel);
-            //}
+                ModelState.AddModelError("category_name", "Категорията вече съществува");
+                return View(inputEditModel);
+            }
+            /*  this.categoryService.Update(new CategoryDTO()
+              {
+                  category_id = id,
+                  category_name = inputEditModel.category_name,
+                  category_description = inputEditModel.category_description
 
+              });*/
 
-            return View(inputEditModel);
+            //  return View(inputEditModel);
+            return RedirectToAction("DisplayCategories");
         }
     }
 }
