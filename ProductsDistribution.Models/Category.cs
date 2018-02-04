@@ -13,11 +13,11 @@ namespace ProductsDistribution.Models
         private ICollection<Product> products;
         [Key][DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int category_id { get; set; }
-        [Required]
+        [Required(ErrorMessage = ("Име на категория е задължително поле"))]
         [StringLength(50)]
         [Index("category_nameIndex",IsUnique=true)]
         public string category_name { get; set; }
-        [Required]
+        [Required(ErrorMessage = ("Описание на категория е задължително поле"))]
         public string category_description { get; set; }
 
         [ForeignKey("parent_Category")]

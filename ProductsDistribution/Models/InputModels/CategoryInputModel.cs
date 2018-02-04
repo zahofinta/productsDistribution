@@ -13,10 +13,10 @@ namespace ProductsDistribution.Models.InputModels
     {
 
 
-        [Required]
+        [Required(ErrorMessage=("Име на категория е задължително поле"))]
         [Display(Name ="Име на категория :")]
         public string category_name { get; set; }
-        [Required]
+        [Required(ErrorMessage = ("Описание на категория е задължително поле"))]
         [Display(Name = "Описание :")]
         public string category_description { get; set; }
 
@@ -24,6 +24,6 @@ namespace ProductsDistribution.Models.InputModels
 
         //public int? Category_parent_id { get; set; }
         [Display(Name = "Подкатегория :")]
-        public IEnumerable<SelectListItem> categories { get;set; }
+        public IEnumerable<SelectListItem> categories = new List<SelectListItem>();
     }
 }

@@ -10,7 +10,7 @@ namespace ProductsDistribution.Data.Contracts
     public interface ICategoryRepository : IRepository<Category>
     {
         int GetCategoryId(string categoryName);
-        List<string> GetAllCategoryNames();
+        List<string> GetAllCategoryParentNames();
 
         List<string> GetAllSubCategories(string categoryName);
 
@@ -18,7 +18,7 @@ namespace ProductsDistribution.Data.Contracts
 
         List<CategoryDTO> GetAllSubCategoriesById(int id);
 
-        
+        List<string> GetAllCategoryNames();
 
     }
 }

@@ -15,10 +15,10 @@ namespace ProductsDistribution.Data.Repositories
         {
 
         }
-        public List<string> GetAllCategoryNames()
+        public List<string> GetAllCategoryParentNames()
         {
             var categories = this._dbSet;
-            return categories.Select(x => x.category_name).ToList();
+            return categories.Where(x=>x.Category_parent_id==null).Select(x => x.category_name).ToList();
         }
 
         public List<string> GetAllSubCategories(string categoryName)
@@ -88,6 +88,11 @@ namespace ProductsDistribution.Data.Repositories
             return sub_categories_dto;
         }
 
+        public List<string> GetAllCategoryNames()
+        {
+            var categories = this._dbSet;
+            return categories.Select(x => x.category_name).ToList();
+        }
     }
 
 }

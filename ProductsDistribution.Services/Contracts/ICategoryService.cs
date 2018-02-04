@@ -18,6 +18,8 @@ namespace ProductsDistribution.Services.Contracts
         //CategoryDTO DeleteCategory(CategoryDTO item);
         void Update(CategoryDTO category);
 
+        List<string> GetAllCategoryParentNames();
+
         List<string> GetAllCategoryNames();
 
         List<string> GetAllSubCategoriesByName(string categoryName);

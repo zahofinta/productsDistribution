@@ -41,7 +41,7 @@ namespace ProductsDistribution.Controllers
 
         private IEnumerable<SelectListItem> GetCategories()
         {
-            var categories = this.categoryService.GetAllCategoryNames();
+            var categories = this.categoryService.GetAllCategoryParentNames();
 
             return new SelectList(categories);
         }
@@ -63,16 +63,19 @@ namespace ProductsDistribution.Controllers
         [HttpPost]
         public ActionResult AddNewCategory(CategoryInputModel inputModel)
         {
+            inputModel.categories = GetCategories();
             if (!this.ModelState.IsValid)
             {
-                Response.StatusCode = 400; // Replace .AddHeader
-                var error = new
-                {
-                    Message = "Request is not valid!"
-                };
-                return Json(error);
+                /* Response.StatusCode = 400; // Replace .AddHeader
+                 var error = new
+                 {
+                     Message = "Request is not valid!"
+                 };
+                 return Json(error);*/
+             //   inputModel.categories = GetCategories();
+                return View(inputModel);
             }
-            inputModel.categories = GetCategories();
+          //  inputModel.categories = GetCategories();
 
             string selected_category = inputModel.selectedCategory;
             try
@@ -178,17 +181,19 @@ namespace ProductsDistribution.Controllers
         [HttpPost]
         public ActionResult EditView(int id,CategoryInputEditModel inputEditModel)
         {
+            inputEditModel.categories = GetCategories();
             if (!this.ModelState.IsValid)
             {
-                Response.StatusCode = 400; // Replace .AddHeader
-                var error = new
-                {
-                    Message = "Request is not valid!"
-                };
-                return Json(error);
+                //Response.StatusCode = 400; // Replace .AddHeader
+                //var error = new
+                //{
+                //    Message = "Request is not valid!"
+                //};
+                //return Json(error);
+                return View(inputEditModel);
             }
             // var all_category_names = this.categoryService.GetAllCategoryNames();
-            inputEditModel.categories = GetCategories();
+           // inputEditModel.categories = GetCategories();
 
             string selected_category = inputEditModel.selectedCategory;
             try

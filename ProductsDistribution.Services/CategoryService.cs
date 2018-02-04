@@ -148,6 +148,11 @@ namespace ProductsDistribution.Services
         {
             return CategoryRepository.GetAllSubCategoriesById(id);
         }
+
+        public List<string> GetAllCategoryParentNames()
+        {
+            return CategoryRepository.GetAllCategoryParentNames();
+        }
     }
     
     
