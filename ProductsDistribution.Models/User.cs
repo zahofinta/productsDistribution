@@ -46,7 +46,7 @@ namespace ProductsDistribution.Models
 
         public bool isEnabled { get; set; }
 
-        public float rating { get; set; }
+        public double rating { get; set; }
 
             public virtual ICollection<Producer> Producers
         {

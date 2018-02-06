@@ -99,15 +99,16 @@
     <Compile Include="Contracts\IQueryRepository.cs" />
     <Compile Include="Contracts\IRepository.cs" />
     <Compile Include="Contracts\IUserRepository.cs" />
-    <Compile Include="Migrations\201802020859234_Initial_Create.cs" />
-    <Compile Include="Migrations\201802020859234_Initial_Create.Designer.cs">
-      <DependentUpon>201802020859234_Initial_Create.cs</DependentUpon>
+    <Compile Include="Migrations\201802061226150_Initial_Create.cs" />
+    <Compile Include="Migrations\201802061226150_Initial_Create.Designer.cs">
+      <DependentUpon>201802061226150_Initial_Create.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="ProductsDistributionDBContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\CategoryRepository.cs" />
     <Compile Include="Repositories\GenericEfRepository.cs" />
+    <Compile Include="Repositories\ProductRepository.cs" />
     <Compile Include="Repositories\UserRepository.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -121,8 +122,8 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201802020859234_Initial_Create.resx">
-      <DependentUpon>201802020859234_Initial_Create.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201802061226150_Initial_Create.resx">
+      <DependentUpon>201802061226150_Initial_Create.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

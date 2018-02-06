@@ -210,6 +210,7 @@
     <Compile Include="Controllers\CategoryController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\ProductController.cs" />
     <Compile Include="Controllers\RolesController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -302,6 +303,7 @@
     <Content Include="Views\Category\AddNewCategory.cshtml" />
     <Content Include="Views\Category\DisplayCategories.cshtml" />
     <Content Include="Views\Category\EditView.cshtml" />
+    <Content Include="Views\Product\AddNewProduct.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

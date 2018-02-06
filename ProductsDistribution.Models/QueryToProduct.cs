@@ -16,7 +16,7 @@ namespace ProductsDistribution.Models
 
         [Required]
         [Min(0.0, ErrorMessage = "Please enter quantity greater than 0")]
-        public float quantity { get; set; }
+        public double quantity { get; set; }
 
         public int query_id { get; set; }
         public int product_id { get; set; }

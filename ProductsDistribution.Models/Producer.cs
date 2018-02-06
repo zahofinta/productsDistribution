@@ -27,7 +27,9 @@ namespace ProductsDistribution.Models
         public string producer_email { get; set; }
 
         public bool isEnabled { get; set; }
-        public float rating { get; set; }
+        public double rating { get; set; }
+
+        public string userId { get; set; }
 
         public User user { get; set; }
 

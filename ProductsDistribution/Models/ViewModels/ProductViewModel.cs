@@ -5,23 +5,22 @@ using System.Web;
 
 namespace ProductsDistribution.Models.ViewModels
 {
-    public class ProductViewModel
+    public class ProductViewModelShort
     {
-        public int product_id { get; set; }  
+         
         public string product_name { get; set; }
        
-        public string product_description { get; set; }
+        public double weight { get; set; }
         
-        public string cut { get; set; }
-     
-        public float weight { get; set; }
-        
-        public float volume { get; set; }
+        public double volume { get; set; }
 
         public DateTime durability { get; set; }
 
-        public string other { get; set; }
+
+        public double price { get; set; }
 
         public float rating { get; set; }
+
+        public string category { get; set; }
     }
 }

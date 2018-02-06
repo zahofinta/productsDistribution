@@ -12,6 +12,8 @@ namespace ProductsDistribution.Models
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int query_id { get; set; }
+
+        public string userId { get; set; }
         public User user { get; set; }
 
         public ICollection<QueryToProduct> queries_to_products { get; set; }

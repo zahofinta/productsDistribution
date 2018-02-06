@@ -13,19 +13,23 @@ namespace ProductsDistribution.Core.Product.Models
 
         public string product_description { get; set; }
 
-        public float weight { get; set; }
+        public double weight { get; set; }
 
-        public float volume { get; set; }
+        public double volume { get; set; }
 
         public DateTime durability { get; set; }
 
         public string other { get; set; }
 
-        public float rating { get; set; }
+        public double rating { get; set; }
 
         public int categoryId { get; set; }
 
-        public string categoryName { get; set; }
+        public string cut { get; set; }
+
+        public double price { get; set; }
+
+       // public string categoryName { get; set; }
 
     }
 }

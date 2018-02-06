@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Web;
+using ProductsDistribution.Core.Product.Models;
 
 namespace ProductsDistribution.Data.Contracts
 {
@@ -17,5 +18,6 @@ namespace ProductsDistribution.Data.Contracts
         void Update(TEntity entity);
 
         void Delete(TEntity entity);
+        
     }
 }

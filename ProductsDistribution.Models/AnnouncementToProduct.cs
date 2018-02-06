@@ -18,7 +18,7 @@ namespace ProductsDistribution.Models
         [Min(0.0, ErrorMessage = "Please enter max quantity greater than 0")]
        
 
-        public float max_quantity { get; set; }
+        public double max_quantity { get; set; }
 
         public int announcement_id { get; set; }
 

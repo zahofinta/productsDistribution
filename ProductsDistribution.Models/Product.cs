@@ -20,17 +20,23 @@ namespace ProductsDistribution.Models
         [Required]
         public string cut { get; set; }
         [Required]
+        [Min(0.0, ErrorMessage = "Please enter price greater than 0")]
+        public double price { get; set; }
+        [Required]
         [Min(0.0, ErrorMessage = "Please enter weight greater than 0")]
-        public float weight { get; set; }
+        public double weight { get; set; }
         [Min(0.0, ErrorMessage = "Please enter volume greater than 0")]
-        public float volume { get; set; }
+        public double volume { get; set; }
 
+        
         [DataType(DataType.Date)]
         public DateTime durability { get; set; }
 
         public string other { get; set; }
         public bool isEnabled { get; set; }
-        public float rating { get; set; }
+        public double rating { get; set; }
+
+        public int categoryId { get; set; }
         [Required]
         public Category category { get; set; }
 

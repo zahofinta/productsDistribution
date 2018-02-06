@@ -1,11 +1,14 @@
-﻿using System;
+﻿using ProductsDistribution.Core.Product.Models;
+using ProductsDistribution.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
 namespace ProductsDistribution.Data.Contracts
 {
-    public class IProductRepository
+    public interface IProductRepository : IRepository<Product>
     {
+        IEnumerable<ProductBaseDTO> GetAllProductsByUser(string userId);
     }
 }

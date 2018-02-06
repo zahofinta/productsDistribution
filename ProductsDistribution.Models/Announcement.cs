@@ -22,6 +22,8 @@ namespace ProductsDistribution.Models
 
         public Status status { get; set; }
 
+        public string userId { get; set; }
+
         public User user { get; set; }
 
         public ICollection<AnnouncementToProduct> announcements_to_products { get; set; }
