@@ -6,6 +6,7 @@ using System.Web;
 using ProductsDistribution.Core.Product.Models;
 using ProductsDistribution.Data.Contracts;
 using ProductsDistribution.Models;
+using ProductsDistribution.Data.Repositories;
 
 namespace ProductsDistribution.Services
 {
@@ -15,14 +16,14 @@ namespace ProductsDistribution.Services
     {
         public readonly IRepository<Product> productRepository;
         public readonly IRepository<Category> categoryRepository;
+        public readonly ProductRepository ProductRepository;
 
-
-        public ProductService(IRepository<Product> productRepository, IRepository<Category> categoryRepository)
+        public ProductService(IRepository<Product> productRepository, IRepository<Category> categoryRepository,ProductRepository ProductRepository)
 
         {
             this.categoryRepository = categoryRepository;
             this.productRepository = productRepository;
-
+            this.ProductRepository = ProductRepository;
         }
 
         public ProductBaseDTO MapProduct(Product product)
@@ -60,7 +61,8 @@ namespace ProductsDistribution.Services
                 categoryId = product.categoryId,
                 rating = 0.0,
                 isEnabled = true,
-                price = product.price
+                price = product.price,
+                userId = product.userId
             };
             this.productRepository.Insert(productToAdd);
         }
@@ -100,6 +102,10 @@ namespace ProductsDistribution.Services
             this.productRepository.Update(productToUpdate);
         }
 
+        public IEnumerable<ProductBaseDTO> GetAllProductsByUser(string userId)
+        {
+            return this.ProductRepository.GetAllProductsByUserShort(userId);
+        }
     }
 }
 

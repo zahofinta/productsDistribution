@@ -19,7 +19,7 @@ namespace ProductsDistribution.Models.ViewModels
 
         public double price { get; set; }
 
-        public float rating { get; set; }
+        public double rating { get; set; }
 
         public string category { get; set; }
     }

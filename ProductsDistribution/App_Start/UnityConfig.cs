@@ -64,13 +64,16 @@ namespace ProductsDistribution
             container.RegisterType<IAuthenticationManager>(new InjectionFactory(c => HttpContext.Current.GetOwinContext().Authentication));
 
             container.RegisterType<IRepository<Category>, GenericEfRepository<Category>>();
-            container.RegisterType<IProductRepository, ProductRepository>();
+            container.RegisterType<IRepository<Product>, GenericEfRepository<Product>>();
+          //  container.RegisterType<IProductRepository, ProductRepository>();
           //  container.RegisterType<IUserRepository, UserRepository>();
             //container.RegisterType<IIncomeRepository, IncomeRepository>();
 
             //container.RegisterType<IPaymentService, PaymentService>();
             //container.RegisterType<IUserService, UserService>();
             container.RegisterType<ICategoryService, CategoryService>();
+            container.RegisterType<IProductService, ProductService>();
+
 
             container.RegisterType<AccountController>(new InjectionConstructor(typeof(ApplicationUserManager), typeof(ApplicationSignInManager), typeof(IAuthenticationManager)));
             container.RegisterType<ManageController>(new InjectionConstructor(typeof(ApplicationUserManager), typeof(ApplicationSignInManager), typeof(IAuthenticationManager)));

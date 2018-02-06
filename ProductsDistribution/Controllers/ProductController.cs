@@ -1,8 +1,8 @@
 ﻿using ProductsDistribution.Core.Product.Models;
-using ProductsDistribution.Models.InputModels
+using ProductsDistribution.Models.InputModels;
 using ProductsDistribution.Models.ViewModels;
 using ProductsDistribution.Services.Contracts;
-
+using Microsoft.AspNet.Identity;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity.Infrastructure;
@@ -26,6 +26,7 @@ namespace ProductsDistribution.Controllers
         // GET: Product
         public ActionResult Index()
         {
+            
             return View();
         }
 
@@ -45,21 +46,38 @@ namespace ProductsDistribution.Controllers
 
         public ActionResult DisplayProducts()
         {
-            List<string> all_category_names = categoryService.GetAllCategoryNames();
+           
             List<ProductViewModelShort> viewModel = new List<ProductViewModelShort>();
-            foreach (string categoryName in all_category_names.ToList())
+            string current_user = this.User.Identity.GetUserId();
+            var all_products_by_user = this.productService.GetAllProductsByUser(current_user);
+            foreach (var product_short in all_products_by_user.ToList())
             {
-
+                
                 ProductViewModelShort element = new ProductViewModelShort();
-              /*  element.product_name= this.categoryService.GetCategoryId(categoryName);
-                element.category_name = categoryName;
-                element.sub_categories = categoryService.GetAllSubCategoriesByName(categoryName);
-                */
+                element.product_name = product_short.product_name;
+                element.price = product_short.price;
+                element.durability = product_short.durability;
+                element.rating = product_short.rating;
+                element.volume = product_short.volume;
+                element.weight = product_short.weight;
+                element.category = this.categoryService.GetById(product_short.categoryId).category_name;
+
                 viewModel.Add(element);
 
             }
 
             return View(viewModel);
+        }
+
+        public ActionResult AddNewProduct()
+        {
+            ProductInputModel inputModel = new ProductInputModel
+            {
+                parent_categories = GetParentCategories()
+            };
+            return View(inputModel);
+
+
         }
 
         [HttpPost]
@@ -92,7 +110,8 @@ namespace ProductsDistribution.Controllers
                         volume = inputModel.volume,
                         weight = inputModel.weight,
                         rating = 0.0,
-                        categoryId = selected_child_category_id
+                        categoryId = selected_child_category_id,
+                        userId = this.User.Identity.GetUserId()
                         
 
                     });

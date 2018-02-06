@@ -9,6 +9,6 @@ namespace ProductsDistribution.Data.Contracts
 {
     public interface IProductRepository : IRepository<Product>
     {
-        IEnumerable<ProductBaseDTO> GetAllProductsByUser(string userId);
+        IEnumerable<ProductBaseDTO> GetAllProductsByUserShort(string userId);
     }
 }

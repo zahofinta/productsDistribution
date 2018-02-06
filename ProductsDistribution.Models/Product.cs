@@ -40,6 +40,10 @@ namespace ProductsDistribution.Models
         [Required]
         public Category category { get; set; }
 
+        public string userId { get; set; }
+
+        public User user { get; set; }
+
         public ICollection<ProducerToProduct> producers_to_products { get; set; }
         public ICollection<QueryToProduct> queries_to_products { get; set; }
 

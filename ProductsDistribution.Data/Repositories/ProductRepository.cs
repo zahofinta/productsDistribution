@@ -15,9 +15,23 @@ namespace ProductsDistribution.Data.Repositories
         {
         }
 
-        public IEnumerable<ProductBaseDTO> GetAllProductsByUser(string userId)
+        public IEnumerable<ProductBaseDTO> GetAllProductsByUserShort(string userId)
         {
-            throw new NotImplementedException();
+            var products = this._dbSet;
+            var all_products_by_user_short = from p in products
+                                             where p.userId == userId
+                                             select new ProductBaseDTO
+                                             {
+                                                 
+                                                 product_name = p.product_name,
+                                                 price = p.price,                                              
+                                                 weight= p.weight,
+                                                 volume = p.volume,
+                                                 durability= p.durability,
+                                                 rating = p.rating,
+                                                 categoryId = p.categoryId
+                                             };
+            return all_products_by_user_short;
         }
     }
 }

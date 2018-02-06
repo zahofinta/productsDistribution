@@ -18,12 +18,14 @@ namespace ProductsDistribution.Models
         private ICollection<Producer> producers;
         private ICollection<Query> queries;
         private ICollection<Announcement> announcements;
+        private ICollection<Product> products;
 
         public User()
         {
             this.producers = new HashSet<Producer>();
             this.queries = new HashSet<Query>();
             this.announcements = new HashSet<Announcement>();
+            this.products = new HashSet<Product>();
         }
         [Required]
         public string first_name { get; set; }
@@ -66,6 +68,11 @@ namespace ProductsDistribution.Models
             set { this.announcements = value; }
         }
 
+        public virtual ICollection<Product> Products
+        {
+            get { return this.products; }
+            set { this.products = value; }
+        }
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<User> manager)
         {
             // Note the authenticationType must match the one defined in CookieAuthenticationOptions.AuthenticationType

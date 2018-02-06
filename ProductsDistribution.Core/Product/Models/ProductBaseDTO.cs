@@ -29,6 +29,8 @@ namespace ProductsDistribution.Core.Product.Models
 
         public double price { get; set; }
 
+        public string userId { get; set; }
+
        // public string categoryName { get; set; }
 
     }

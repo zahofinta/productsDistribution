@@ -18,6 +18,8 @@ namespace ProductsDistribution.Services.Contracts
 
         void DeleteProduct(ProductBaseDTO item);
 
+        IEnumerable<ProductBaseDTO> GetAllProductsByUser(string userId);
+
 
     }
 }
