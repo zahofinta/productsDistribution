@@ -37,7 +37,7 @@ namespace ProductsDistribution.Models
         public double rating { get; set; }
 
         public int categoryId { get; set; }
-        [Required]
+     //   [Required]
         public Category category { get; set; }
 
         public string userId { get; set; }

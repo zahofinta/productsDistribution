@@ -69,21 +69,37 @@ namespace ProductsDistribution.Controllers
             return View(viewModel);
         }
 
+       
+
+        public ActionResult GetAllChildCategories(string categoryName)
+        {
+            var child_categories = this.categoryService.GetAllSubCategoriesByName(categoryName);
+            return Json(child_categories, JsonRequestBehavior.AllowGet);
+        }
+       
+
+        [HttpGet]
         public ActionResult AddNewProduct()
         {
+            
             ProductInputModel inputModel = new ProductInputModel
             {
                 parent_categories = GetParentCategories()
+                
             };
+           //string selected = inputModel.selected_ParentCategory;
+           // inputModel.child_categories = GetChildCategories(selected);
+           
             return View(inputModel);
 
 
         }
 
-        [HttpPost]
+       /* [HttpPost]
         public ActionResult AddNewProduct(ProductInputModel inputModel)
         {
             inputModel.parent_categories = GetParentCategories();
+
             if (!this.ModelState.IsValid)
             {
 
@@ -91,8 +107,67 @@ namespace ProductsDistribution.Controllers
             }
             string selected_parent_category = inputModel.selected_ParentCategory;
             inputModel.child_categories = GetChildCategories(selected_parent_category);
-            string selected_child_category = inputModel.selected_ChildCategory;
-            int selected_child_category_id = categoryService.GetCategoryId(selected_child_category);
+            //  string selected_value = selected
+
+            string selected = inputModel.selected_ChildCategory;
+            int selected_child_category_id = categoryService.GetCategoryId(selected);
+
+            try
+            {
+
+                //int parent_id_selected = this.productService.GetCategoryId(selected_category);
+
+                this.productService.AddNewProduct(new ProductBaseDTO
+                {
+                    product_name = inputModel.product_name,
+                    product_description = inputModel.product_description,
+                    price = inputModel.price,
+                    cut = inputModel.cut,
+                    durability = inputModel.durability,
+                    other = inputModel.other,
+                    volume = inputModel.volume,
+                    weight = inputModel.weight,
+                    rating = 0.0,
+                    categoryId = selected_child_category_id,
+                    userId = this.User.Identity.GetUserId()
+
+
+                });
+
+            }
+            catch (DbUpdateException e)
+
+            when (e.InnerException?.InnerException is SqlException sqlEx &&
+            (sqlEx.Number == 2601 || sqlEx.Number == 2627))
+            {
+
+                ModelState.AddModelError("product_name", "Продуктът вече съществува");
+                return View(inputModel);
+            }
+
+
+            return RedirectToAction("DisplayProducts");
+
+        } */
+
+
+
+        [HttpPost]
+        public  ActionResult AddNewProduct(ProductInputModel inputModel)
+        {
+            
+            inputModel.parent_categories = GetParentCategories();
+           
+            if (!this.ModelState.IsValid)
+            {
+                
+                return View(inputModel);
+            }
+            string selected_parent_category = inputModel.selected_ParentCategory;
+            inputModel.child_categories = GetChildCategories(selected_parent_category);
+            
+            string selected = inputModel.selected_ChildCategory;  
+            int selected_child_category_id = categoryService.GetCategoryId(selected);
        
             try
             {
@@ -127,7 +202,7 @@ namespace ProductsDistribution.Controllers
                 return View(inputModel);
             }
 
-
+           
             return RedirectToAction("DisplayProducts");
 
         }

@@ -13,7 +13,7 @@ namespace ProductsDistribution.Data.Migrations
         
         string IMigrationMetadata.Id
         {
-            get { return "201802061825067_initial_create"; }
+            get { return "201802091845333_initial_create"; }
         }
         
         string IMigrationMetadata.Source

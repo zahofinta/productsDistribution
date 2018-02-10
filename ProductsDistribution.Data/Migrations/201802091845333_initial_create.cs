@@ -53,10 +53,10 @@ namespace ProductsDistribution.Data.Migrations
                         rating = c.Double(nullable: false),
                         categoryId = c.Int(nullable: false),
                         userId = c.String(maxLength: 128),
-                        category_category_id = c.Int(nullable: false),
+                        category_category_id = c.Int(),
                     })
                 .PrimaryKey(t => t.product_id)
-                .ForeignKey("dbo.Categories", t => t.category_category_id, cascadeDelete: true)
+                .ForeignKey("dbo.Categories", t => t.category_category_id)
                 .ForeignKey("dbo.AspNetUsers", t => t.userId)
                 .Index(t => t.userId)
                 .Index(t => t.category_category_id);

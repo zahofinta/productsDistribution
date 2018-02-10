@@ -3,13 +3,16 @@
 @{
     ViewBag.Title = "AddNewProduct";
 }
+   
+
 
 <h2>AddNewProduct</h2>
 
-@using (Html.BeginForm()) 
+
+@using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    
+
     <div class="form-horizontal">
         <h4>ProductInputModel</h4>
         <hr />
@@ -79,31 +82,175 @@
         </div>
 
         <div class="form-group">
-          @**  @Html.LabelFor(model => model.selected_ParentCategory, htmlAttributes: new { @class = "control-label col-md-2"  *@
+            @Html.LabelFor(model => model.parent_categories, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-               @* @Html.EditorFor(model => model.selected_ParentCategory, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.selected_ParentCategory, "", new { @class = "text-danger" }) *@
-                @Html.LabelFor(m => m.parent_categories, "Категория")
-                @Html.DropDownListFor(m => m.selected_ParentCategory, Model.parent_categories, "")
+               
+                @Html.ValidationMessageFor(model => model.selected_ParentCategory, "", new { @class = "text-danger" }) 
+             
+               @Html.DropDownListFor(m => m.selected_ParentCategory, Model.parent_categories, "", new { @id = "ddlParentCategory" })
             </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.selected_ChildCategory, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.selected_ChildCategory, new { htmlAttributes = new { @class = "form-control" } })
+           @Html.LabelFor(model => model.child_categories, htmlAttributes: new { @class = "control-label col-md-2" })
+
+            <div class="col-md-10" id="subcategories">
+            
+                @Html.DropDownListFor(m => m.selected_ChildCategory, Model.child_categories, "", new { @id = "ddlChildCategory1" })
+               
+             
                 @Html.ValidationMessageFor(model => model.selected_ChildCategory, "", new { @class = "text-danger" })
+              
             </div>
         </div>
+        <p id="test"></p>
+     
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-default" />
+                <input type="submit" value="Create" class="btn btn-default"  id="submitButton" />
             </div>
         </div>
     </div>
 }
 
+
 <div>
     @Html.ActionLink("Back to List", "Index")
 </div>
+
+@section scripts {
+    <script type="text/javascript">
+        var inputModel;
+        var product__name;
+        var product__description;
+        var cut_;
+        var weight_;
+        var volume_;
+        var price_;
+        var durability_;
+        var other_;
+        var selected_ParentCategory_;
+        var selected_ChildCategory_;
+
+        function Submit(model) {
+            $('#submitButton').click(function () {
+
+
+                $.ajax({
+                    type: 'POST',
+                    url: "/Product/AddNewProduct",
+                    data: JSON.stringify(model),
+                    traditional: true,
+                    contentType: 'application/json; charset=utf-8',
+
+                    success: function (data) {
+
+                        alert(this.data);
+
+                    }
+
+                });
+            });
+        }
+
+        //function returnChangedValue(element)
+        //{
+        //    var selected_ChildCategory_;
+        //    $(element).change(function () {
+
+        //        selected_ChildCategory_ = $('#ddlChildCategory option:selected').last().val();
+
+        //    });
+        //    return selected_ChildCategory_;
+        //}
+
+        $(document).ready(function () {
+            
+            
+            $('#ddlParentCategory').change(function () {
+                $.ajax({
+                    type: "post",
+                    url: "/Product/GetAllChildCategories",
+                    data: { categoryName: $('#ddlParentCategory').val() },
+                    datatype: "json",
+                    traditional: true,
+                    success: function (data) {
+
+                        var child_category = "<select id='ddlChildCategory'>";
+
+                        child_category = child_category + '<option value=""></option>';
+                        for (var i = 0; i < data.length; i++) {
+                            child_category = child_category + '<option value=' + data[i] + '>' + data[i] + '</option>';
+                        }
+                        child_category = child_category + '</select>';
+
+                        $('#ddlChildCategory1').html(child_category);
+
+
+                         product__name = $('#product_name').val();
+                         product__description = $('#product_description').val();
+                         cut_ = $('#cut').val();
+                         weight_ = $('#weight').val();
+                         volume_ = $('#volume').val();
+                         price_ = $('#price').val();
+                         durability_ = $('#durability').val();
+                         other_ = $('#other').val();
+                         selected_ParentCategory_ = $('#ddlParentCategory').val();
+                         selected_ChildCategory_ = $('#ddlChildCategory1 option:selected').val();
+
+                            inputModel = {
+                                product_name: product__name,
+                                product_description: product__description,
+                                cut: cut_,
+                                weight: weight_,
+                                volume: volume_,
+                                price: price_,
+                                durability: durability_,
+                                other: other_,
+                                selected_ParentCategory: selected_ParentCategory_,
+                                selected_ChildCategory: selected_ChildCategory_
+                         };
+                            //Submit(inputModel);
+                        //При всяка промяна submit-ва , а трябва само 1 път да submit-ва с последно избраната подкатегория 
+                        // $('#ddlChildCategory').change(function () {
+
+                        //// selected_ChildCategory_ = $('#ddlChildCategory option:selected').last().val();
+
+                        //    inputModel = {
+                        //        product_name: product__name,
+                        //        product_description: product__description,
+                        //        cut: cut_,
+                        //        weight: weight_,
+                        //        volume: volume_,
+                        //        price: price_,
+                        //        durability: durability_,
+                        //        other: other_,
+                        //        selected_ParentCategory: selected_ParentCategory_,
+                        //        selected_ChildCategory: $('#ddlChildCategory option:selected').val()
+                        //    };
+                        //    Submit(inputModel);
+                          
+                          
+                        // });
+       
+                     
+                       
+                    }
+                
+                     
+                });
+                
+                
+            });
+            Submit(inputModel);
+            
+          
+        });
+       
+
+        
+
+            </script>
+
+}

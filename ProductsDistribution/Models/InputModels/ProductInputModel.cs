@@ -11,7 +11,7 @@ namespace ProductsDistribution.Models.InputModels
     public class ProductInputModel
 
     {
- 
+        [Required]
         public string product_name { get; set; }
         [Required]
         public string product_description { get; set; }
@@ -33,6 +33,8 @@ namespace ProductsDistribution.Models.InputModels
         public string selected_ParentCategory{ get; set; }
 
         public string selected_ChildCategory { get; set; }
+
+        
 
         [Display(Name = "Kатегория :")]
         public IEnumerable<SelectListItem> parent_categories = new List<SelectListItem>();
