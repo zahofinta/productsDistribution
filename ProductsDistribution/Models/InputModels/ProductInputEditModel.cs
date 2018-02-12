@@ -8,9 +8,9 @@ using System.Web.Mvc;
 
 namespace ProductsDistribution.Models.InputModels
 {
-    public class ProductInputModel
-
-    {
+    public class ProductInputEditModel
+    { 
+        public int product_id { get; set; }
         [Required(ErrorMessage = "Име на продукт е задължително поле")]
         [Display(Name = "Име на продукт :")]
         public string product_name { get; set; }
@@ -38,18 +38,16 @@ namespace ProductsDistribution.Models.InputModels
         public string other { get; set; }
 
         [Required(ErrorMessage = "Категория е задължително поле")]
-        public string selected_ParentCategory{ get; set; }
+        public string selected_ParentCategory { get; set; }
         [Required(ErrorMessage = "Подкатегория е задължително поле")]
         public string selected_ChildCategory { get; set; }
 
-        
+
         [Required(ErrorMessage = "Категория е задължително поле")]
         [Display(Name = "Kатегория :")]
         public IEnumerable<SelectListItem> parent_categories = new List<SelectListItem>();
         [Required(ErrorMessage = "Подкатегория е задължително поле")]
         [Display(Name = "Подкатегория :")]
         public IEnumerable<SelectListItem> child_categories = new List<SelectListItem>();
-
-
     }
 }

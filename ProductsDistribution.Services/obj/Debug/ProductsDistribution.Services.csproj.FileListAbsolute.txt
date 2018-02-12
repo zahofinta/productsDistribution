@@ -1,4 +1,3 @@
-D:\СТ\Дипломна работа\ProductsDistribution asp net core mvc 2.x\ProductsDistribution\ProductsDistribution.Services\obj\Debug\ProductsDistribution.Services.csproj.CoreCompileInputs.cache
 D:\СТ\Дипломна работа\ProductsDistribution asp net core mvc 2.x\ProductsDistribution\ProductsDistribution.Services\bin\ProductsDistribution.Services.dll.config
 D:\СТ\Дипломна работа\ProductsDistribution asp net core mvc 2.x\ProductsDistribution\ProductsDistribution.Services\bin\ProductsDistribution.Services.dll
 D:\СТ\Дипломна работа\ProductsDistribution asp net core mvc 2.x\ProductsDistribution\ProductsDistribution.Services\bin\ProductsDistribution.Services.pdb
@@ -8,9 +7,9 @@ D:\СТ\Дипломна работа\ProductsDistribution asp net core mvc 2.x\
 D:\СТ\Дипломна работа\ProductsDistribution asp net core mvc 2.x\ProductsDistribution\ProductsDistribution.Services\bin\ProductsDistribution.Core.dll
 D:\СТ\Дипломна работа\ProductsDistribution asp net core mvc 2.x\ProductsDistribution\ProductsDistribution.Services\bin\ProductsDistribution.Data.dll
 D:\СТ\Дипломна работа\ProductsDistribution asp net core mvc 2.x\ProductsDistribution\ProductsDistribution.Services\bin\ProductsDistribution.Models.dll
-D:\СТ\Дипломна работа\ProductsDistribution asp net core mvc 2.x\ProductsDistribution\ProductsDistribution.Services\bin\DataAnnotationsExtensions.dll
 D:\СТ\Дипломна работа\ProductsDistribution asp net core mvc 2.x\ProductsDistribution\ProductsDistribution.Services\bin\Microsoft.AspNet.Identity.EntityFramework.dll
 D:\СТ\Дипломна работа\ProductsDistribution asp net core mvc 2.x\ProductsDistribution\ProductsDistribution.Services\bin\Microsoft.AspNet.Identity.Core.dll
+D:\СТ\Дипломна работа\ProductsDistribution asp net core mvc 2.x\ProductsDistribution\ProductsDistribution.Services\bin\DataAnnotationsExtensions.dll
 D:\СТ\Дипломна работа\ProductsDistribution asp net core mvc 2.x\ProductsDistribution\ProductsDistribution.Services\bin\ProductsDistribution.Core.pdb
 D:\СТ\Дипломна работа\ProductsDistribution asp net core mvc 2.x\ProductsDistribution\ProductsDistribution.Services\bin\ProductsDistribution.Core.dll.config
 D:\СТ\Дипломна работа\ProductsDistribution asp net core mvc 2.x\ProductsDistribution\ProductsDistribution.Services\bin\ProductsDistribution.Data.pdb
@@ -23,5 +22,6 @@ D:\СТ\Дипломна работа\ProductsDistribution asp net core mvc 2.x\
 D:\СТ\Дипломна работа\ProductsDistribution asp net core mvc 2.x\ProductsDistribution\ProductsDistribution.Services\bin\Microsoft.AspNet.Identity.EntityFramework.xml
 D:\СТ\Дипломна работа\ProductsDistribution asp net core mvc 2.x\ProductsDistribution\ProductsDistribution.Services\bin\Microsoft.AspNet.Identity.Core.xml
 D:\СТ\Дипломна работа\ProductsDistribution asp net core mvc 2.x\ProductsDistribution\ProductsDistribution.Services\obj\Debug\ProductsDistribution.Services.csprojResolveAssemblyReference.cache
+D:\СТ\Дипломна работа\ProductsDistribution asp net core mvc 2.x\ProductsDistribution\ProductsDistribution.Services\obj\Debug\ProductsDistribution.Services.csproj.CoreCompileInputs.cache
 D:\СТ\Дипломна работа\ProductsDistribution asp net core mvc 2.x\ProductsDistribution\ProductsDistribution.Services\obj\Debug\ProductsDistribution.Services.dll
 D:\СТ\Дипломна работа\ProductsDistribution asp net core mvc 2.x\ProductsDistribution\ProductsDistribution.Services\obj\Debug\ProductsDistribution.Services.pdb

@@ -16,12 +16,12 @@ namespace ProductsDistribution.Data
     {
         public ProductsDistributionDBContext() :base("DefaultConnection", throwIfV1Schema: false)
         {
-
-        }
-        protected override void OnModelCreating(DbModelBuilder modelBuilder)
-        {
-          
             
+        }
+        protected  override void OnModelCreating(DbModelBuilder modelBuilder)
+        {
+
+           //modelBuilder.Entity<User>();
             //  modelBuilder.Entity<Category>().HasOptional(x => x.parent_Category).WithMany(x => x.children).HasForeignKey(x => x.Category_parent_id).WillCascadeOnDelete(true);
 
             base.OnModelCreating(modelBuilder);
@@ -42,9 +42,10 @@ namespace ProductsDistribution.Data
 
         DbSet<Producer> Producers { get; set; }
         DbSet<Product> Products { get; set; }
-
+       
         DbSet<Query> Queries { get; set; }
-
+       
+        
         DbSet<Category> Categories { get; set; }
         DbSet<Announcement> Announcements { get; set; }
         DbSet<ProducerToProduct>  ProducersToProducts { get; set; }

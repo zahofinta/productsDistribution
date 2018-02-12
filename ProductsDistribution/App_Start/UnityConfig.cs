@@ -17,6 +17,8 @@ using ProductsDistribution.Core;
 using Unity.Lifetime;
 using ProductsDistribution.Services.Contracts;
 using ProductsDistribution.Services;
+using Unity.AspNet.Mvc;
+using Microsoft.AspNet.Identity.Owin;
 
 namespace ProductsDistribution
 {
@@ -59,24 +61,32 @@ namespace ProductsDistribution
             // TODO: Register your type's mappings here.
             // container.RegisterType<IProductRepository, ProductRepository>();
             container.RegisterType<DbContext, ProductsDistributionDBContext>();
+            //Беше добавено допълнително 
+            //container.RegisterType<UserManager<User>>(new HierarchicalLifetimeManager());
+            //container.RegisterType<IUserStore<User>, UserStore<User>>(new HierarchicalLifetimeManager());
+
+          
+
+            //Беше добавено new ProductsDistributionDBContext() w konstruktora  InjectionConstructor
             // container.RegisterType<IUserStore<User>, UserStore<User>>(new InjectionConstructor(typeof(ProductsDistributionDBContext)));
-            container.RegisterType<IUserStore<User>, UserStore<User>>(new InjectionConstructor());
+            container.RegisterType<IUserStore<User>, UserStore<User>>(new InjectionConstructor(new ProductsDistributionDBContext()));
             container.RegisterType<IAuthenticationManager>(new InjectionFactory(c => HttpContext.Current.GetOwinContext().Authentication));
 
             container.RegisterType<IRepository<Category>, GenericEfRepository<Category>>();
             container.RegisterType<IRepository<Product>, GenericEfRepository<Product>>();
           //  container.RegisterType<IProductRepository, ProductRepository>();
-          //  container.RegisterType<IUserRepository, UserRepository>();
+            //container.RegisterType<IUserRepository, UserRepository>();
             //container.RegisterType<IIncomeRepository, IncomeRepository>();
 
             //container.RegisterType<IPaymentService, PaymentService>();
             //container.RegisterType<IUserService, UserService>();
             container.RegisterType<ICategoryService, CategoryService>();
             container.RegisterType<IProductService, ProductService>();
+            // container.RegisterType<IProductService, ProductService>();
 
-
-            container.RegisterType<AccountController>(new InjectionConstructor(typeof(ApplicationUserManager), typeof(ApplicationSignInManager), typeof(IAuthenticationManager)));
-            container.RegisterType<ManageController>(new InjectionConstructor(typeof(ApplicationUserManager), typeof(ApplicationSignInManager), typeof(IAuthenticationManager)));
+           
+             container.RegisterType<AccountController>(new InjectionConstructor(typeof(ApplicationUserManager), typeof(ApplicationSignInManager), typeof(IAuthenticationManager)));
+             container.RegisterType<ManageController>(new InjectionConstructor(typeof(ApplicationUserManager), typeof(ApplicationSignInManager), typeof(IAuthenticationManager)));
         }
     }
 }

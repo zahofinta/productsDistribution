@@ -63,9 +63,58 @@ namespace ProductsDistribution
     // Configure the application user manager used in this application. UserManager is defined in ASP.NET Identity and is used by the application.
     public class ApplicationUserManager : UserManager<User>
     {
+      /*  public ApplicationUserManager(IUserStore<User> store)
+           : base(store)
+        {
+            this.Store = store;
+
+        } */
         public ApplicationUserManager(IUserStore<User> store)
             : base(store)
         {
+            //var manager = new ApplicationUserManager(new UserStore<User>(context.Get<ProductsDistributionDBContext>()));
+            // Configure validation logic for usernames
+            this.UserValidator = new UserValidator<User>(this)
+            {
+                AllowOnlyAlphanumericUserNames = false,
+                RequireUniqueEmail = true
+            };
+
+            // Configure validation logic for passwords
+            this.PasswordValidator = new PasswordValidator
+            {
+                RequiredLength = 6,
+                RequireNonLetterOrDigit = true,
+                RequireDigit = true,
+                RequireLowercase = true,
+                RequireUppercase = true,
+            };
+
+            // Configure user lockout defaults
+            this.UserLockoutEnabledByDefault = true;
+            this.DefaultAccountLockoutTimeSpan = TimeSpan.FromMinutes(5);
+            this.MaxFailedAccessAttemptsBeforeLockout = 5;
+
+            // Register two factor authentication providers. This application uses Phone and Emails as a step of receiving a code for verifying the user
+            // You can write your own provider and plug it in here.
+            this.RegisterTwoFactorProvider("Phone Code", new PhoneNumberTokenProvider<User>
+            {
+                MessageFormat = "Your security code is {0}"
+            });
+            this.RegisterTwoFactorProvider("Email Code", new EmailTokenProvider<User>
+            {
+                Subject = "Security Code",
+                BodyFormat = "Your security code is {0}"
+            });
+            this.EmailService = new EmailService();
+            this.SmsService = new SmsService();
+            var dataProtectionProvider = Startup.DataProtectionProvider;
+            if (dataProtectionProvider != null)
+            {
+                this.UserTokenProvider =
+                    new DataProtectorTokenProvider<User>(dataProtectionProvider.Create("ASP.NET Identity"));
+            }
+
         }
 
         public static ApplicationUserManager Create(IdentityFactoryOptions<ApplicationUserManager> options, IOwinContext context) 
@@ -113,6 +162,7 @@ namespace ProductsDistribution
                     new DataProtectorTokenProvider<User>(dataProtectionProvider.Create("ASP.NET Identity"));
             }
             return manager;
+            
         }
     }
 

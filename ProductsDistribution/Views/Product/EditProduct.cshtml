@@ -1,22 +1,21 @@
-﻿@model ProductsDistribution.Models.InputModels.ProductInputModel
+﻿@model ProductsDistribution.Models.InputModels.ProductInputEditModel
 
 @{
-    ViewBag.Title = "AddNewProduct";
+    ViewBag.Title = "EditProduct";
 }
-   
 
-
-<h2>AddNewProduct</h2>
-
+<h2>EditProduct</h2>
 
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-
+    
     <div class="form-horizontal">
-        <h4>ProductInputModel</h4>
+        <h4>ProductInputEditModel</h4>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        
+
         <div class="form-group">
             @Html.LabelFor(model => model.product_name, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
@@ -84,42 +83,41 @@
         <div class="form-group">
             @Html.LabelFor(model => model.parent_categories, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-               
-                @Html.ValidationMessageFor(model => model.selected_ParentCategory, "", new { @class = "text-danger" }) 
-             
-               @Html.DropDownListFor(m => m.selected_ParentCategory, Model.parent_categories, "", new { @id = "ddlParentCategory" })
+
+                @Html.ValidationMessageFor(model => model.selected_ParentCategory, "", new { @class = "text-danger" })
+
+                @Html.DropDownListFor(m => m.selected_ParentCategory, Model.parent_categories, "", new { @id = "ddlParentCategory" })
             </div>
         </div>
 
         <div class="form-group">
-           @Html.LabelFor(model => model.child_categories, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.child_categories, htmlAttributes: new { @class = "control-label col-md-2" })
 
             <div class="col-md-10" id="subcategories">
-            
+
                 @Html.DropDownListFor(m => m.selected_ChildCategory, Model.child_categories, "", new { @id = "ddlChildCategory1" })
-               
-             
+
+
                 @Html.ValidationMessageFor(model => model.selected_ChildCategory, "", new { @class = "text-danger" })
-              
+
             </div>
         </div>
         <p id="test"></p>
-     
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Добави" class="btn btn-default"  id="submitButton" />
+                <input type="submit" value="Save" class="btn btn-default" />
             </div>
         </div>
     </div>
 }
 
-
 <div>
     @Html.ActionLink("Back to List", "Index")
 </div>
 
+
 @section scripts {
-  <script src="@Url.Content("~/Scripts/GenerateChildCategoriesDynamically.js")"></script>
+    <script src="@Url.Content("~/Scripts/GenerateChildCategoriesDynamically.js")"></script>
 
 }

@@ -54,6 +54,7 @@ namespace ProductsDistribution.Controllers
             {
                 
                 ProductViewModelShort element = new ProductViewModelShort();
+                element.product_id = product_short.product_id;
                 element.product_name = product_short.product_name;
                 element.price = product_short.price;
                 element.durability = product_short.durability;
@@ -85,70 +86,16 @@ namespace ProductsDistribution.Controllers
             ProductInputModel inputModel = new ProductInputModel
             {
                 parent_categories = GetParentCategories()
+
                 
             };
-           //string selected = inputModel.selected_ParentCategory;
-           // inputModel.child_categories = GetChildCategories(selected);
-           
+                 
             return View(inputModel);
 
 
         }
 
-       /* [HttpPost]
-        public ActionResult AddNewProduct(ProductInputModel inputModel)
-        {
-            inputModel.parent_categories = GetParentCategories();
-
-            if (!this.ModelState.IsValid)
-            {
-
-                return View(inputModel);
-            }
-            string selected_parent_category = inputModel.selected_ParentCategory;
-            inputModel.child_categories = GetChildCategories(selected_parent_category);
-            //  string selected_value = selected
-
-            string selected = inputModel.selected_ChildCategory;
-            int selected_child_category_id = categoryService.GetCategoryId(selected);
-
-            try
-            {
-
-                //int parent_id_selected = this.productService.GetCategoryId(selected_category);
-
-                this.productService.AddNewProduct(new ProductBaseDTO
-                {
-                    product_name = inputModel.product_name,
-                    product_description = inputModel.product_description,
-                    price = inputModel.price,
-                    cut = inputModel.cut,
-                    durability = inputModel.durability,
-                    other = inputModel.other,
-                    volume = inputModel.volume,
-                    weight = inputModel.weight,
-                    rating = 0.0,
-                    categoryId = selected_child_category_id,
-                    userId = this.User.Identity.GetUserId()
-
-
-                });
-
-            }
-            catch (DbUpdateException e)
-
-            when (e.InnerException?.InnerException is SqlException sqlEx &&
-            (sqlEx.Number == 2601 || sqlEx.Number == 2627))
-            {
-
-                ModelState.AddModelError("product_name", "Продуктът вече съществува");
-                return View(inputModel);
-            }
-
-
-            return RedirectToAction("DisplayProducts");
-
-        } */
+      
 
 
 
@@ -157,14 +104,14 @@ namespace ProductsDistribution.Controllers
         {
             
             inputModel.parent_categories = GetParentCategories();
-           
-            if (!this.ModelState.IsValid)
-            {
-                
-                return View(inputModel);
-            }
             string selected_parent_category = inputModel.selected_ParentCategory;
             inputModel.child_categories = GetChildCategories(selected_parent_category);
+            if (!this.ModelState.IsValid)
+            {
+
+                return View(inputModel);
+            }
+         
             
             string selected = inputModel.selected_ChildCategory;  
             int selected_child_category_id = categoryService.GetCategoryId(selected);
@@ -172,8 +119,6 @@ namespace ProductsDistribution.Controllers
             try
             {
               
-                    //int parent_id_selected = this.productService.GetCategoryId(selected_category);
-
                     this.productService.AddNewProduct(new ProductBaseDTO
                     {
                         product_name = inputModel.product_name,
@@ -205,6 +150,46 @@ namespace ProductsDistribution.Controllers
            
             return RedirectToAction("DisplayProducts");
 
+        }
+
+
+        ProductInputEditModel MapProductBaseDTOToProductInputEditModel(ProductBaseDTO product)
+        {
+            return new ProductInputEditModel()
+            {    
+                product_id = product.product_id,
+                product_name = product.product_name,
+                price = product.price,
+                product_description = product.product_description,
+                cut = product.cut,
+                volume = product.volume,
+                other = product.other,
+                durability = product.durability,
+                weight=product.weight,
+                parent_categories = GetParentCategories(),
+                
+            };
+
+        }
+
+
+        [HttpGet]
+        public ActionResult EditProduct(int id)
+        {
+            var product = this.productService.GetById(id);
+
+            ProductInputEditModel model = MapProductBaseDTOToProductInputEditModel(product);
+
+            return View(model);
+
+        }
+
+        [HttpPost]
+        public ActionResult EditProduct(int id, ProductInputEditModel inputEditModel)
+        {
+
+
+            return View();
         }
     }
 }

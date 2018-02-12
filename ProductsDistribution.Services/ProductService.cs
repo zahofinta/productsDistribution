@@ -39,8 +39,9 @@ namespace ProductsDistribution.Services
                 durability = product.durability,
                 other = product.other,
                 rating = product.rating,
-                categoryId = product.category.category_id,
-                price = product.price
+                categoryId = product.categoryId,
+                price = product.price,
+                userId = product.userId
                 
 
             };

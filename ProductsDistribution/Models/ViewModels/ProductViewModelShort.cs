@@ -7,7 +7,8 @@ namespace ProductsDistribution.Models.ViewModels
 {
     public class ProductViewModelShort
     {
-         
+
+        public int product_id { get; set; }
         public string product_name { get; set; }
        
         public double weight { get; set; }

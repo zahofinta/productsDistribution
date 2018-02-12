@@ -1,5 +1,3 @@
-D:\СТ\Дипломна работа\ProductsDistribution asp net core mvc 2.x\ProductsDistribution\ProductsDistribution.Models\obj\Debug\ProductsDistribution.Models.csprojResolveAssemblyReference.cache
-D:\СТ\Дипломна работа\ProductsDistribution asp net core mvc 2.x\ProductsDistribution\ProductsDistribution.Models\obj\Debug\ProductsDistribution.Models.csproj.CoreCompileInputs.cache
 D:\СТ\Дипломна работа\ProductsDistribution asp net core mvc 2.x\ProductsDistribution\ProductsDistribution.Models\bin\ProductsDistribution.Models.dll.config
 D:\СТ\Дипломна работа\ProductsDistribution asp net core mvc 2.x\ProductsDistribution\ProductsDistribution.Models\bin\ProductsDistribution.Models.dll
 D:\СТ\Дипломна работа\ProductsDistribution asp net core mvc 2.x\ProductsDistribution\ProductsDistribution.Models\bin\ProductsDistribution.Models.pdb
@@ -12,6 +10,7 @@ D:\СТ\Дипломна работа\ProductsDistribution asp net core mvc 2.x\
 D:\СТ\Дипломна работа\ProductsDistribution asp net core mvc 2.x\ProductsDistribution\ProductsDistribution.Models\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
 D:\СТ\Дипломна работа\ProductsDistribution asp net core mvc 2.x\ProductsDistribution\ProductsDistribution.Models\bin\Microsoft.Web.Infrastructure.dll
 D:\СТ\Дипломна работа\ProductsDistribution asp net core mvc 2.x\ProductsDistribution\ProductsDistribution.Models\bin\MvcValidationExtensions.dll
+D:\СТ\Дипломна работа\ProductsDistribution asp net core mvc 2.x\ProductsDistribution\ProductsDistribution.Models\bin\System.Linq.Dynamic.dll
 D:\СТ\Дипломна работа\ProductsDistribution asp net core mvc 2.x\ProductsDistribution\ProductsDistribution.Models\bin\System.Web.Helpers.dll
 D:\СТ\Дипломна работа\ProductsDistribution asp net core mvc 2.x\ProductsDistribution\ProductsDistribution.Models\bin\System.Web.Mvc.dll
 D:\СТ\Дипломна работа\ProductsDistribution asp net core mvc 2.x\ProductsDistribution\ProductsDistribution.Models\bin\System.Web.Razor.dll
@@ -76,6 +75,7 @@ D:\СТ\Дипломна работа\ProductsDistribution asp net core mvc 2.x\
 D:\СТ\Дипломна работа\ProductsDistribution asp net core mvc 2.x\ProductsDistribution\ProductsDistribution.Models\bin\Microsoft.VisualStudio.Text.Logic.xml
 D:\СТ\Дипломна работа\ProductsDistribution asp net core mvc 2.x\ProductsDistribution\ProductsDistribution.Models\bin\Microsoft.VisualStudio.Text.UI.xml
 D:\СТ\Дипломна работа\ProductsDistribution asp net core mvc 2.x\ProductsDistribution\ProductsDistribution.Models\bin\Microsoft.VisualStudio.Text.UI.Wpf.xml
+D:\СТ\Дипломна работа\ProductsDistribution asp net core mvc 2.x\ProductsDistribution\ProductsDistribution.Models\obj\Debug\ProductsDistribution.Models.csproj.CoreCompileInputs.cache
 D:\СТ\Дипломна работа\ProductsDistribution asp net core mvc 2.x\ProductsDistribution\ProductsDistribution.Models\obj\Debug\ProductsDistribution.Models.dll
 D:\СТ\Дипломна работа\ProductsDistribution asp net core mvc 2.x\ProductsDistribution\ProductsDistribution.Models\obj\Debug\ProductsDistribution.Models.pdb
-D:\СТ\Дипломна работа\ProductsDistribution asp net core mvc 2.x\ProductsDistribution\ProductsDistribution.Models\bin\System.Linq.Dynamic.dll
+D:\СТ\Дипломна работа\ProductsDistribution asp net core mvc 2.x\ProductsDistribution\ProductsDistribution.Models\obj\Debug\ProductsDistribution.Models.csprojResolveAssemblyReference.cache

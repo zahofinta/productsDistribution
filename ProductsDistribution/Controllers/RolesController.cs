@@ -12,7 +12,7 @@ namespace MyDatabase.Controllers
     public class RolesController : Controller
     {
 
-        [Authorize(Roles ="Administrator")]
+      /*  [Authorize(Roles ="Administrator")]
         public ActionResult Index()
         {
             // Populate Dropdown Lists
@@ -241,7 +241,7 @@ namespace MyDatabase.Controllers
             }
 
             return View("Index");
-        }
+        } */
 
         
 

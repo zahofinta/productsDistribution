@@ -16,12 +16,14 @@ namespace ProductsDistribution.Controllers
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
         private IAuthenticationManager _authenticationManager;
+        
         public ManageController()
         {
         }
 
         public ManageController(ApplicationUserManager userManager, ApplicationSignInManager signInManager, IAuthenticationManager authenticationManager)
         {
+            
             UserManager = userManager;
             SignInManager = signInManager;
             _authenticationManager = authenticationManager;
@@ -39,17 +41,19 @@ namespace ProductsDistribution.Controllers
             }
         }
 
-        public ApplicationUserManager UserManager
-        {
-            get
-            {
-                return _userManager ?? HttpContext.GetOwinContext().GetUserManager<ApplicationUserManager>();
-            }
-            private set
-            {
-                _userManager = value;
-            }
-        }
+      
+
+         public ApplicationUserManager UserManager
+          {
+              get
+              {
+                  return _userManager ?? HttpContext.GetOwinContext().GetUserManager<ApplicationUserManager>();
+              }
+              private set
+              {
+                  _userManager = value;
+              }
+          }
 
         //
         // GET: /Manage/Index
