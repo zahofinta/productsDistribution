@@ -56,5 +56,14 @@ namespace ProductsDistribution.Data.Repositories
                                                   }).FirstOrDefault();
             return get_product_id_by_id_and_userId;
         }
+
+      public  bool isInProducts(int id)
+        {
+            var products = this._dbSet;
+            bool result = products.Any(x => x.product_id == id);
+
+            return result;
+
+        }
     }
 }

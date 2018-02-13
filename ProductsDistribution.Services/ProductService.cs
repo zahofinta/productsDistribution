@@ -47,6 +47,8 @@ namespace ProductsDistribution.Services
             };
         }
 
+
+
         public void AddNewProduct(ProductBaseDTO product)
         {
             var productToAdd = new Product
@@ -113,6 +115,11 @@ namespace ProductsDistribution.Services
         public ProductBaseDTO GetProductByIdAndUserId(int id, string userId)
         {
            return this.ProductRepository.GetProductByIdAndUserId(id, userId);
+        }
+
+        public bool isInProducts(int id)
+        {
+            return this.ProductRepository.isInProducts(id);
         }
     }
 }

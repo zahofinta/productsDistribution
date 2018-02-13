@@ -18,32 +18,32 @@ namespace ProductsDistribution.Data.Repositories
         public List<string> GetAllCategoryParentNames()
         {
             var categories = this._dbSet;
-            return categories.Where(x=>x.Category_parent_id==null).Select(x => x.category_name).ToList();
+            return categories.Where(x => x.Category_parent_id == null).Select(x => x.category_name).ToList();
         }
 
         public List<string> GetAllSubCategories(string categoryName)
         {
             var categories = this._dbSet;
             var sub_categories_names = (from c in categories
-                                       where c.Category_parent_id == null && c.category_name.Equals(categoryName)
-                                       from subcategory in categories
-                                       where subcategory.Category_parent_id == c.category_id
-                                       select subcategory.category_name).ToList();
+                                        where c.Category_parent_id == null && c.category_name.Equals(categoryName)
+                                        from subcategory in categories
+                                        where subcategory.Category_parent_id == c.category_id
+                                        select subcategory.category_name).ToList();
 
 
-            
+
             return sub_categories_names;
-          //return categories.Where(x => x.category_name == categoryName && x.category_id == x.Category_parent_id).Select(x=>x.category_name).ToList();
+            //return categories.Where(x => x.category_name == categoryName && x.category_id == x.Category_parent_id).Select(x=>x.category_name).ToList();
         }
 
         public List<Category> GetFullSubCategories(string categoryName)
         {
             var categories = this._dbSet;
             var sub_categories = (from c in categories
-                                        where c.Category_parent_id == null && c.category_name.Equals(categoryName)
-                                        from subcategory in categories
-                                        where subcategory.Category_parent_id == c.category_id
-                                        select c).ToList();
+                                  where c.Category_parent_id == null && c.category_name.Equals(categoryName)
+                                  from subcategory in categories
+                                  where subcategory.Category_parent_id == c.category_id
+                                  select c).ToList();
             return sub_categories;
         }
 
@@ -72,7 +72,7 @@ namespace ProductsDistribution.Data.Repositories
 
             };
         }
-       public List<CategoryDTO> GetAllSubCategoriesById(int id)
+        public List<CategoryDTO> GetAllSubCategoriesById(int id)
         {
             var categories = this._dbSet;
             List<CategoryDTO> sub_categories_dto = new List<CategoryDTO>();
@@ -81,7 +81,7 @@ namespace ProductsDistribution.Data.Repositories
                                   from subcategory in categories
                                   where subcategory.Category_parent_id == c.category_id
                                   select subcategory).ToList();
-            foreach(var category in sub_categories)
+            foreach (var category in sub_categories)
             {
                 sub_categories_dto.Add(MapCategory(category));
             }
@@ -92,6 +92,15 @@ namespace ProductsDistribution.Data.Repositories
         {
             var categories = this._dbSet;
             return categories.Select(x => x.category_name).ToList();
+        }
+
+        public bool isParent(int id)
+        {
+            var categories = this._dbSet;
+
+            bool isParent = categories.Any(x => x.category_id == id && x.Category_parent_id == null);
+
+            return isParent;
         }
     }
 

@@ -32,5 +32,9 @@ namespace ProductsDistribution.Services.Contracts
          List<Category> GetFullSubCategories(string categoryName);
 
         List<CategoryDTO> GetAllSubCategoriesById(int id);
+
+         bool isParent(int id);
+
+
     }
 }

@@ -14,21 +14,15 @@
         <th>
             @Html.DisplayNameFor(model => model.product_name)
         </th>
-        <th>
-            @Html.DisplayNameFor(model => model.weight)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.volume)
-        </th>
+        
+       
         <th>
             @Html.DisplayNameFor(model => model.durability)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.price)
         </th>
-        <th>
-            @Html.DisplayNameFor(model => model.rating)
-        </th>
+        
         <th>
             @Html.DisplayNameFor(model => model.category)
         </th>
@@ -41,28 +35,23 @@
         <td>
             @Html.DisplayFor(modelItem => item.product_name)
         </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.weight)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.volume)
-        </td>
+       
         <td>
             @Html.DisplayFor(modelItem => item.durability)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.price)
         </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.rating)
-        </td>
+
         <td>
             @Html.DisplayFor(modelItem => item.category)
         </td>
         <td>
             @Html.ActionLink("Редактирай", "EditProduct", new { id = item.product_id,userId = item.userId}) |
-            @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-            @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+            @Html.ActionLink("Детайли", "Details", new {  id=item.product_id  }) |
+            @Html.ActionLink("Изтрий", "Delete", new {  id=item.product_id, userId=item.userId })
+           
+
         </td>
     </tr>
 }

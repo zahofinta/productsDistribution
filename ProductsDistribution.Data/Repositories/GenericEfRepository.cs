@@ -45,24 +45,7 @@ namespace ProductsDistribution.Data.Repositories
         {
             this.ChangeState(entity, EntityState.Added);
             _dbContext.SaveChanges();
-            /*try
-            {
-                this.ChangeState(entity, EntityState.Added);
-                _dbContext.SaveChanges();
-            }
-            catch (DbUpdateException e)
-            
-            when (e.InnerException?.InnerException is SqlException sqlEx &&
-            (sqlEx.Number == 2601 || sqlEx.Number == 2627))
-            {
-                string errorMsg = "Обекта вече съществува !";
-                Microsoft.SqlServer.MessageBox.ExceptionMessageBox messageBox = new Microsoft.SqlServer.MessageBox.ExceptionMessageBox();
-                messageBox.Text = errorMsg;
-                messageBox.Message = e;
-                messageBox.Show(;
-                
-            }*/
-
+           
         }
 
         public void Update(TEntity entity)

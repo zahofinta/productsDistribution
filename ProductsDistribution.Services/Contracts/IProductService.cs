@@ -21,5 +21,7 @@ namespace ProductsDistribution.Services.Contracts
         IEnumerable<ProductBaseDTO> GetAllProductsByUser(string userId);
 
         ProductBaseDTO GetProductByIdAndUserId(int id,string userId);
+
+        bool isInProducts(int id);
     }
 }

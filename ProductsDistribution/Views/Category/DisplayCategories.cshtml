@@ -34,6 +34,11 @@
             @Html.ActionLink("Редактирай", "EditView", new {  id=item.category_id}) |
             @*@Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |*@
             @Html.ActionLink("Изтрий", "Delete", new { id =item.category_id})
+           
+            <p>@ViewBag.Message</p>
+           
+            
+            
         </td>
      
     </tr>

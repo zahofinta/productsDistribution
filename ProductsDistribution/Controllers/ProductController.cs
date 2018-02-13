@@ -10,6 +10,7 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Net;
 
 namespace ProductsDistribution.Controllers
 {
@@ -45,19 +46,56 @@ namespace ProductsDistribution.Controllers
         }
 
 
-        ProductViewModelShort MapProductBaseDTOToProductViewModelShort(ProductBaseDTO element)
+        ProductViewModelShort MapProductBaseDTOToProductViewModelShort(ProductBaseDTO product)
         {
             return new ProductViewModelShort
             {
-                product_id = element.product_id,
-                durability = element.durability,
-                price = element.price,
-                product_name = element.product_name,
-                volume = element.volume,
-                weight = element.weight,
-                rating = element.rating,
-                category = this.categoryService.GetById(element.categoryId).category_name
+                product_id = product.product_id,
+                durability = product.durability,
+                price = product.price,
+                product_name = product.product_name,
+                category = this.categoryService.GetById(product.categoryId).category_name
 
+            };
+        }
+
+
+        ProductInputEditModel MapProductBaseDTOToProductInputEditModel(ProductBaseDTO product)
+        {
+            return new ProductInputEditModel()
+            {
+                product_id = product.product_id,
+                product_name = product.product_name,
+                price = product.price,
+                product_description = product.product_description,
+                cut = product.cut,
+                volume = product.volume,
+                other = product.other,
+                durability = product.durability,
+                weight = product.weight,
+                parent_categories = GetParentCategories(),
+                userId = product.userId
+            };
+
+        }
+
+        ProductViewModelFullDetails MapProductBaseDTOToProductViewModelFullDetails(ProductBaseDTO product)
+        {
+
+            return new ProductViewModelFullDetails()
+            {
+                product_id = product.product_id,
+                product_name = product.product_name,
+                price = product.price,
+                product_description = product.product_description,
+                cut = product.cut,
+                volume = product.volume,
+                other = product.other,
+                durability = product.durability,
+                weight = product.weight,
+                userId = product.userId,
+                rating = product.rating,
+                category = this.categoryService.GetById(product.categoryId).category_name
             };
         }
 
@@ -69,26 +107,11 @@ namespace ProductsDistribution.Controllers
             var all_products_by_user = this.productService.GetAllProductsByUser(current_user);
             foreach (ProductBaseDTO product_short in all_products_by_user)
             {
-
-               // ProductViewModelShort element = new ProductViewModelShort();
-
-               // element.product_id = product_short.product_id;
-                //element.price = product_short.price;
-                //element.rating = product_short.rating;
-                //element.product_name = product_short.product_name;
-                //element.volume = product_short.volume;
-                //element.weight = product_short.weight;
-                //element.durability = product_short.durability;
-                //element.category = this.categoryService.GetById(product_short.categoryId).category_name;
-                //element.userId = current_user;
                 viewModel.Add(MapProductBaseDTOToProductViewModelShort(product_short));
-
             }
 
             return View(viewModel);
         }
-
-
 
         public ActionResult GetAllChildCategories(string categoryName)
         {
@@ -112,10 +135,6 @@ namespace ProductsDistribution.Controllers
 
 
         }
-
-
-
-
 
         [HttpPost]
         public ActionResult AddNewProduct(ProductInputModel inputModel)
@@ -171,34 +190,17 @@ namespace ProductsDistribution.Controllers
 
         }
 
-
-        ProductInputEditModel MapProductBaseDTOToProductInputEditModel(ProductBaseDTO product)
-        {
-            return new ProductInputEditModel()
-            {
-                product_id = product.product_id,
-                product_name = product.product_name,
-                price = product.price,
-                product_description = product.product_description,
-                cut = product.cut,
-                volume = product.volume,
-                other = product.other,
-                durability = product.durability,
-                weight = product.weight,
-                parent_categories = GetParentCategories(),
-                userId = product.userId
-            };
-
-        }
-
-
         [HttpGet]
         public ActionResult EditProduct(int id,string userId)
         {
             userId = this.User.Identity.GetUserId();
 
             var product = this.productService.GetProductByIdAndUserId(id, userId);
-           // var prod = this.productService.GetById(id);
+            // var prod = this.productService.GetById(id);
+            if (product == null)
+            {
+                return HttpNotFound();
+            }
             ProductInputEditModel model = MapProductBaseDTOToProductInputEditModel(product);
 
             return View(model);
@@ -257,5 +259,36 @@ namespace ProductsDistribution.Controllers
 
         
         }
+
+        [HttpGet]
+        public ActionResult Details(int id)
+        {
+
+            var product = this.productService.GetById(id);
+
+            ProductViewModelFullDetails model = MapProductBaseDTOToProductViewModelFullDetails(product);
+           
+            if(product==null)
+            {
+                return HttpNotFound();
+            }
+            return View(model);
+        }
+
+        public ActionResult Delete(int id, string userId)
+        {
+            userId = this.User.Identity.GetUserId();
+            var product = this.productService.GetProductByIdAndUserId(id, userId);
+
+
+            if (product == null)
+            {
+                return HttpNotFound();
+            }
+            this.productService.DeleteProduct(product);
+            return Redirect(Request.UrlReferrer.ToString());
+        }
+
+
     }
 }

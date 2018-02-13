@@ -153,6 +153,11 @@ namespace ProductsDistribution.Services
         {
             return CategoryRepository.GetAllCategoryParentNames();
         }
+
+        public bool isParent(int id)
+        {
+            return CategoryRepository.isParent(id);
+        }
     }
     
     

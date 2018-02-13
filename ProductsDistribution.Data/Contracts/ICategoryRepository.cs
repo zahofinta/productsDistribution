@@ -20,5 +20,7 @@ namespace ProductsDistribution.Data.Contracts
 
         List<string> GetAllCategoryNames();
 
+        bool isParent(int id);
+
     }
 }
