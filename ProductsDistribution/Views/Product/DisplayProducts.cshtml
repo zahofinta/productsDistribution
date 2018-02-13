@@ -37,6 +37,7 @@
 
 @foreach (var item in Model) {
     <tr>
+        
         <td>
             @Html.DisplayFor(modelItem => item.product_name)
         </td>
@@ -59,7 +60,7 @@
             @Html.DisplayFor(modelItem => item.category)
         </td>
         <td>
-            @Html.ActionLink("Редактирай", "EditProduct", new { id = item.product_id }) |
+            @Html.ActionLink("Редактирай", "EditProduct", new { id = item.product_id,userId = item.userId}) |
             @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
             @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
         </td>

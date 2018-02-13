@@ -22,7 +22,7 @@ namespace ProductsDistribution.Data.Repositories
                                              where p.userId == userId
                                              select new ProductBaseDTO
                                              {
-                                                 
+                                                  product_id = p.product_id,
                                                  product_name = p.product_name,
                                                  price = p.price,                                              
                                                  weight= p.weight,
@@ -32,6 +32,29 @@ namespace ProductsDistribution.Data.Repositories
                                                  categoryId = p.categoryId
                                              };
             return all_products_by_user_short;
+        }
+
+       public ProductBaseDTO GetProductByIdAndUserId(int id, string userId)
+        {
+            var products = this._dbSet;
+            var get_product_id_by_id_and_userId = (from p in products
+                                                  where p.product_id == id && p.userId.Equals(userId)
+                                                  select new ProductBaseDTO
+                                                  {
+                                                      product_id = p.product_id,
+                                                      product_name = p.product_name,
+                                                      price = p.price,
+                                                      durability = p.durability,
+                                                      cut = p.cut,
+                                                      product_description = p.product_description,
+                                                      other = p.other,
+                                                      weight = p.weight,
+                                                      rating = p.rating,
+                                                      userId = p.userId,
+                                                      volume = p.volume,
+                                                      categoryId = p.categoryId
+                                                  }).FirstOrDefault();
+            return get_product_id_by_id_and_userId;
         }
     }
 }

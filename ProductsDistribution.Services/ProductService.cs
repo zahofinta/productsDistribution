@@ -97,7 +97,7 @@ namespace ProductsDistribution.Services
             productToUpdate.durability = product.durability;
             productToUpdate.volume = product.volume;
             productToUpdate.other = product.other;
-            productToUpdate.category.category_id = product.categoryId;
+            productToUpdate.categoryId = product.categoryId;
             productToUpdate.price = product.price;
 
             this.productRepository.Update(productToUpdate);
@@ -106,6 +106,13 @@ namespace ProductsDistribution.Services
         public IEnumerable<ProductBaseDTO> GetAllProductsByUser(string userId)
         {
             return this.ProductRepository.GetAllProductsByUserShort(userId);
+        }
+
+        
+
+        public ProductBaseDTO GetProductByIdAndUserId(int id, string userId)
+        {
+           return this.ProductRepository.GetProductByIdAndUserId(id, userId);
         }
     }
 }

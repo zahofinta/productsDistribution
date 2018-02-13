@@ -23,5 +23,12 @@ namespace ProductsDistribution.Models.ViewModels
         public double rating { get; set; }
 
         public string category { get; set; }
+
+        public string userId { get; set; }
+
+        public ProductViewModelShort()
+        {
+
+        }
     }
 }

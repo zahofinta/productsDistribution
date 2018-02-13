@@ -11,6 +11,7 @@ namespace ProductsDistribution.Models.InputModels
     public class ProductInputEditModel
     { 
         public int product_id { get; set; }
+        public string userId { get; set; }
         [Required(ErrorMessage = "Име на продукт е задължително поле")]
         [Display(Name = "Име на продукт :")]
         public string product_name { get; set; }

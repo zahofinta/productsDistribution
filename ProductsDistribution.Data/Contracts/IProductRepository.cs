@@ -10,5 +10,7 @@ namespace ProductsDistribution.Data.Contracts
     public interface IProductRepository : IRepository<Product>
     {
         IEnumerable<ProductBaseDTO> GetAllProductsByUserShort(string userId);
+
+        ProductBaseDTO GetProductByIdAndUserId(int id, string userId);
     }
 }
