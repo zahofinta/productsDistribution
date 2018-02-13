@@ -136,11 +136,7 @@ namespace ProductsDistribution.Controllers
         [HttpGet]
         public ActionResult Delete(int id)
         {
-            if (!ModelState.IsValid)
-            {
-
-                return View("DisplayCategories");
-            }
+         
             CategoryDTO category = this.categoryService.GetById(id);
             List<CategoryDTO> all_children_for_category = this.categoryService.GetAllSubCategoriesById(id);
             if (category == null)
@@ -150,50 +146,31 @@ namespace ProductsDistribution.Controllers
 
            bool isInProducts = this.productService.isInProducts(id);
 
-            bool isParent = this.categoryService.isParent(id);
+           bool isParent = this.categoryService.isParent(id);
 
-            try
+
+
+            //your deletetion code
+            if (!isInProducts && !isParent)
             {
-                if (!isInProducts)
+                foreach (CategoryDTO cat in all_children_for_category)
                 {
-                    //your deletetion code
-
-                    //    bool isInProducts = this.productService.isInProducts(id);           
-                    foreach (CategoryDTO cat in all_children_for_category)
-                    {
-                        cat.CategoryDTO_parent_id = null;
-                        this.categoryService.DeleteCategory(cat);
-                    }
-
-                    this.categoryService.DeleteCategory(category);
+                    cat.CategoryDTO_parent_id = null;
+                    this.categoryService.DeleteCategory(cat);
                 }
-            }
-            catch (SqlException ex)
-            
 
-                /*if (ex.Errors.Count > 0) // Assume the interesting stuff is in the first error
-                {
-                    switch (ex.Errors[0].Number)
-                    {
-                        case 547: // Foreign Key violation
-                            ModelState.AddModelError("category_name", "Категорията има прикрепени продукти.За да изтриете категория не трябва да има прикрепени продукти към нея");
-                            return View("DisplayCategories");
-                            //break;
-                        default:
-                            throw;
-
-                    }
-                }*/
-                when (ex.InnerException?.InnerException is SqlException sqlEx &&
-                    (sqlEx.Number == 547))
-                    {
-               
-                ModelState.AddModelError("Категорията има прикрепени продукти.За да изтриете категорията не трябва да има прикрепени продукти към нея",ex.Message);
-                    return View("DisplayCategories");
-                    
-            
-                
+                this.categoryService.DeleteCategory(category);
             }
+            else
+            {
+
+               TempData["Error"]= "Категорията има прикрепени продукти.За да изтриете категорията не трябва да има прикрепени продукти към нея";
+                //return Redirect(Request.UrlReferrer.ToString());
+              //  return RedirectToAction("DisplayCategories");
+
+
+            }
+           
             // bool isInProducts = this.productService.isInProducts(category.category_id);
 
             //vsichki kategorii koito sa deca na category

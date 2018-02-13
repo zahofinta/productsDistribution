@@ -21,7 +21,11 @@ namespace ProductsDistribution.Data
         protected  override void OnModelCreating(DbModelBuilder modelBuilder)
         {
 
-           //modelBuilder.Entity<User>();
+         //   modelBuilder.Entity<Category>().HasMany(i => i.Products)
+         //.WithOptional(i => i.category)
+         //.HasForeignKey(i => i.categoryId)
+         //.WillCascadeOnDelete(false);
+            //modelBuilder.Entity<User>();
             //  modelBuilder.Entity<Category>().HasOptional(x => x.parent_Category).WithMany(x => x.children).HasForeignKey(x => x.Category_parent_id).WillCascadeOnDelete(true);
 
             base.OnModelCreating(modelBuilder);
@@ -29,10 +33,7 @@ namespace ProductsDistribution.Data
           
           //  modelBuilder.Conventions.Remove<OneToManyCascadeDeleteConvention>();
 
-            //modelBuilder.Entity<Category>().HasMany(i => i.children)
-            //.WithOptional(i => i.parent_Category)
-            //.HasForeignKey(i => i.Category_parent_id)
-            //.WillCascadeOnDelete(false);
+        
         }
         
             static ProductsDistributionDBContext()

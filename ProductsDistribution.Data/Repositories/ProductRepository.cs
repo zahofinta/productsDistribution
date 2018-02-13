@@ -60,7 +60,7 @@ namespace ProductsDistribution.Data.Repositories
       public  bool isInProducts(int id)
         {
             var products = this._dbSet;
-            bool result = products.Any(x => x.product_id == id);
+            bool result = products.Any(x => x.categoryId == id);
 
             return result;
 
