@@ -33,7 +33,7 @@ namespace ProductsDistribution.Services.Contracts
 
         List<CategoryDTO> GetAllSubCategoriesById(int id);
 
-         bool isParent(int id);
+        int CountSubCategories(int id);
 
 
     }

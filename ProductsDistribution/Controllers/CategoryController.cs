@@ -146,12 +146,12 @@ namespace ProductsDistribution.Controllers
 
            bool isInProducts = this.productService.isInProducts(id);
 
-           bool isParent = this.categoryService.isParent(id);
+           int count_sub_categories = this.categoryService.CountSubCategories(id);
 
-
+           
 
             //your deletetion code
-            if (!isInProducts && !isParent)
+            if (!isInProducts && count_sub_categories==0)
             {
                 foreach (CategoryDTO cat in all_children_for_category)
                 {
@@ -164,7 +164,7 @@ namespace ProductsDistribution.Controllers
             else
             {
 
-               TempData["Error"]= "Категорията има прикрепени продукти.За да изтриете категорията не трябва да има прикрепени продукти към нея";
+               TempData["Error"]= "Категорията има прикрепени продукти към нея или категорията е главна.За да изтриете категорията не трябва да има прикрепени продукти към нея и трябва да е подкатегория на друга категория.";
                 //return Redirect(Request.UrlReferrer.ToString());
               //  return RedirectToAction("DisplayCategories");
 
@@ -175,7 +175,7 @@ namespace ProductsDistribution.Controllers
 
             //vsichki kategorii koito sa deca na category
         
-                return Redirect(Request.UrlReferrer.ToString());
+             return RedirectToAction("DisplayCategories");
   
         }
         CategoryInputEditModel MapCategoryDTOToCategoryInputEditModel(CategoryDTO category)

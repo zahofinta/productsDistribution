@@ -94,13 +94,17 @@ namespace ProductsDistribution.Data.Repositories
             return categories.Select(x => x.category_name).ToList();
         }
 
-        public bool isParent(int id)
+        public int CountSubCategories(int id)
         {
             var categories = this._dbSet;
+            int count_sub_categories = (from c in categories
+                                  where c.Category_parent_id == null && c.category_id == id
+                                  from subcategory in categories
+                                  where subcategory.Category_parent_id == c.category_id
+                                  select subcategory).Count();
+          //  bool isParent = categories.Any(x => x.category_id == id && x.Category_parent_id == null);
 
-            bool isParent = categories.Any(x => x.category_id == id && x.Category_parent_id == null);
-
-            return isParent;
+            return count_sub_categories;
         }
     }
 

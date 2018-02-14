@@ -154,9 +154,9 @@ namespace ProductsDistribution.Services
             return CategoryRepository.GetAllCategoryParentNames();
         }
 
-        public bool isParent(int id)
+       public int CountSubCategories(int id)
         {
-            return CategoryRepository.isParent(id);
+            return CategoryRepository.CountSubCategories(id);
         }
     }
     
