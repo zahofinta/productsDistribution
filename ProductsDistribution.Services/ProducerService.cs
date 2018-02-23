@@ -6,6 +6,7 @@ using System.Web;
 using ProductsDistribution.Core.Producer.Models;
 using ProductsDistribution.Models;
 using ProductsDistribution.Data.Contracts;
+using ProductsDistribution.Data.Repositories;
 
 namespace ProductsDistribution.Services
 {
@@ -13,13 +14,13 @@ namespace ProductsDistribution.Services
     {
 
         public readonly IRepository<Producer> producerRepository;
-       
+        public readonly ProducerRepository ProducerRepository;
 
-        public ProducerService(IRepository<Producer> producerRepository)
+        public ProducerService(IRepository<Producer> producerRepository, ProducerRepository ProducerRepository)
 
         {
             this.producerRepository = producerRepository;
-           
+            this.ProducerRepository = ProducerRepository;
         }
 
         public ProducerDTO MapProducer(Producer producer)
@@ -84,6 +85,11 @@ namespace ProductsDistribution.Services
             producer.telephone_number = producer.telephone_number;
 
             this.producerRepository.Update(producerToUpdate);
+        }
+
+        public IEnumerable<ProducerDTO> GetAllProducersByUserShort(string userId)
+        {
+            return this.ProducerRepository.GetAllProducersByUserShort(userId);
         }
     }
 }

@@ -95,6 +95,7 @@
     <Compile Include="Contracts\IAnnouncementRepository.cs" />
     <Compile Include="Contracts\ICategoryRepository.cs" />
     <Compile Include="Contracts\IProducerRepository.cs" />
+    <Compile Include="Contracts\IProducerToProductRepository.cs" />
     <Compile Include="Contracts\IProductRepository.cs" />
     <Compile Include="Contracts\IQueryRepository.cs" />
     <Compile Include="Contracts\IRepository.cs" />
@@ -109,6 +110,7 @@
     <Compile Include="Repositories\CategoryRepository.cs" />
     <Compile Include="Repositories\GenericEfRepository.cs" />
     <Compile Include="Repositories\ProducerRepository.cs" />
+    <Compile Include="Repositories\ProducerToProductRepository.cs" />
     <Compile Include="Repositories\ProductRepository.cs" />
     <Compile Include="Repositories\UserRepository.cs" />
   </ItemGroup>

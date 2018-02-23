@@ -5,7 +5,7 @@ using System.Web;
 
 namespace ProductsDistribution.Data.Repositories
 {
-    public class ProducerToProduct
+    public class ProducerToProductRepository 
     {
     }
 }

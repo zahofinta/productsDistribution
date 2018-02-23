@@ -221,6 +221,7 @@
     <Compile Include="Models\InputModels\AnnouncementInputModel.cs" />
     <Compile Include="Models\InputModels\CategoryInputEditModel.cs" />
     <Compile Include="Models\InputModels\CategoryInputModel.cs" />
+    <Compile Include="Models\InputModels\ProducerInputEditModel.cs" />
     <Compile Include="Models\InputModels\ProducerInputModel.cs" />
     <Compile Include="Models\InputModels\ProductInputEditModel.cs" />
     <Compile Include="Models\InputModels\ProductInputModel.cs" />
@@ -228,7 +229,7 @@
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\ViewModels\AnnouncementViewModel.cs" />
     <Compile Include="Models\ViewModels\CategoryViewModel.cs" />
-    <Compile Include="Models\ViewModels\ProducerViewModel.cs" />
+    <Compile Include="Models\ViewModels\ProducerViewModelShort.cs" />
     <Compile Include="Models\ViewModels\ProductViewModelFullDetails.cs" />
     <Compile Include="Models\ViewModels\ProductViewModelShort.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -314,10 +315,10 @@
     <Content Include="Views\Product\DisplayProducts.cshtml" />
     <Content Include="Views\Product\EditProduct.cshtml" />
     <Content Include="Views\Product\Details.cshtml" />
+    <Content Include="Views\Producer\DisplayProducers.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\Producer\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

@@ -23,5 +23,7 @@ namespace ProductsDistribution.Services.Contracts
         ProductBaseDTO GetProductByIdAndUserId(int id,string userId);
 
         bool isInProducts(int id);
+
+        List<string> GetListOfProductNamesByUserId(string userId);
     }
 }

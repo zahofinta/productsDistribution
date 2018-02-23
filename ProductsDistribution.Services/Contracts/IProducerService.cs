@@ -10,8 +10,8 @@ namespace ProductsDistribution.Services.Contracts
     {
         ProducerDTO GetById(int id);
 
-        
 
+        IEnumerable<ProducerDTO> GetAllProducersByUserShort(string userId);
         void AddNewProducer(ProducerDTO producer);
 
       

@@ -34,7 +34,14 @@ namespace ProductsDistribution.Data.Repositories
             return all_products_by_user_short;
         }
 
-       public ProductBaseDTO GetProductByIdAndUserId(int id, string userId)
+        public List<string> GetListOfProductNamesByUserId(string userId)
+        {
+            var products = this._dbSet;
+            List<string> product_names_by_userid = products.Where(x => x.userId == userId).Select(x => x.product_name).ToList();
+            return product_names_by_userid;
+        }
+
+        public ProductBaseDTO GetProductByIdAndUserId(int id, string userId)
         {
             var products = this._dbSet;
             var get_product_id_by_id_and_userId = (from p in products

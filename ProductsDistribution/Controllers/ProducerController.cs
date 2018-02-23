@@ -9,26 +9,56 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using Microsoft.AspNet.Identity;
+using ProductsDistribution.Models.ViewModels;
+
 namespace ProductsDistribution.Controllers
 {
     public class ProducerController : Controller
     {
         private readonly IProducerService producerService;
-
-        public ProducerController(IProducerService producerService)
+        private readonly IProductService productService;
+        public ProducerController(IProducerService producerService, IProductService productService)
         {
             this.producerService = producerService;
+            this.productService = productService;
         }
         // GET: Producer
         public ActionResult Index()
         {
             return View();
         }
+        ProducerViewModelShort MapProducerDTOToProducerViewModelShort(ProducerDTO producer)
+        {
+            return new ProducerViewModelShort
+            {
+                producer_id= producer.producer_id,
+                producer_email = producer.producer_email,
+                producer_name = producer.producer_name,
+                rating = producer.rating
+             
+
+            };
+        }
+        public ActionResult DisplayProducers()
+        {
+            List<ProducerViewModelShort> viewModel = new List<ProducerViewModelShort>();
+            string current_user = this.User.Identity.GetUserId();
+            var all_products_by_user = this.producerService.GetAllProducersByUserShort(current_user);
+            foreach(ProducerDTO producer in all_products_by_user)
+            {
+                viewModel.Add(MapProducerDTOToProducerViewModelShort(producer));
+            }
+
+            return View(viewModel);
+        }
 
         [HttpGet]
         public ActionResult AddNewProducer()
         {
-            ProducerInputModel producerInputModel = new ProducerInputModel();
+            ProducerInputModel producerInputModel = new ProducerInputModel()
+            {
+                selected_products = this.productService.GetListOfProductNamesByUserId(this.User.Identity.GetUserId())
+            };
             return View(producerInputModel);
         }
 
@@ -50,8 +80,6 @@ namespace ProductsDistribution.Controllers
                     producer_address = inputModel.producer_address,
                     telephone_number = inputModel.telephone_number,
                     userId = this.User.Identity.GetUserId(),
-
-
 
                 });
 

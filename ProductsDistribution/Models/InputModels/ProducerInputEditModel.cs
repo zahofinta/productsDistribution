@@ -7,9 +7,12 @@ using System.Web.Mvc;
 
 namespace ProductsDistribution.Models.InputModels
 {
-    public class ProducerInputModel
+    public class ProducerInputEditModel
     {
-  
+
+        public int producer_id { get; set; }
+        
+        public string userId { get; set; }
         [Required]
         public string producer_name { get; set; }
 

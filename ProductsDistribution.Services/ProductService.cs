@@ -121,6 +121,11 @@ namespace ProductsDistribution.Services
         {
             return this.ProductRepository.isInProducts(id);
         }
+
+        public List<string> GetListOfProductNamesByUserId(string userId)
+        {
+            return this.ProductRepository.GetListOfProductNamesByUserId(userId);
+        }
     }
 }
 
