@@ -21,17 +21,31 @@ namespace ProductsDistribution.Data
         protected  override void OnModelCreating(DbModelBuilder modelBuilder)
         {
 
-         //   modelBuilder.Entity<Category>().HasMany(i => i.Products)
-         //.WithOptional(i => i.category)
-         //.HasForeignKey(i => i.categoryId)
-         //.WillCascadeOnDelete(false);
+            //   modelBuilder.Entity<Category>().HasMany(i => i.Products)
+            //.WithOptional(i => i.category)
+            //.HasForeignKey(i => i.categoryId)
+            //.WillCascadeOnDelete(false);
             //modelBuilder.Entity<User>();
+
             //  modelBuilder.Entity<Category>().HasOptional(x => x.parent_Category).WithMany(x => x.children).HasForeignKey(x => x.Category_parent_id).WillCascadeOnDelete(true);
+
+            //modelBuilder.Entity<ProducerToProduct>().HasKey(x => new { x.producer_id, x.product_id});
+
+            //modelBuilder.Entity<ProducerToProduct>()
+            //    .HasOptional(producers => producers.producer)
+            //    .WithMany(p => p.producers_to_products)
+            //    .HasForeignKey(pc => pc.producer_id);
+
+            //modelBuilder.Entity<ProducerToProduct>()
+            //    .HasOptional(pc => pc.product)
+            //    .WithMany(p => p.producers_to_products)
+            //    .HasForeignKey(pc => pc.product_id);
+
+           
 
             base.OnModelCreating(modelBuilder);
 
-          
-          //  modelBuilder.Conventions.Remove<OneToManyCascadeDeleteConvention>();
+         
 
         
         }

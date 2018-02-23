@@ -165,18 +165,14 @@ namespace ProductsDistribution.Controllers
             {
 
                TempData["Error"]= "Категорията има прикрепени продукти към нея или категорията е главна.За да изтриете категорията не трябва да има прикрепени продукти към нея и трябва да е подкатегория на друга категория.";
-                //return Redirect(Request.UrlReferrer.ToString());
-              //  return RedirectToAction("DisplayCategories");
-
-
+              //  return Redirect(Request.UrlReferrer.ToString());
+ 
             }
-           
-            // bool isInProducts = this.productService.isInProducts(category.category_id);
 
             //vsichki kategorii koito sa deca na category
-        
-             return RedirectToAction("DisplayCategories");
-  
+
+            return Redirect(Request.UrlReferrer.ToString());
+
         }
         CategoryInputEditModel MapCategoryDTOToCategoryInputEditModel(CategoryDTO category)
         {

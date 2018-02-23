@@ -77,28 +77,7 @@ $(document).ready(function () {
                     selected_ParentCategory: selected_ParentCategory_,
                     selected_ChildCategory: selected_ChildCategory_
                 };
-                //Submit(inputModel);
-                //При всяка промяна submit-ва , а трябва само 1 път да submit-ва с последно избраната подкатегория 
-                // $('#ddlChildCategory').change(function () {
-
-                //// selected_ChildCategory_ = $('#ddlChildCategory option:selected').last().val();
-
-                //    inputModel = {
-                //        product_name: product__name,
-                //        product_description: product__description,
-                //        cut: cut_,
-                //        weight: weight_,
-                //        volume: volume_,
-                //        price: price_,
-                //        durability: durability_,
-                //        other: other_,
-                //        selected_ParentCategory: selected_ParentCategory_,
-                //        selected_ChildCategory: $('#ddlChildCategory option:selected').val()
-                //    };
-                //    Submit(inputModel);
-
-
-                // });
+          
 
 
 

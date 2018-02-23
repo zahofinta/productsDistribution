@@ -53,13 +53,18 @@ namespace ProductsDistribution.Services
         public CategoryDTO GetById(int id)
         {
             var category = this.categoryRepository.Get(x => x.category_id == id);
+            if(category==null)
+            {
+                throw new ArgumentException("Cannot find category with id " + id);
+            }
             return this.MapCategory(category);
         }
 
         public void Update(CategoryDTO category)
         {
             var categoryToUpdate = this.categoryRepository.Get(x=>x.category_id == category.category_id);
-            
+
+            categoryToUpdate.category_id = category.category_id;
             categoryToUpdate.category_name = category.category_name;
             categoryToUpdate.category_description = category.category_description;
             categoryToUpdate.Category_parent_id = category.CategoryDTO_parent_id;

@@ -16,7 +16,7 @@ namespace ProductsDistribution.Core.Producer.Models
         public string producer_address { get; set; }
         public string producer_email { get; set; }
         public string userId { get; set; }
-        public float rating { get; set; }
-        public ICollection<ProducerToProductDTO> producers_to_products { get; set; }
+        public double rating { get; set; }
+       // public ICollection<ProducerToProductDTO> producers_to_products { get; set; }
     }
 }
