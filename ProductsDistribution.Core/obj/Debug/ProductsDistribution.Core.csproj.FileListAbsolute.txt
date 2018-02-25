@@ -20,3 +20,8 @@ D:\СТ\Дипломна работа\ProductsDistribution asp net core mvc 2.x\
 D:\СТ\Дипломна работа\ProductsDistribution asp net core mvc 2.x\ProductsDistribution\ProductsDistribution.Core\obj\Debug\ProductsDistribution.Core.csproj.CoreCompileInputs.cache
 D:\СТ\Дипломна работа\ProductsDistribution asp net core mvc 2.x\ProductsDistribution\ProductsDistribution.Core\obj\Debug\ProductsDistribution.Core.dll
 D:\СТ\Дипломна работа\ProductsDistribution asp net core mvc 2.x\ProductsDistribution\ProductsDistribution.Core\obj\Debug\ProductsDistribution.Core.pdb
+D:\СТ\Дипломна работа\ProductsDistribution asp net core mvc 2.x\ProductsDistribution\ProductsDistribution.Core\bin\System.Web.Razor.dll
+D:\СТ\Дипломна работа\ProductsDistribution asp net core mvc 2.x\ProductsDistribution\ProductsDistribution.Core\bin\System.Web.WebPages.Razor.dll
+D:\СТ\Дипломна работа\ProductsDistribution asp net core mvc 2.x\ProductsDistribution\ProductsDistribution.Core\bin\System.Web.WebPages.dll
+D:\СТ\Дипломна работа\ProductsDistribution asp net core mvc 2.x\ProductsDistribution\ProductsDistribution.Core\bin\Microsoft.Web.Infrastructure.dll
+D:\СТ\Дипломна работа\ProductsDistribution asp net core mvc 2.x\ProductsDistribution\ProductsDistribution.Core\bin\System.Web.WebPages.Deployment.dll

@@ -11,7 +11,7 @@ using DataAnnotationsExtensions;
 
 namespace ProductsDistribution.Models
 {
-    public enum Gender { m,f}
+   // public enum Gender { m,f}
     public class User : IdentityUser
     {
 
@@ -32,7 +32,8 @@ namespace ProductsDistribution.Models
         [Required]
         public string surname { get; set; }
         [Required]
-        public Gender gender { get; set; }
+      //  public Gender gender { get; set; }
+        public string gender { get; set; }
         [Required]
         [Min(1,ErrorMessage ="Please enter age greater than 1")]
         public int years { get; set; }

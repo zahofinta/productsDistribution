@@ -25,5 +25,9 @@ namespace ProductsDistribution.Services.Contracts
         bool isInProducts(int id);
 
         List<string> GetListOfProductNamesByUserId(string userId);
+
+        int GetProductIdByName(string productName, string userId);
+
+        List<string> GetAllSelectedProductNamesByUserId(string userId,int producerId);
     }
 }

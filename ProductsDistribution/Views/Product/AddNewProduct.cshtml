@@ -82,7 +82,7 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.parent_categories, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.parent_categories,"Категория :", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                
                 @Html.ValidationMessageFor(model => model.selected_ParentCategory, "", new { @class = "text-danger" }) 
@@ -92,7 +92,7 @@
         </div>
 
         <div class="form-group">
-           @Html.LabelFor(model => model.child_categories, htmlAttributes: new { @class = "control-label col-md-2" })
+           @Html.LabelFor(model => model.child_categories,"Подкатегория :", htmlAttributes: new { @class = "control-label col-md-2" })
 
             <div class="col-md-10" id="subcategories">
             

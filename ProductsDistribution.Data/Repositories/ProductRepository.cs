@@ -34,6 +34,19 @@ namespace ProductsDistribution.Data.Repositories
             return all_products_by_user_short;
         }
 
+        public List<string> GetAllSelectedProductNamesByUserId(string userId,int producerId)
+        {
+            var producerToProducts = _dbContext.Set<ProducerToProduct>();
+            var products = this._dbSet;
+            var producers = _dbContext.Set<Producer>();
+            var allSelectedProductNamesByUser = (from p in products
+                                                 join ptp in producerToProducts on p.product_id equals ptp.product_id
+                                                 where p.userId == userId && ptp.producer_id == producerId
+                                                 select p.product_name).ToList();
+
+            return allSelectedProductNamesByUser;
+        }
+
         public List<string> GetListOfProductNamesByUserId(string userId)
         {
             var products = this._dbSet;
@@ -64,7 +77,15 @@ namespace ProductsDistribution.Data.Repositories
             return get_product_id_by_id_and_userId;
         }
 
-      public  bool isInProducts(int id)
+        public int GetProductIdByName(string productName,string userId)
+        {
+            var products = this._dbSet;
+            return products.SingleOrDefault(x => x.userId == userId && x.product_name == productName).product_id;
+        }
+
+      
+
+        public  bool isInProducts(int id)
         {
             var products = this._dbSet;
             bool result = products.Any(x => x.categoryId == id);

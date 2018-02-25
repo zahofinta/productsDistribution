@@ -7,9 +7,9 @@
 </p>
 <table class="table">
     <tr>
-        <th>
+        @*<th>
             @Html.DisplayNameFor(model => model.producer_id)
-        </th>
+        </th>*@
         <th>
             @Html.DisplayNameFor(model => model.producer_name)
         </th>
@@ -19,14 +19,14 @@
         <th>
             @Html.DisplayNameFor(model => model.rating)
         </th>
-        <th></th>
+        <th>Продукти:</th>
     </tr>
 
 @foreach (var item in Model) {
     <tr>
-        <td>
+        @*<td>
             @Html.DisplayFor(modelItem => item.producer_id)
-        </td>
+        </td>*@
         <td>
             @Html.DisplayFor(modelItem => item.producer_name)
         </td>
@@ -35,6 +35,16 @@
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.rating)
+        </td>
+
+        <td>
+            @foreach (var selectedProducer in item.producer_products)
+                {
+
+                <text>@selectedProducer<br /></text>
+                @*<td>@subcategory</td>*@
+
+            }
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |

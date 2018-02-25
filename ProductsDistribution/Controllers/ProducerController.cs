@@ -10,6 +10,7 @@ using System.Web;
 using System.Web.Mvc;
 using Microsoft.AspNet.Identity;
 using ProductsDistribution.Models.ViewModels;
+using ProductsDistribution.Core.ProducerToProduct.Models;
 
 namespace ProductsDistribution.Controllers
 {
@@ -30,7 +31,7 @@ namespace ProductsDistribution.Controllers
             return View();
         }
 
-        private IEnumerable<SelectListItem> GetCurrenUserProducts()
+        private IEnumerable<SelectListItem> GetCurrentUserProducts()
 
             {
                 var products_by_current_user = this.productService.GetListOfProductNamesByUserId(this.User.Identity.GetUserId());
@@ -44,7 +45,8 @@ namespace ProductsDistribution.Controllers
                 producer_id= producer.producer_id,
                 producer_email = producer.producer_email,
                 producer_name = producer.producer_name,
-                rating = producer.rating
+                rating = producer.rating,
+                producer_products = this.productService.GetAllSelectedProductNamesByUserId(this.User.Identity.GetUserId(),producer.producer_id)
              
             };
         }
@@ -66,7 +68,7 @@ namespace ProductsDistribution.Controllers
         {
             ProducerInputModel producerInputModel = new ProducerInputModel()
             {
-                products = GetCurrenUserProducts()
+                products = GetCurrentUserProducts()
             };
             return View(producerInputModel);
         }
@@ -74,7 +76,7 @@ namespace ProductsDistribution.Controllers
         [HttpPost]
         public ActionResult AddNewProducer(ProducerInputModel inputModel)
         {
-            inputModel.products = GetCurrenUserProducts();
+            inputModel.products = GetCurrentUserProducts();
           
             if (!this.ModelState.IsValid)
             {
@@ -92,7 +94,21 @@ namespace ProductsDistribution.Controllers
 
                int addedProducerId =  this.producerService.AddNewProducer(producerToInsert);
 
-              
+                List<string> selected_products = inputModel.selected_products;
+
+                if (selected_products.Count() > 0)
+                {
+                    foreach (string selected_product in selected_products)
+                    {
+                        this.producerToProductService.AddNewProducerToProduct(new ProducerToProductDTO()
+                        {
+
+                            producer_id = addedProducerId,
+                            product_id = this.productService.GetProductIdByName(selected_product, this.User.Identity.GetUserId())
+
+                        });
+                    }
+                }
  
             }
             catch (DbUpdateException e)

@@ -72,40 +72,42 @@ namespace ProductsDistribution.Models
     {
         [Required]
         [EmailAddress]
-        [Display(Name = "Имейл")]
+        [Display(Name = "Имейл:")]
         public string Email { get; set; }
 
         [Required]
-        [StringLength(100, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 6)]
+        [StringLength(100, ErrorMessage = "Паролата {0} трябва да бъде поне {2} символа дълга.", MinimumLength = 6)]
         [DataType(DataType.Password)]
-        [Display(Name = "Парола")]
+        [Display(Name = "Парола:")]
         public string Password { get; set; }
 
         [DataType(DataType.Password)]
-        [Display(Name = "Потвърдете паролата")]
-        [System.ComponentModel.DataAnnotations.Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
+        [Display(Name = "Потвърдете паролата:")]
+        [System.ComponentModel.DataAnnotations.Compare("Password", ErrorMessage = "Паролата и потвърдената парола не съвпадат.")]
         public string ConfirmPassword { get; set; }
 
         [Required]
-        [Display(Name = "Име")]
+        [Display(Name = "Име:")]
         public string first_name { get; set; }
         [Required]
-        [Display(Name = "Фамилия")]
+        [Display(Name = "Фамилия:")]
         public string surname { get; set; }
         [Required]
-        [Display(Name = "Пол")]
-        public Gender gender { get; set; }
+        [Display(Name = "Пол:")]
+        //public Gender gender { get; set; }
+        public string gender { get; set; }
+        
         [Required]
-        [Display(Name = "Години")]
-        [Min(1, ErrorMessage = "Please enter age greater than 1")]
+        [Display(Name = "Години:")]
+        [Min(1, ErrorMessage = "Въведете възраст по-голяма от 1")]
         public int years { get; set; }
         [Required]
-        [Display(Name = "Адрес")]
+        [Display(Name = "Адрес:")]
         public string post_address { get; set; }
         [Required]
-        [Display(Name = "Организация")]
+        [Display(Name = "Организация:")]
         public string organization { get; set; }
-        [Display(Name = "Отдел")]
+        [Display(Name = "Отдел:")]
         public string department { get; set; }
 
     }

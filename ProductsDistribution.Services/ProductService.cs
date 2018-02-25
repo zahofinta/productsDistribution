@@ -126,6 +126,16 @@ namespace ProductsDistribution.Services
         {
             return this.ProductRepository.GetListOfProductNamesByUserId(userId);
         }
+
+        public int GetProductIdByName(string productName, string userId)
+        {
+            return this.ProductRepository.GetProductIdByName(productName, userId);
+        }
+
+        public List<string> GetAllSelectedProductNamesByUserId(string userId,int producerId)
+        {
+            return this.ProductRepository.GetAllSelectedProductNamesByUserId(userId,producerId);
+        }
     }
 }
 
