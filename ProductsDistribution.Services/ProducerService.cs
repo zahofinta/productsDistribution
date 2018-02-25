@@ -38,7 +38,7 @@ namespace ProductsDistribution.Services
                 
             };
         }
-        public void AddNewProducer(ProducerDTO producer)
+       public int AddNewProducer(ProducerDTO producer)
         {
             var producerToAdd = new Producer
             {
@@ -53,8 +53,14 @@ namespace ProductsDistribution.Services
                 
              
             };
+            //string producerToAddId = producerToAdd.producer_name;
             this.producerRepository.Insert(producerToAdd);
-        }
+
+            int addedProducerId = producerToAdd.producer_id;
+
+            return addedProducerId;
+  
+        } 
 
         public void DeleteProduct(ProducerDTO item)
         {
@@ -91,5 +97,12 @@ namespace ProductsDistribution.Services
         {
             return this.ProducerRepository.GetAllProducersByUserShort(userId);
         }
+
+        public int GetProducerIdByName(string producerName)
+        {
+            return this.ProducerRepository.GetProducerIdByName(producerName);
+        }
+
+
     }
 }

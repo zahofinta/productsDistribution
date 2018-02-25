@@ -1,4 +1,5 @@
 ﻿using ProductsDistribution.Core.Producer.Models;
+using ProductsDistribution.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,9 +13,10 @@ namespace ProductsDistribution.Services.Contracts
 
 
         IEnumerable<ProducerDTO> GetAllProducersByUserShort(string userId);
-        void AddNewProducer(ProducerDTO producer);
 
-      
+        int GetProducerIdByName(string producerName);
+         int AddNewProducer(ProducerDTO producer);
+            
         void Update(ProducerDTO producer);
 
         void DeleteProduct(ProducerDTO item);

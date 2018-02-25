@@ -12,5 +12,9 @@ namespace ProductsDistribution.Data.Contracts
     {
         IEnumerable<ProducerDTO> GetAllProducersByUserShort(string userId);
 
+        int GetProducerIdByName(string producerName);
+
+        new int Insert(Producer entity);
+       // int Insert(Producer entity);
     }
 }

@@ -17,17 +17,27 @@ namespace ProductsDistribution.Controllers
     {
         private readonly IProducerService producerService;
         private readonly IProductService productService;
-        public ProducerController(IProducerService producerService, IProductService productService)
+        private readonly IProducerToProductService producerToProductService;
+        public ProducerController(IProducerService producerService, IProductService productService, IProducerToProductService producerToProductService)
         {
             this.producerService = producerService;
             this.productService = productService;
+            this.producerToProductService = producerToProductService;
         }
         // GET: Producer
         public ActionResult Index()
         {
             return View();
         }
-        ProducerViewModelShort MapProducerDTOToProducerViewModelShort(ProducerDTO producer)
+
+        private IEnumerable<SelectListItem> GetCurrenUserProducts()
+
+            {
+                var products_by_current_user = this.productService.GetListOfProductNamesByUserId(this.User.Identity.GetUserId());
+
+                return new SelectList(products_by_current_user);
+            }
+            ProducerViewModelShort MapProducerDTOToProducerViewModelShort(ProducerDTO producer)
         {
             return new ProducerViewModelShort
             {
@@ -36,7 +46,6 @@ namespace ProductsDistribution.Controllers
                 producer_name = producer.producer_name,
                 rating = producer.rating
              
-
             };
         }
         public ActionResult DisplayProducers()
@@ -57,7 +66,7 @@ namespace ProductsDistribution.Controllers
         {
             ProducerInputModel producerInputModel = new ProducerInputModel()
             {
-                selected_products = this.productService.GetListOfProductNamesByUserId(this.User.Identity.GetUserId())
+                products = GetCurrenUserProducts()
             };
             return View(producerInputModel);
         }
@@ -65,6 +74,8 @@ namespace ProductsDistribution.Controllers
         [HttpPost]
         public ActionResult AddNewProducer(ProducerInputModel inputModel)
         {
+            inputModel.products = GetCurrenUserProducts();
+          
             if (!this.ModelState.IsValid)
             {
 
@@ -72,18 +83,17 @@ namespace ProductsDistribution.Controllers
             }
             try
             {
-                this.producerService.AddNewProducer(new ProducerDTO
+                ProducerDTO producerToInsert = new ProducerDTO();
+                producerToInsert.producer_name = inputModel.producer_name;
+                producerToInsert.producer_email = inputModel.producer_email;
+                producerToInsert.producer_address = inputModel.producer_address;
+                producerToInsert.telephone_number = inputModel.telephone_number;
+                producerToInsert.userId = this.User.Identity.GetUserId();
 
-                {
-                    producer_name = inputModel.producer_name,
-                    producer_email = inputModel.producer_email,
-                    producer_address = inputModel.producer_address,
-                    telephone_number = inputModel.telephone_number,
-                    userId = this.User.Identity.GetUserId(),
+               int addedProducerId =  this.producerService.AddNewProducer(producerToInsert);
 
-                });
-
-                    
+              
+ 
             }
             catch (DbUpdateException e)
 
@@ -94,6 +104,7 @@ namespace ProductsDistribution.Controllers
                 ModelState.AddModelError("producer_name", "Производителят вече съществува");
                 return View(inputModel);
             }
+        
             return RedirectToAction("DisplayProducers");
         }
     }

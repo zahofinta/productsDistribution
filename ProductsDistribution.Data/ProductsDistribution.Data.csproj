@@ -104,6 +104,10 @@
     <Compile Include="Migrations\201802111529007_initial_create.Designer.cs">
       <DependentUpon>201802111529007_initial_create.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201802250702155_Index_Added_to_ProducerName.cs" />
+    <Compile Include="Migrations\201802250702155_Index_Added_to_ProducerName.Designer.cs">
+      <DependentUpon>201802250702155_Index_Added_to_ProducerName.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="ProductsDistributionDBContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -127,6 +131,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201802111529007_initial_create.resx">
       <DependentUpon>201802111529007_initial_create.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201802250702155_Index_Added_to_ProducerName.resx">
+      <DependentUpon>201802250702155_Index_Added_to_ProducerName.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

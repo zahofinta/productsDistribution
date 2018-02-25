@@ -46,6 +46,7 @@ namespace ProductsDistribution.Data.Repositories
             this.ChangeState(entity, EntityState.Added);
             _dbContext.SaveChanges();
            
+
         }
 
         public void Update(TEntity entity)

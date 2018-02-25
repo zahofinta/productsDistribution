@@ -33,5 +33,35 @@ namespace ProductsDistribution.Data.Repositories
                                              };
             return all_products_by_user_short;
         }
+
+        public int GetProducerIdByName(string producerName)
+        {
+            var producers = this._dbSet;
+            int producerId = producers.Where(x => x.producer_name == producerName).First().producer_id;
+
+            return producerId;
+
+
+        }
+
+        private Producer ChangeState(Producer entity, EntityState state)
+        {
+            var entry = this._dbContext.Entry(entity);
+            if (entry.State == EntityState.Detached)
+            {
+                this._dbSet.Add(entity);
+            }
+
+            entry.State = state;
+            return entity;
+        }
+        new public int Insert(Producer entity)
+        {
+            this.ChangeState(entity, EntityState.Added);
+            _dbContext.SaveChanges();
+            int producerId = entity.producer_id;
+
+            return producerId;
+        }
     }
 }

@@ -12,7 +12,9 @@ namespace ProductsDistribution.Models
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int producer_id { get; set; }
-        [Required]
+        [Required(ErrorMessage = ("Име на производител  е задължително поле"))]
+        [StringLength(50)]
+        [Index("producer_nameIndex", IsUnique = true)]
         public string producer_name { get; set; }
 
         [Required(ErrorMessage = "Telephone Number Required")]

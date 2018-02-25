@@ -238,6 +238,7 @@
   <ItemGroup>
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\dropdownliststyle.css" />
     <Content Include="Content\font-awesome.min.css" />
     <Content Include="Content\Site.css" />
     <Content Include="Content\style.css" />
@@ -259,6 +260,8 @@
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery.sumoselect.js" />
+    <Content Include="Scripts\jquery.sumoselect.min.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
@@ -316,6 +319,7 @@
     <Content Include="Views\Product\EditProduct.cshtml" />
     <Content Include="Views\Product\Details.cshtml" />
     <Content Include="Views\Producer\DisplayProducers.cshtml" />
+    <Content Include="Views\Producer\AddNewProducer.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
