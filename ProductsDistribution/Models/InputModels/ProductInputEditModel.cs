@@ -38,6 +38,11 @@ namespace ProductsDistribution.Models.InputModels
         [Display(Name = "Допълнение към описанието :")]
         public string other { get; set; }
 
+
+        [Required]
+        [Display(Name = "Мерна единица :")]
+        public string selected_unit { get; set; }
+
         [Required(ErrorMessage = "Категория е задължително поле")]
         public string selected_ParentCategory { get; set; }
         [Required(ErrorMessage = "Подкатегория е задължително поле")]
@@ -50,5 +55,9 @@ namespace ProductsDistribution.Models.InputModels
         [Required(ErrorMessage = "Подкатегория е задължително поле")]
         [Display(Name = "Подкатегория :")]
         public IEnumerable<SelectListItem> child_categories = new List<SelectListItem>();
+
+        [Required(ErrorMessage = "Мерна единица е задължително поле")]
+        [Display(Name = "Мерна единица :")]
+        public IEnumerable<SelectListItem> units = new List<SelectListItem>();
     }
 }

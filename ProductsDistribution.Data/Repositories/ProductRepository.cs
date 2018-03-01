@@ -68,6 +68,7 @@ namespace ProductsDistribution.Data.Repositories
                                                       cut = p.cut,
                                                       product_description = p.product_description,
                                                       other = p.other,
+                                                      unit = p.unit,
                                                       weight = p.weight,
                                                       rating = p.rating,
                                                       userId = p.userId,

@@ -112,6 +112,10 @@
     <Compile Include="Migrations\201802251939581_registration_genderButtonAdded.Designer.cs">
       <DependentUpon>201802251939581_registration_genderButtonAdded.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201803011315568_Unit_field_added_to_productTable.cs" />
+    <Compile Include="Migrations\201803011315568_Unit_field_added_to_productTable.Designer.cs">
+      <DependentUpon>201803011315568_Unit_field_added_to_productTable.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="ProductsDistributionDBContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -141,6 +145,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201802251939581_registration_genderButtonAdded.resx">
       <DependentUpon>201802251939581_registration_genderButtonAdded.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201803011315568_Unit_field_added_to_productTable.resx">
+      <DependentUpon>201803011315568_Unit_field_added_to_productTable.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

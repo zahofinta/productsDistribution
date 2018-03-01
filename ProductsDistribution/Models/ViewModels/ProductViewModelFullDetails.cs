@@ -20,6 +20,9 @@ namespace ProductsDistribution.Models.ViewModels
         public double volume { get; set; }
         [Display(Name = "Рейтинг :")]
         public double rating { get; set; }
+        
+        [Display(Name = "Мерна единица :")]
+        public string unit { get; set; }
 
     }
 }

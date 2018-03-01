@@ -38,6 +38,7 @@ namespace ProductsDistribution.Services
                 volume = product.volume,
                 durability = product.durability,
                 other = product.other,
+                unit = product.unit,
                 rating = product.rating,
                 categoryId = product.categoryId,
                 price = product.price,
@@ -61,6 +62,7 @@ namespace ProductsDistribution.Services
                 durability = product.durability,
                 volume = product.volume,
                 other = product.other,
+                unit = product.unit,
                 categoryId = product.categoryId,
                 rating = 0.0,
                 isEnabled = true,
@@ -101,6 +103,7 @@ namespace ProductsDistribution.Services
             productToUpdate.other = product.other;
             productToUpdate.categoryId = product.categoryId;
             productToUpdate.price = product.price;
+            productToUpdate.unit = product.unit;
 
             this.productRepository.Update(productToUpdate);
         }

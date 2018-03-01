@@ -19,6 +19,8 @@ namespace ProductsDistribution.Core.Product.Models
 
         public DateTime durability { get; set; }
 
+        public string unit { get; set; }
+
         public string other { get; set; }
 
         public double rating { get; set; }
