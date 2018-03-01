@@ -14,8 +14,8 @@ namespace ProductsDistribution.Models.InputModels
         [Display(Name = "Име на производител :")]
         public string producer_name { get; set; }
 
-        [Required(ErrorMessage = "Telephone Number Required")]
-        [RegularExpression(@"^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$", ErrorMessage = "Entered phone format is not valid.")]
+        [Required(ErrorMessage = "Телефонен номер е задължително поле")]
+        [RegularExpression(@"^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$", ErrorMessage = "Невалиден телефонен номер")]
         [Display(Name = "Телефонен номер :")]
         public string telephone_number { get; set; }
         [Required]
@@ -23,8 +23,8 @@ namespace ProductsDistribution.Models.InputModels
         public string producer_address { get; set; }
 
         [Display(Name = "Имейл :")]
-        [Required(ErrorMessage = "The email address is required")]
-        [EmailAddress(ErrorMessage = "Invalid Email Address")]
+        [Required(ErrorMessage = "Имейл е задължително поле")]
+        [EmailAddress(ErrorMessage = "Невалиден имейл адрес")]
         public string producer_email { get; set; }
 
         public List<string> selected_products { get; set; }

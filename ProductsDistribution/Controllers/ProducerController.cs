@@ -46,9 +46,42 @@ namespace ProductsDistribution.Controllers
                 producer_email = producer.producer_email,
                 producer_name = producer.producer_name,
                 rating = producer.rating,
-                producer_products = this.productService.GetAllSelectedProductNamesByUserId(this.User.Identity.GetUserId(),producer.producer_id)
+                producer_products = this.productService.GetAllSelectedProductNamesByUserId(this.User.Identity.GetUserId(),producer.producer_id),
+                userId = producer.userId
              
             };
+        }
+
+        ProducerViewModelFullDetails MapProducerDTOToProducerViewModelFullDetails(ProducerDTO producer)
+        {
+
+            return new ProducerViewModelFullDetails()
+            {
+                producer_id = producer.producer_id,
+                producer_name = producer.producer_name,
+                producer_address = producer.producer_address,
+                producer_email = producer.producer_email,
+                rating = producer.rating,
+                telephone_number = producer.telephone_number,
+                userId = producer.userId,
+                producer_products = this.productService.GetAllSelectedProductNamesByUserId(this.User.Identity.GetUserId(),producer.producer_id)
+               
+            };
+        }
+        ProducerInputEditModel MapProducerDTOToProducerInputEditModel(ProducerDTO producer)
+        {
+            return new ProducerInputEditModel()
+            {
+                producer_id = producer.producer_id,
+                producer_name = producer.producer_name,
+                producer_address = producer.producer_address,
+                producer_email = producer.producer_email,
+                telephone_number = producer.telephone_number,
+                products = GetCurrentUserProducts(),
+                userId = producer.userId,
+               
+            };
+
         }
         public ActionResult DisplayProducers()
         {
@@ -77,7 +110,7 @@ namespace ProductsDistribution.Controllers
         public ActionResult AddNewProducer(ProducerInputModel inputModel)
         {
             inputModel.products = GetCurrentUserProducts();
-          
+
             if (!this.ModelState.IsValid)
             {
 
@@ -92,24 +125,30 @@ namespace ProductsDistribution.Controllers
                 producerToInsert.telephone_number = inputModel.telephone_number;
                 producerToInsert.userId = this.User.Identity.GetUserId();
 
-               int addedProducerId =  this.producerService.AddNewProducer(producerToInsert);
+                int addedProducerId = this.producerService.AddNewProducer(producerToInsert);
 
                 List<string> selected_products = inputModel.selected_products;
 
-                if (selected_products.Count() > 0)
+                if (selected_products != null)
                 {
-                    foreach (string selected_product in selected_products)
+                    if (selected_products.Count() > 0)
                     {
-                        this.producerToProductService.AddNewProducerToProduct(new ProducerToProductDTO()
+                        foreach (string selected_product in selected_products)
                         {
+                            
+                                this.producerToProductService.AddNewProducerToProduct(new ProducerToProductDTO()
+                                {
 
-                            producer_id = addedProducerId,
-                            product_id = this.productService.GetProductIdByName(selected_product, this.User.Identity.GetUserId())
+                                    producer_id = addedProducerId,
+                                    product_id = this.productService.GetProductIdByName(selected_product, this.User.Identity.GetUserId())
 
-                        });
+                                });
+                            
+                        }
+
                     }
+
                 }
- 
             }
             catch (DbUpdateException e)
 
@@ -120,8 +159,138 @@ namespace ProductsDistribution.Controllers
                 ModelState.AddModelError("producer_name", "Производителят вече съществува");
                 return View(inputModel);
             }
-        
+
             return RedirectToAction("DisplayProducers");
+
+        }
+
+        [HttpGet]
+        public ActionResult EditProducer(int id, string userId)
+        {
+            userId = this.User.Identity.GetUserId();
+            var producer = this.producerService.GetProducerByIdAndUserId(id, userId);
+
+            if (producer == null)
+            {
+                return HttpNotFound();
+
+            }
+
+            ProducerInputEditModel producerInputEditModel = MapProducerDTOToProducerInputEditModel(producer);
+
+            return View(producerInputEditModel);
+
+        }
+        [HttpPost]
+        public ActionResult EditProducer(int id,ProducerInputEditModel inputEditModel)
+        {
+            inputEditModel.products = GetCurrentUserProducts();
+            if (!this.ModelState.IsValid)
+            {
+
+                return View(inputEditModel);
+            }
+
+            try
+            {
+                //var producerToEdit = this.producerService.GetById(id);
+
+
+                this.producerService.Update(new ProducerDTO
+                {
+                    producer_id = id,
+                    producer_name = inputEditModel.producer_name,
+                    producer_address = inputEditModel.producer_address,
+                    producer_email = inputEditModel.producer_email,
+                    telephone_number = inputEditModel.telephone_number
+                });
+                
+                List<string> selected_products = inputEditModel.selected_products;
+
+                if(selected_products!=null)
+                {
+                    if (selected_products.Count() > 0)
+                    {
+
+                        this.producerToProductService.Update(new ProducerToProductDTO()
+                        {
+
+                            producer_id = id
+
+                        });
+
+
+                        foreach (string selected_product in selected_products)
+                        {
+                            //this.producerToProductService.Update(new ProducerToProductDTO()
+                            //{
+
+                            //    producer_id = id,
+                            //    product_id = this.productService.GetProductIdByName(selected_product, this.User.Identity.GetUserId())
+
+                            //});
+                        
+                            
+                                this.producerToProductService.AddNewProducerToProduct(new ProducerToProductDTO()
+                                {
+
+                                    producer_id = id,
+                                    product_id = this.productService.GetProductIdByName(selected_product, this.User.Identity.GetUserId())
+
+                                });
+                            
+
+                        }
+                    }
+                }
+
+            }
+            catch (DbUpdateException e)
+
+             when (e.InnerException?.InnerException is SqlException sqlEx &&
+             (sqlEx.Number == 2601 || sqlEx.Number == 2627))
+            {
+
+                ModelState.AddModelError("producer_name", "Производителят вече съществува");
+                return View(inputEditModel);
+            }
+
+            return RedirectToAction("DisplayProducers");
+
+        }
+        public ActionResult Delete(int id, string userId)
+        {
+            userId = this.User.Identity.GetUserId();
+            var producer = this.producerService.GetProducerByIdAndUserId(id,userId);
+
+
+            if (producer== null)
+            {
+                return HttpNotFound();
+            }
+            this.producerToProductService.DeleteProducerToProduct(new ProducerToProductDTO()
+            {
+
+                producer_id = id
+            });
+            this.producerService.DeleteProducer(producer);
+            return Redirect(Request.UrlReferrer.ToString());
+        }
+
+        [HttpGet]
+        public ActionResult Details(int id)
+        {
+
+            var producer = this.producerService.GetById(id);
+
+            ProducerViewModelFullDetails model = MapProducerDTOToProducerViewModelFullDetails(producer);
+
+            if (producer == null)
+            {
+                return HttpNotFound();
+            }
+            // return View(model);
+            return View(model);
         }
     }
 }

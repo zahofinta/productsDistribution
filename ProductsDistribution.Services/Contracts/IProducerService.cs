@@ -16,9 +16,12 @@ namespace ProductsDistribution.Services.Contracts
 
         int GetProducerIdByName(string producerName);
          int AddNewProducer(ProducerDTO producer);
-            
+
+        ProducerDTO GetProducerByIdAndUserId(int id, string userId);
+
+
         void Update(ProducerDTO producer);
 
-        void DeleteProduct(ProducerDTO item);
+        void DeleteProducer(ProducerDTO item);
     }
 }

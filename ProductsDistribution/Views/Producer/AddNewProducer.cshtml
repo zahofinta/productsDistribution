@@ -51,7 +51,7 @@
 
                 @Html.ValidationMessageFor(model => model.selected_products, "", new { @class = "text-danger" })
 
-                @Html.DropDownListFor(m => m.selected_products, Model.products, "", new { @multiple = "multiple", @placeholder = "Моля изберете продукти", @class = "ddlMultiSlectBox" })
+                @Html.DropDownListFor(m => m.selected_products, Model.products, new { @multiple = "multiple", @placeholder = "Моля изберете продукти", @class = "ddlMultiSlectBox" })
               
             </div>
         </div>

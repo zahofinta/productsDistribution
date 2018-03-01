@@ -10,13 +10,13 @@ namespace ProductsDistribution.Services.Contracts
     {
         ProducerToProductDTO GetById(int id);
 
-
+        ProducerToProductDTO GetByProductId(int id);
 
         void AddNewProducerToProduct(ProducerToProductDTO producer);
 
-
+      //  IEnumerable<ProducerToProductDTO> GetAllProducersToProducts(int id);
         void Update(ProducerToProductDTO producer);
 
-        void DeleteProduct(ProducerToProductDTO item);
+        void DeleteProducerToProduct(ProducerToProductDTO item);
     }
 }

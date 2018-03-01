@@ -62,7 +62,7 @@ namespace ProductsDistribution.Services
   
         } 
 
-        public void DeleteProduct(ProducerDTO item)
+        public void DeleteProducer(ProducerDTO item)
         {
             var producer = this.producerRepository.Get(x => x.producer_id == item.producer_id);
 
@@ -103,6 +103,9 @@ namespace ProductsDistribution.Services
             return this.ProducerRepository.GetProducerIdByName(producerName);
         }
 
-
+        public ProducerDTO GetProducerByIdAndUserId(int id, string userId)
+        {
+            return this.ProducerRepository.GetProducerByIdAndUserId(id, userId);
+        }
     }
 }

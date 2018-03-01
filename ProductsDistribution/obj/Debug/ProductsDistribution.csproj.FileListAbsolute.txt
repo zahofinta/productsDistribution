@@ -88,3 +88,7 @@ D:\СТ\Дипломна работа\ProductsDistribution asp net core mvc 2.x\
 D:\СТ\Дипломна работа\ProductsDistribution asp net core mvc 2.x\ProductsDistribution\ProductsDistribution\obj\Debug\ProductsDistribution.csproj.CoreCompileInputs.cache
 D:\СТ\Дипломна работа\ProductsDistribution asp net core mvc 2.x\ProductsDistribution\ProductsDistribution\obj\Debug\ProductsDistribution.dll
 D:\СТ\Дипломна работа\ProductsDistribution asp net core mvc 2.x\ProductsDistribution\ProductsDistribution\obj\Debug\ProductsDistribution.pdb
+D:\СТ\Дипломна работа\ProductsDistribution asp net core mvc 2.x\ProductsDistribution\ProductsDistribution\bin\Microsoft.AspNet.SignalR.Core.dll
+D:\СТ\Дипломна работа\ProductsDistribution asp net core mvc 2.x\ProductsDistribution\ProductsDistribution\bin\Microsoft.AspNet.SignalR.SystemWeb.dll
+D:\СТ\Дипломна работа\ProductsDistribution asp net core mvc 2.x\ProductsDistribution\ProductsDistribution\bin\Microsoft.AspNet.SignalR.Core.xml
+D:\СТ\Дипломна работа\ProductsDistribution asp net core mvc 2.x\ProductsDistribution\ProductsDistribution\bin\Microsoft.AspNet.SignalR.SystemWeb.xml

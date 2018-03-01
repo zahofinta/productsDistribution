@@ -26,6 +26,7 @@ namespace ProductsDistribution.Models.ViewModels
         [Display(Name = "Рейтинг :")]
         public double rating { get; set; }
 
+        public string userId { get; set; }
         //<string> producer_products {get;set;}
 
         public ProducerViewModelShort()

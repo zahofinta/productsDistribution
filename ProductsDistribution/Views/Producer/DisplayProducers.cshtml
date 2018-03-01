@@ -47,9 +47,9 @@
             }
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-            @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-            @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+            @Html.ActionLink("Редактирай", "EditProducer", new { id = item.producer_id, userId = item.userId }) |
+            @Html.ActionLink("Детайли", "Details", new {  id=item.producer_id}) |
+            @Html.ActionLink("Изтрий", "Delete", new {  id=item.producer_id,userId=item.userId  })
         </td>
     </tr>
 }

@@ -80,7 +80,7 @@ namespace ProductsDistribution.Data.Repositories
         public int GetProductIdByName(string productName,string userId)
         {
             var products = this._dbSet;
-            return products.SingleOrDefault(x => x.userId == userId && x.product_name == productName).product_id;
+            return products.FirstOrDefault(x => x.userId == userId && x.product_name == productName).product_id;
         }
 
       

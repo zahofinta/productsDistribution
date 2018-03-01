@@ -11,7 +11,6 @@ namespace ProductsDistribution.Models.ViewModels
        [Display(Name = "Описание на продукта :")]
         public string product_description { get; set; }
         [Display(Name = "Разфасовка :")]
-
         public string cut { get; set; }
         [Display(Name = "Допълнение към описанието :")]
         public string other { get; set; }

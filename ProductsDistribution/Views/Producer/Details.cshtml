@@ -1,0 +1,74 @@
+﻿@model ProductsDistribution.Models.ViewModels.ProducerViewModelFullDetails
+
+<div>
+    <h4>ProducerViewModelFullDetails</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.producer_id)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.producer_id)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.producer_name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.producer_name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.producer_email)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.producer_email)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.rating)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.rating)
+        </dd>
+
+
+        <dt>
+            @Html.DisplayNameFor(model => model.telephone_number)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.telephone_number)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.producer_address)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.producer_address)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.producer_products)
+        </dt>
+        <dd>
+        @foreach (var selectedProducer in Model.producer_products)
+        {
+
+            <text>@selectedProducer
+            <br /></text>
+            @*<td>@subcategory</td>*@
+
+        }
+        </dd>
+    </dl>
+</div>
+<p>
+   
+    @Html.ActionLink("Back to List", "DisplayProducers")
+</p>

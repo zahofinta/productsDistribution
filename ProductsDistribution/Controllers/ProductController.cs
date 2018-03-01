@@ -55,7 +55,7 @@ namespace ProductsDistribution.Controllers
                 price = product.price,
                 product_name = product.product_name,
                 category = this.categoryService.GetById(product.categoryId).category_name
-
+                
             };
         }
 

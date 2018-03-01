@@ -63,5 +63,25 @@ namespace ProductsDistribution.Data.Repositories
 
             return producerId;
         }
+
+        public ProducerDTO GetProducerByIdAndUserId(int id, string userId)
+        {
+            var producers = this._dbSet;
+
+            var producerToEdit = (from p in producers
+                                  where p.producer_id == id && p.userId.Equals(userId)
+                                  select new ProducerDTO
+                                  {
+                                      producer_id = p.producer_id,
+                                      producer_name = p.producer_name,                                 
+                                      userId = p.userId,
+                                      producer_address = p.producer_address,
+                                      producer_email = p.producer_email,
+                                      rating = p.rating,
+                                      telephone_number = p.telephone_number
+                                  }).FirstOrDefault();
+
+            return producerToEdit;
+        }
     }
 }
