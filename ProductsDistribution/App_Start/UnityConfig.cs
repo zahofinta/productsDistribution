@@ -76,6 +76,8 @@ namespace ProductsDistribution
             container.RegisterType<IRepository<Product>, GenericEfRepository<Product>>();
             container.RegisterType<IRepository<Producer>, GenericEfRepository<Producer>>();
             container.RegisterType<IRepository<ProducerToProduct>, GenericEfRepository<ProducerToProduct>>();
+            container.RegisterType<IRepository<Announcement>, GenericEfRepository<Announcement>>();
+            container.RegisterType<IRepository<AnnouncementToProduct>, GenericEfRepository<AnnouncementToProduct>>();
             //container.RegisterType<IIncomeRepository, IncomeRepository>();
 
             //container.RegisterType<IPaymentService, PaymentService>();
@@ -84,6 +86,8 @@ namespace ProductsDistribution
             container.RegisterType<IProductService, ProductService>();
             container.RegisterType<IProducerService, ProducerService>();
             container.RegisterType<IProducerToProductService, ProducerToProductService>();
+            container.RegisterType<IAnnouncementService, AnnouncementService>();
+            container.RegisterType<IAnnouncementToProductService, AnnouncementToProductService>();
 
             container.RegisterType<AccountController>(new InjectionConstructor(typeof(ApplicationUserManager), typeof(ApplicationSignInManager), typeof(IAuthenticationManager)));
              container.RegisterType<ManageController>(new InjectionConstructor(typeof(ApplicationUserManager), typeof(ApplicationSignInManager), typeof(IAuthenticationManager)));

@@ -6,7 +6,7 @@ using System.Web;
 
 namespace ProductsDistribution.Data.Contracts
 {
-    public interface IAnnouncementRepository : IRepository<Announcement>
+    public interface IAnnouncementToProductRepository : IRepository<AnnouncementToProduct>
     {
     }
 }
