@@ -230,6 +230,7 @@
     <Compile Include="Models\InputModels\CategoryInputModel.cs" />
     <Compile Include="Models\InputModels\ProducerInputEditModel.cs" />
     <Compile Include="Models\InputModels\ProducerInputModel.cs" />
+    <Compile Include="Models\InputModels\ProductAnnouncementInputModel.cs" />
     <Compile Include="Models\InputModels\ProductInputEditModel.cs" />
     <Compile Include="Models\InputModels\ProductInputModel.cs" />
     <Compile Include="Models\InputModels\QueryInputModel.cs" />
@@ -250,6 +251,8 @@
     <Content Include="Content\font-awesome.min.css" />
     <Content Include="Content\Site.css" />
     <Content Include="Content\style.css" />
+    <Content Include="Content\styles.css" />
+    <Content Include="Content\Themes\base\jquery-ui.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\fontawesome-webfont.svg" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
@@ -268,6 +271,8 @@
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery-ui.js" />
+    <Content Include="Scripts\jquery.autocomplete.js" />
     <Content Include="Scripts\jquery.signalR-2.1.2.js" />
     <Content Include="Scripts\jquery.signalR-2.1.2.min.js" />
     <Content Include="Scripts\jquery.sumoselect.js" />
@@ -332,10 +337,10 @@
     <Content Include="Views\Producer\AddNewProducer.cshtml" />
     <Content Include="Views\Producer\EditProducer.cshtml" />
     <Content Include="Views\Producer\Details.cshtml" />
+    <Content Include="Views\Announcement\AddNewAnnouncement.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\Announcement\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

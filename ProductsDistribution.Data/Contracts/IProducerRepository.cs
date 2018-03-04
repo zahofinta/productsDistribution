@@ -16,6 +16,10 @@ namespace ProductsDistribution.Data.Contracts
 
         ProducerDTO GetProducerByIdAndUserId(int id, string userId);
 
+        List<string> GetProducerNamesByUserId(string userId);
+
+        List<string> GetProductNamesByProducerNameAndUserId(string producerName, string userId);
+
         new int Insert(Producer entity);
        // int Insert(Producer entity);
     }

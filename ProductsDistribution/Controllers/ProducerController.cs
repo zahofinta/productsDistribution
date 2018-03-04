@@ -110,12 +110,14 @@ namespace ProductsDistribution.Controllers
         public ActionResult AddNewProducer(ProducerInputModel inputModel)
         {
             inputModel.products = GetCurrentUserProducts();
+            //var test = this.producerService.GetProductNamesByProducerNameAndUserId("dada", this.User.Identity.GetUserId());
 
             if (!this.ModelState.IsValid)
             {
 
                 return View(inputModel);
             }
+            
             try
             {
                 ProducerDTO producerToInsert = new ProducerDTO();

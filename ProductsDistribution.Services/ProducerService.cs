@@ -107,5 +107,15 @@ namespace ProductsDistribution.Services
         {
             return this.ProducerRepository.GetProducerByIdAndUserId(id, userId);
         }
+
+        public List<string> GetProducerNamesByUserId(string userId)
+        {
+            return this.ProducerRepository.GetProducerNamesByUserId(userId);
+        }
+
+        public List<string> GetProductNamesByProducerNameAndUserId(string producerName, string userId)
+        {
+            return this.ProducerRepository.GetProductNamesByProducerNameAndUserId(producerName, userId);
+        }
     }
 }

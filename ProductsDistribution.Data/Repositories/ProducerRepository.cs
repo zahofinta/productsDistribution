@@ -83,5 +83,29 @@ namespace ProductsDistribution.Data.Repositories
 
             return producerToEdit;
         }
+
+        public List<string> GetProducerNamesByUserId(string userId)
+        {
+            var producers = this._dbSet;
+            var producerNamesByUserId = producers.Where(x => x.userId == userId).Select(x => x.producer_name).ToList();
+
+            return producerNamesByUserId;
+        }
+
+        public List<string> GetProductNamesByProducerNameAndUserId(string producerName, string userId)
+        { 
+
+            var producers = this._dbSet;
+            var producerToProducts = _dbContext.Set<ProducerToProduct>();
+            var products = _dbContext.Set<Product>();
+            var productNamesByProducerNameAndUserId = (from producer in producers
+                                                       join ptp in producerToProducts on producer.producer_id equals ptp.producer_id
+                                                       join product in products on ptp.product_id equals product.product_id
+                                                       where producerName == producer.producer_name && userId == producer.userId
+                                                       select product.product_name).ToList();
+            return productNamesByProducerNameAndUserId;
+
+            
+        }
     }
 }

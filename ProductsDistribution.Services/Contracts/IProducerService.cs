@@ -19,6 +19,10 @@ namespace ProductsDistribution.Services.Contracts
 
         ProducerDTO GetProducerByIdAndUserId(int id, string userId);
 
+        List<string> GetProducerNamesByUserId(string userId);
+
+        List<string> GetProductNamesByProducerNameAndUserId(string producerName, string userId);
+
 
         void Update(ProducerDTO producer);
 
