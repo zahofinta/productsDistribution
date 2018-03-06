@@ -1,11 +1,12 @@
 ﻿@model ProductsDistribution.Models.InputModels.ProductAnnouncementInputModel
 
+<div class="row">
 @using (Html.BeginForm()) 
 {
     @Html.AntiForgeryToken()
     
  
-    <div class="form-horizontal">
+    <div class="form-horizontal" id="dv_@Model" data-rownum="@Model">
         
 
    
@@ -43,14 +44,30 @@
             </div>
         </div>
 
+     
         @*<div class="form-group">
             <div class="col-md-offset-2 col-md-10">
                 <input type="submit" value="Create" class="btn btn-default" />
             </div>
         </div>*@
     </div>
+    <div class="form-group">
+        <a href="#" class="deleteAnnouncement btn btn-primary">Изтрий</a>
+    </div>
 }
+</div>
+@section scripts
+{
 
+
+<script>
+    $(document.body).on("click", "a.deleteAnnouncement", function () {
+        $(this).parents('div.form-horizontal:first').remove();
+        return false;
+    });
+</script>
+    
+}
 @*<div>
     @Html.ActionLink("Back to List", "Index")
 </div>*@

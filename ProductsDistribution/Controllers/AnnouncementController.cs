@@ -34,7 +34,7 @@ namespace ProductsDistribution.Controllers
         }
         public ActionResult LoadBlankFormView(int id)
         {
-            return PartialView("_ProductAnnouncementInputModel", id);
+            return PartialView("_ProductAnnouncementInputModel",id);
         }
 
         private IEnumerable<SelectListItem> GetProducerNamesByUserId()
@@ -60,23 +60,24 @@ namespace ProductsDistribution.Controllers
         [HttpGet]
         public ActionResult AddNewAnnouncement()
         {
-            AnnouncementInputModel announcement = new AnnouncementInputModel() {
+            AnnouncementInputModel announcement = new AnnouncementInputModel()
+            {
 
-                producerNames = GetProducerNamesByUserId()
-                
+                //    producerNames = GetProducerNamesByUserId()
+                announcementInfo = new List<AnnouncementInfo>()
 
+                //};
             };
-
             return View(announcement);
         }
         [HttpPost]
 
         public ActionResult AddNewAnnouncement(AnnouncementInputModel inputModel)
         {
-            inputModel.producerNames = GetProducerNamesByUserId();
-            string selected_producerName = inputModel.selected_producerName;
-            ProductAnnouncementInputModel p = new ProductAnnouncementInputModel();
-            p.productNames = GetProductNamesByProducerNameAndUserId(selected_producerName);
+            //inputModel.producerNames = GetProducerNamesByUserId();
+          //  string selected_producerName = inputModel.selected_producerName;
+          //  ProductAnnouncementInputModel p = new ProductAnnouncementInputModel();
+          //  p.productNames = GetProductNamesByProducerNameAndUserId(selected_producerName);
             // po dadeno ime na proizvoditel i id na potrebitel da se izkarat vsichkite imena na  produkti
             if (!this.ModelState.IsValid)
             {
@@ -84,14 +85,14 @@ namespace ProductsDistribution.Controllers
                 return View(inputModel);
             }
 
-            this.announcementService.AddNewAnnouncement(new AnnouncementDTO
+           /* this.announcementService.AddNewAnnouncement(new AnnouncementDTO
             {
                 arrive_date = inputModel.arrive_date,
                 status = 0,
                 userId = this.User.Identity.GetUserId(), 
 
             });
-
+            */
            /*  this.AnnouncementToProductService.AddNewAnnouncementToProduct(new AnnouncementToProductDTO
             {
                 
