@@ -57,23 +57,28 @@ namespace ProductsDistribution.Controllers
 
             return Json(producers, JsonRequestBehavior.AllowGet);
         }
+        public virtual JsonResult LoadProductNamesByProducerNameAndUserId(string producerName)
+        {
+            var producers = this.producerService.GetProductNamesByProducerNameAndUserId(producerName, this.User.Identity.GetUserId());
+            return Json(producers, JsonRequestBehavior.AllowGet);
+        }
         [HttpGet]
         public ActionResult AddNewAnnouncement()
         {
-            AnnouncementInputModel announcement = new AnnouncementInputModel()
-            {
+            // AnnouncementInputModel announcement = new AnnouncementInputModel();
+            AnnouncementInfo ai = new AnnouncementInfo();
+            ai.producerNames = GetProducerNamesByUserId();
+          
+   
 
-                //    producerNames = GetProducerNamesByUserId()
-                announcementInfo = new List<AnnouncementInfo>()
-
-                //};
-            };
-            return View(announcement);
+            return View(ai);
         }
         [HttpPost]
 
-        public ActionResult AddNewAnnouncement(AnnouncementInputModel inputModel)
+        public ActionResult AddNewAnnouncement(AnnouncementInfo  inputModel)
         {
+
+            inputModel.producerNames = GetProducerNamesByUserId();
             //inputModel.producerNames = GetProducerNamesByUserId();
           //  string selected_producerName = inputModel.selected_producerName;
           //  ProductAnnouncementInputModel p = new ProductAnnouncementInputModel();

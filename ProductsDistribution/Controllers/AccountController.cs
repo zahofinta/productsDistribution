@@ -12,6 +12,7 @@ using ProductsDistribution.Models;
 using System.Data.Entity.Validation;
 using ProductsDistribution.Data;
 using Microsoft.AspNet.Identity.EntityFramework;
+using static ProductsDistribution.Controllers.ManageController;
 
 namespace ProductsDistribution.Controllers
 {
@@ -181,8 +182,84 @@ namespace ProductsDistribution.Controllers
             return View();
         }
 
+        // Get View using this Method
+        public ActionResult ChangePassword()
+        {
+            return View();
+        }
+
+        //
+        //Save Details of New Password using Identity
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> ChangePassword(ChangePasswordViewModel model)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View(model);
+            }
+            var result = await _userManager.ChangePasswordAsync(User.Identity.GetUserId(), model.OldPassword, model.NewPassword);
+            if (result.Succeeded)
+            {
+                var user = await _userManager.FindByIdAsync(User.Identity.GetUserId());
+                if (user != null)
+                {
+                    await _signInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
+                }
+                return RedirectToAction("ChangePassword", new { Message = ManageMessageId.ChangePasswordSuccess });
+            }
+            AddErrors(result);
+            return View(model);
+        }
 
 
+        //GET EditProfile
+        [HttpGet]
+        public ActionResult EditProfile()
+        {
+            string username = User.Identity.Name;
+
+            // Fetch the userprofile
+           // _userManager.Users.FirstOrDefault(u => u.UserName.Equals(username));
+            User user = _userManager.Users.FirstOrDefault(u => u.UserName.Equals(username));
+
+
+            // Construct the viewmodel
+            User model = new User();
+           // model.first_name = user.first_name;
+            model.department = user.department;
+            model.Email = user.Email;
+          //  model.gender = user.gender;
+            model.post_address = user.post_address;
+            model.organization = user.organization;
+        //    model.rating = user.rating;
+            model.surname = user.surname;
+          //  model.years = user.years;
+           
+          //  _userManager.UpdateAsync(model);
+
+            return View(model);
+        }
+
+        //POST EditProfile
+        [HttpPost]
+        public ActionResult EditProfile(EditProfileViewModel model)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View(model);
+            }
+            string currentUserId = this.User.Identity.GetUserId();
+            var currentUser = _userManager.Users.FirstOrDefault(x => x.Id == currentUserId);
+            currentUser.post_address = model.post_address;
+            currentUser.surname = model.surname;
+            currentUser.organization = model.organization;
+            currentUser.Email = model.Email;
+            currentUser.department = model.department;
+            _userManager.Update(currentUser);
+
+            return RedirectToAction("Index","Home");
+        }
 
         //
         // POST: /Account/Register

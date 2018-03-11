@@ -11,6 +11,11 @@ namespace ProductsDistribution.Models.InputModels
     public class AnnouncementInputModel
     {
        public  List<AnnouncementInfo> announcementInfo { get; set; }
+
+        public AnnouncementInputModel()
+        {
+            this.announcementInfo = new List<AnnouncementInfo>();
+        }
         //public DateTime arrive_date { get; set; }
 
         //[Required(ErrorMessage = "Производител е задължително поле")]
@@ -19,7 +24,7 @@ namespace ProductsDistribution.Models.InputModels
 
 
         //public string selected_producerName { get; set; }
-       
+
 
         //public List<ProductAnnouncementInputModel> product_properties {get;set;}
 

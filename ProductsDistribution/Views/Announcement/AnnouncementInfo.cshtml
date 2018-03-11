@@ -61,7 +61,7 @@
             <div class="col-md-10" id="producers">
 
 
-                @Html.DropDownListFor(m => m.selected_producerName, Model.producerNames, "", new { @id = "combobox" })
+                @Html.DropDownListFor(m => m.selected_producerName, Model.producerNames, "", new { @id = "combobox" , @class="ddl ddlProducer" })
 
 
                 @Html.ValidationMessageFor(model => model.selected_producerName, "", new { @class = "text-danger" })
@@ -75,7 +75,7 @@
             <div class="col-md-10" id="products">
 
 
-                @Html.DropDownListFor(m => m.selected_productName, Model.productNames, "", new { @id = "combobox" })
+                @Html.DropDownListFor(m => m.selected_productName, Model.productNames, "", new { @id = "productCombobox", @class="ddl ddlProduct"})
 
 
                 @Html.ValidationMessageFor(model => model.selected_productName, "", new { @class = "text-danger" })

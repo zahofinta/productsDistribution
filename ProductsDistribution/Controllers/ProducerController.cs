@@ -25,6 +25,7 @@ namespace ProductsDistribution.Controllers
             this.productService = productService;
             this.producerToProductService = producerToProductService;
         }
+           
         // GET: Producer
         public ActionResult Index()
         {

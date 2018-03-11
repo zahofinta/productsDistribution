@@ -112,6 +112,49 @@ namespace ProductsDistribution.Models
 
     }
 
+    public class EditProfileViewModel
+    {
+        [Required]
+        [EmailAddress]
+        [Display(Name = "Имейл:")]
+        public string Email { get; set; }
+
+        //[Required]
+        //[StringLength(100, ErrorMessage = "Паролата {0} трябва да бъде поне {2} символа дълга.", MinimumLength = 6)]
+        //[DataType(DataType.Password)]
+        //[Display(Name = "Парола:")]
+        //public string Password { get; set; }
+
+        //[DataType(DataType.Password)]
+        //[Display(Name = "Потвърдете паролата:")]
+        //[System.ComponentModel.DataAnnotations.Compare("Password", ErrorMessage = "Паролата и потвърдената парола не съвпадат.")]
+        //public string ConfirmPassword { get; set; }
+
+        //[Required]
+        //[Display(Name = "Име:")]
+        //public string first_name { get; set; }
+        [Required]
+        [Display(Name = "Фамилия:")]
+        public string surname { get; set; }
+        //[Required]
+        //[Display(Name = "Пол:")]
+        //public Gender gender { get; set; }
+        //public string gender { get; set; }
+
+        //[Required]
+        //[Display(Name = "Години:")]
+        //[Min(1, ErrorMessage = "Въведете възраст по-голяма от 1")]
+        //public int years { get; set; }
+        [Required]
+        [Display(Name = "Адрес:")]
+        public string post_address { get; set; }
+        [Required]
+        [Display(Name = "Организация:")]
+        public string organization { get; set; }
+        [Display(Name = "Отдел:")]
+        public string department { get; set; }
+    }
+
     public class ResetPasswordViewModel
     {
         [Required]

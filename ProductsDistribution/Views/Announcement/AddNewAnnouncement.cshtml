@@ -1,6 +1,6 @@
-﻿@model  ProductsDistribution.Models.InputModels.AnnouncementInputModel
+﻿@model  ProductsDistribution.Models.InputModels.AnnouncementInfo
 
-<head>
+@*<head>
     <link href="@Url.Content("~/Content/Themes/base/jquery-ui.css")" rel="stylesheet" type="text/css" />
 
 </head>
@@ -26,7 +26,7 @@
         margin: 0;
         padding: 0.3em;
     }
-</style>
+</style>*@
 
 
 
@@ -52,8 +52,13 @@
                 </tr>*@
             </thead>
             <tbody id="an">
-                @Html.Partial("AnnouncementInfo",new ProductsDistribution.Models.InputModels.AnnouncementInfo())
                 
+                
+                  
+                @Html.Partial("AnnouncementInfo") 
+                
+                
+               
                 @*@for (int i = 0; i < Model.announcementInfo.Count; i++)
                 {
                     @Html.EditorFor(m => m.announcementInfo[i])
@@ -74,85 +79,25 @@
         </div>
 
 
-    @*@Html.AntiForgeryToken()
+  
 
-
-    <div class="form-horizontal" id="announcementForm">
-        <h4>AnnouncementInputModel</h4>
-        <hr />
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        
-        <div id="announcementDetails">
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.arrive_date, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.arrive_date, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.arrive_date, "", new { @class = "text-danger" })
-            </div>
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Изпрати" class="btn btn-default" id="submitButton" />
         </div>
-        <div class="form-group">
-            @Html.LabelFor(model => model.producerNames, "Производител :", htmlAttributes: new { @class = "control-label col-md-2" })
-
-            <div class="col-md-10" id="producers">
-
-
-                @Html.DropDownListFor(m => m.selected_producerName, Model.producerNames, "", new { @id = "combobox" })
-
-
-                @Html.ValidationMessageFor(model => model.selected_producerName, "", new { @class = "text-danger" })
-
-            </div>
-        </div>
-            </div>
-
-       
-        <div class="form-group" id="productForm">     
-    
-                @Html.Partial("_ProductAnnouncementInputModel", new ProductsDistribution.Models.InputModels.ProductAnnouncementInputModel())
-
-            @Html.ActionLink("Добави продукт", "LoadBlankFormView", null, new { @id = "lnkAddNewAnnouncement", @class = "btn btn-primary" })
-          
-      </div>
-        @*<div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-default" />
-            </div>
-        </div>*@
-   
-
+    </div>
 }
 
 
 @section scripts
 {
 
-    <script src="@Url.Content("~/Scripts/jquery.autocomplete.js")"></script>
+    @*<script src="@Url.Content("~/Scripts/jquery.autocomplete.js")"></script>
     <script src="@Url.Content("~/Scripts/jquery-ui.js")"></script>
-    <script src="@Url.Content("~/Scripts/GenerateComboBox.js")"></script>
-    <script>
-        $('#lnkAddNewAnnouncement').click(function () {
-           // var index = parseInt($('.form-horizontal:last').data('rownum')) + 1;
+    <script src="@Url.Content("~/Scripts/GenerateComboBox.js")"></script>*@
+   
 
-            $.ajax({
-                url: "/Announcement/AddNewAnnouncement",
-                type: "GET",
-                cache: false,
-                success: function (html) {
-                    $('#productForm:last').after($("#announcement"));
-                }
-            });
-            return false;
-        });
 
-    </script>
-
-@*<script>
-        $(document.body).on("click", "a.deleteAnnouncement", function () {
-            $(this).parents('#announcementForm:first').remove();
-            return false;
-        });
-</script>*@
 
 <script>
         $(document.body).on("click", "a.delete-announcement", function () {
@@ -166,17 +111,7 @@
 
 </script>
     <script>
-  //  $(document).on("click", ".add-announcement", function(){
- 	// var nextIndex = $("table#announcements tbody tr").length;
-  //	$.ajax({
-  //          url: "/Announcement/AddNewAnnouncement",
-  //          type: 'POST',
-  //          data: { index: nextIndex },
-  //          success: function(results) {
-  //              $("table#announcements tbody").append(results);
-  //          }
-  //      });
-  //});
+ 
         $('.add-announcement').click(function () {
             // var index = parseInt($('.form-horizontal:last').data('rownum')) + 1;
             
@@ -199,11 +134,13 @@
     </script>
   
         <script type="text/javascript">
-        function GetDynamicTextBox() {
-            var div = $("<div />");
- 
-            //  var textBox = $("<input />").attr("type", "textbox").attr("name", "DynamicTextBox");
            
+            function GetDynamicTextBox() {
+                var uniqueId = 0;
+                var div = $("<div />" + "id=" + uniqueId + 1);
+                uniqueId++;
+            //  var textBox = $("<input />").attr("type", "textbox").attr("name", "DynamicTextBox");
+            var announcementFormAppendId = $()
             var textBox = $('#announcementForm').html();
           //  textBox.val(value);
             div.append(textBox);
@@ -211,30 +148,89 @@
             var button = $("<input />").attr("type", "button").attr("value", "Remove");
             button.attr("onclick", "RemoveTextBox(this)");
             div.append(button);
- 
+
+        
+
+
             return div;
         }
         function AddTextBox() {
             var div = GetDynamicTextBox();
             $("#forms").append(div);
+
+
+            $.ajax({
+                url: "/Announcement/LoadProducerNamesByUserId",
+                type: "post",
+                success: function (data) {
+
+                    var producerNames = "<select id='ddlProducerNames'>";
+
+                    producerNames = producerNames + '<option value=""></option>';
+                    for (var i = 0; i < data.length; i++) {
+                        producerNames = producerNames + '<option value=' + data[i] + '>' + data[i] + '</option>';
+                    }
+                    producerNames = producerNames + '</select>';
+
+                    $('#combobox').html(producerNames);
+
+
+
+
+                }
+
+            });
+
+     
         }
  
         function RemoveTextBox(button) {
             $(button).parent().remove();
         }
  
-        @*$(function () {
-            var values = eval('@Html.Raw(ViewBag.Values)');
-            if (values != null) {
-                $("#forms").html("");
-                $(values).each(function () {
-                    $("#forms").append(GetDynamicTextBox());
-                });
-            }
-        });*@
+     
    
 
     </script>
+
+    <script>
+        $(document).ready(function () {
+
+
+            $('#combobox').change(function () {
+                $.ajax({
+                    type: "post",
+                    url: "/Announcement/LoadProductNamesByProducerNameAndUserId",
+                    data: { producerName: $('#combobox').val() },
+                    datatype: "json",
+                    traditional: true,
+                    success: function (data) {
+
+                        var products = "<select id='ddlProducts'>";
+
+                        products = products + '<option value=""></option>';
+                        for (var i = 0; i < data.length; i++) {
+                            products = products + '<option value=' + data[i] + '>' + data[i] + '</option>';
+                        }
+                        products = products + '</select>';
+
+                        $('.ddlProduct').closest('#productCombobox').html(products);
+
+                    }
+
+
+                });
+
+
+            });
+          
+
+
+        });
+
+    </script>
+
+  
    
 }
 
