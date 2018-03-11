@@ -100,6 +100,7 @@
     <Compile Include="Contracts\IProductRepository.cs" />
     <Compile Include="Contracts\IQueryRepository.cs" />
     <Compile Include="Contracts\IRepository.cs" />
+    <Compile Include="Contracts\ISearchRepository.cs" />
     <Compile Include="Contracts\IUserRepository.cs" />
     <Compile Include="Migrations\201802111529007_initial_create.cs" />
     <Compile Include="Migrations\201802111529007_initial_create.Designer.cs">
@@ -127,6 +128,7 @@
     <Compile Include="Repositories\ProducerRepository.cs" />
     <Compile Include="Repositories\ProducerToProductRepository.cs" />
     <Compile Include="Repositories\ProductRepository.cs" />
+    <Compile Include="Repositories\SearchRepository.cs" />
     <Compile Include="Repositories\UserRepository.cs" />
   </ItemGroup>
   <ItemGroup>

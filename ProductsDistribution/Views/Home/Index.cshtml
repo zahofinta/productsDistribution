@@ -122,6 +122,18 @@
                         </ul>
                     </li>
                 </ul>
+
+                @using (Ajax.BeginForm("AjaxSearchView", "Home",
+                    new AjaxOptions { HttpMethod = "GET", InsertionMode = InsertionMode.Replace, UpdateTargetId = "searchResults" }))
+                {
+                    <h3>Търсене на производители/продукти:</h3>
+                    <input type="text" name="name" />
+                    <input type="submit" value="Ajax Search" />
+                }
+
+                <table id="searchResults">
+                   
+                </table>
                 <form class="navbar-form navbar-right" role="search">
                     <div class="form-group">
                         <input type="text" placeholder="Enter Keyword Here ..." class="form-control">

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ProductsDistribution.Services;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -8,24 +9,28 @@ namespace ProductsDistribution.Controllers
 {
     public class HomeController : Controller
     {
+
+
+
+        private readonly SearchService searchService;
+
+        // GET: Category
+
+        public HomeController(SearchService searchService)
+        {
+            this.searchService = searchService;
+
+        }
+        // GET: Search
         public ActionResult Index()
         {
             return View();
         }
-
-        public ActionResult About()
+        public PartialViewResult AjaxSearchView(string name)
         {
-            ViewBag.Message = "Your application description page.";
-
-            return View();
+            var producersAndProducts = searchService.GetProducersAndProductsNames(name).Take(10);
+            return this.PartialView(producersAndProducts);
         }
-
-        [Authorize]
-        public ActionResult Contact()
-        {
-            ViewBag.Message = "Your contact page.";
-
-            return View();
-        }
+        
     }
 }
