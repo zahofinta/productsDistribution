@@ -140,7 +140,7 @@
             var div = $("<div />" + "id=" + uniqueId + 1);
             uniqueId++;
             //  var textBox = $("<input />").attr("type", "textbox").attr("name", "DynamicTextBox");
-            var announcementFormAppendId = $()
+           
             var textBox = $('#announcementForm').html();
             //  textBox.val(value);
             div.append(textBox);
@@ -159,27 +159,27 @@
             $("#forms").append(div);
 
 
-            $.ajax({
-                url: "/Announcement/LoadProducerNamesByUserId",
-                type: "post",
-                success: function (data) {
+            //$.ajax({
+            //    url: "/Announcement/LoadProducerNamesByUserId",
+            //    type: "post",
+            //    success: function (data) {
 
-                    var producerNames = "<select id='ddlProducerNames'>";
+            //        var producerNames = "<select id='ddlProducerNames'>";
 
-                    producerNames = producerNames + '<option value=""></option>';
-                    for (var i = 0; i < data.length; i++) {
-                        producerNames = producerNames + '<option value=' + data[i] + '>' + data[i] + '</option>';
-                    }
-                    producerNames = producerNames + '</select>';
+            //        producerNames = producerNames + '<option value=""></option>';
+            //        for (var i = 0; i < data.length; i++) {
+            //            producerNames = producerNames + '<option value=' + data[i] + '>' + data[i] + '</option>';
+            //        }
+            //        producerNames = producerNames + '</select>';
 
-                    $('#combobox').html(producerNames);
-
-
+            //        $('#combobox').html(producerNames);
 
 
-                }
 
-            });
+
+            //    }
+
+            //});
 
 
         }
