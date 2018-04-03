@@ -1,32 +1,32 @@
 ﻿@model  ProductsDistribution.Models.InputModels.AnnouncementInfo
 
 @*<head>
-    <link href="@Url.Content("~/Content/Themes/base/jquery-ui.css")" rel="stylesheet" type="text/css" />
+        <link href="@Url.Content("~/Content/Themes/base/jquery-ui.css")" rel="stylesheet" type="text/css" />
 
-</head>
+    </head>
 
-<style>
-    .custom-combobox {
-        position: relative;
-        display: inline-block;
-    }
+    <style>
+        .custom-combobox {
+            position: relative;
+            display: inline-block;
+        }
 
-    .custom-combobox-toggle {
-        position: absolute;
-        top: 0;
-        bottom: 0;
-        margin-left: -1px;
-        padding: 0;
-        /* support: IE7 */
-        *height: 1.7em;
-        *top: 0.1em;
-    }
+        .custom-combobox-toggle {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            margin-left: -1px;
+            padding: 0;
+            /* support: IE7 */
+            *height: 1.7em;
+            *top: 0.1em;
+        }
 
-    .custom-combobox-input {
-        margin: 0;
-        padding: 0.3em;
-    }
-</style>*@
+        .custom-combobox-input {
+            margin: 0;
+            padding: 0.3em;
+        }
+    </style>*@
 
 
 
@@ -36,56 +36,56 @@
     <button class="add-announcement" onclick="AddTextBox()">
         Добави
     </button>
-      <div id="announcementForm">
+    <div id="announcementForm">
 
         <table id="announcements">
             <thead>
                 <tr></tr>
                 @*<tr>
-                    <th>Дата на пристигане на доставката</th>
-                    <th>Производител</th>
-                    <th>Продукт</th>
-                    <th>Цена</th>
-                    <th>Максимално количество за доставка</th>
+                        <th>Дата на пристигане на доставката</th>
+                        <th>Производител</th>
+                        <th>Продукт</th>
+                        <th>Цена</th>
+                        <th>Максимално количество за доставка</th>
 
-                    <th></th>
-                </tr>*@
+                        <th></th>
+                    </tr>*@
             </thead>
             <tbody id="an">
-                
-                
-                  
-                @Html.Partial("AnnouncementInfo") 
-                
-                
-               
+
+
+
+                @Html.Partial("AnnouncementInfo")
+
+
+
                 @*@for (int i = 0; i < Model.announcementInfo.Count; i++)
-                {
-                    @Html.EditorFor(m => m.announcementInfo[i])
-                }*@
+                    {
+                        @Html.EditorFor(m => m.announcementInfo[i])
+                    }*@
             </tbody>
 
 
         </table>
 
-          </div>
+    </div>
 
 
 
         <div id="forms">
-            
+
 
 
         </div>
 
 
-  
 
-    <div class="form-group">
-        <div class="col-md-offset-2 col-md-10">
-            <input type="submit" value="Изпрати" class="btn btn-default" id="submitButton" />
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Изпрати" class="btn btn-default" id="submitButton" />
+            </div>
         </div>
-    </div>
 }
 
 
@@ -93,63 +93,63 @@
 {
 
     @*<script src="@Url.Content("~/Scripts/jquery.autocomplete.js")"></script>
-    <script src="@Url.Content("~/Scripts/jquery-ui.js")"></script>
-    <script src="@Url.Content("~/Scripts/GenerateComboBox.js")"></script>*@
-   
+        <script src="@Url.Content("~/Scripts/jquery-ui.js")"></script>
+        <script src="@Url.Content("~/Scripts/GenerateComboBox.js")"></script>*@
 
 
 
-<script>
+
+    <script>
         $(document.body).on("click", "a.delete-announcement", function () {
             //$(this).closest('#an').hide();
             //$(this).prev('input').val('true');
-            
+
             $(this).parents("#announcementForm:first").remove();
             $(this).prev('input').val('true');
             return false;
         });
 
-</script>
+    </script>
     <script>
- 
+
         $('.add-announcement').click(function () {
             // var index = parseInt($('.form-horizontal:last').data('rownum')) + 1;
-            
+
             $.ajax({
                 url: "/Announcement/AddNewAnnouncement",
                 type: "GET",
                 cache: false,
                 success: function (html) {
 
-                   
-                   // var content = $('#announcement').html();
-                 //  $('#forms').append(html);
-                    
-                   
+
+                    // var content = $('#announcement').html();
+                    //  $('#forms').append(html);
+
+
                 }
             });
             return false;
         });
-    
+
     </script>
-  
-        <script type="text/javascript">
-           
-            function GetDynamicTextBox() {
-                var uniqueId = 0;
-                var div = $("<div />" + "id=" + uniqueId + 1);
-                uniqueId++;
+
+    <script type="text/javascript">
+
+        function GetDynamicTextBox() {
+            var uniqueId = 0;
+            var div = $("<div />" + "id=" + uniqueId + 1);
+            uniqueId++;
             //  var textBox = $("<input />").attr("type", "textbox").attr("name", "DynamicTextBox");
             var announcementFormAppendId = $()
             var textBox = $('#announcementForm').html();
-          //  textBox.val(value);
+            //  textBox.val(value);
             div.append(textBox);
- 
+
             var button = $("<input />").attr("type", "button").attr("value", "Remove");
             button.attr("onclick", "RemoveTextBox(this)");
             div.append(button);
 
-        
+
 
 
             return div;
@@ -181,15 +181,15 @@
 
             });
 
-     
+
         }
- 
+
         function RemoveTextBox(button) {
             $(button).parent().remove();
         }
- 
-     
-   
+
+
+
 
     </script>
 
@@ -197,11 +197,59 @@
         $(document).ready(function () {
 
 
-            $('#combobox').change(function () {
-                $.ajax({
+            //$('.ddlProducer').change(function () {
+            //    $.ajax({
+            //        type: "post",
+            //        url: "/Announcement/LoadProductNamesByProducerNameAndUserId",
+            //        data: { producerName: $('.ddlProducer').val() },
+            //        datatype: "json",
+            //        traditional: true,
+            //        success: function (data) {
+
+            //            var products = "<select id='ddlProducts'>";
+
+            //            products = products + '<option value=""></option>';
+            //            for (var i = 0; i < data.length; i++) {
+            //                products = products + '<option value=' + data[i] + '>' + data[i] + '</option>';
+            //            }
+            //            products = products + '</select>';
+
+            //            $('.ddlProducer').closest('.announcementForm').find('.ddlProduct').html(products);
+            //          //  $('.ddlProducer').closest('.announcementForm').find('.ddlProduct').html(products);
+            //            //nai-blizkiq vtori dropdown do izbraniq purvi
+            //        }
+
+
+            //    });
+                
+
+            //});
+
+            $(document).on("change", ".ddlProducer", function (e) {
+                var _this = $(this);
+
+                //// to do  :Change below url variable value as needed for your code
+                //var urlToGetSecondDropDownData = "/Announcement/LoadProductNamesByProducerNameAndUserId";
+
+                //$.post(urlToGetSecondDropDownData,
+                //    function (data) {
+                //        var items = "";
+                //        $.each(data,
+                //            function (index, item) {
+                //                items += "<option value='" + item.Value + "'>"
+                //                    + item.Text + "</option>";
+                //            });
+                //        _this.closest(".announcementForm")                // Get the same table row
+                //            .find(".ddlProduct")  // Find the second dropdown
+                //            .html(items);                 // update the content of it
+
+                //    }); // var v = _this.val();
+
+
+                      $.ajax({
                     type: "post",
                     url: "/Announcement/LoadProductNamesByProducerNameAndUserId",
-                    data: { producerName: $('#combobox').val() },
+                    data: { producerName: $(this).val() },
                     datatype: "json",
                     traditional: true,
                     success: function (data) {
@@ -213,25 +261,26 @@
                             products = products + '<option value=' + data[i] + '>' + data[i] + '</option>';
                         }
                         products = products + '</select>';
+                        _this.closest('.announcementForm').find('.ddlProduct').html(products);
 
-                        $('.ddlProduct').closest('#productCombobox').html(products);
-
+                      //  $('.ddlProducer').closest('.announcementForm').find('.ddlProduct').html(products);
+                        //nai-blizkiq vtori dropdown do izbraniq purvi
                     }
 
 
                 });
 
 
+
             });
-          
+
+           
 
 
         });
 
     </script>
 
-  
-   
+
+
 }
-
-

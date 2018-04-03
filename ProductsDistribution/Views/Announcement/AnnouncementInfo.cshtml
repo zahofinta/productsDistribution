@@ -44,8 +44,8 @@
         <h4>AnnouncementInfo</h4>
         <hr />
       
-
-
+       
+        <div class="announcementForm">
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         <div class="form-group">
             @Html.LabelFor(model => model.arrive_date, htmlAttributes: new { @class = "control-label col-md-2" })
@@ -58,7 +58,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.producerNames, "Производител :", htmlAttributes: new { @class = "control-label col-md-2" })
 
-            <div class="col-md-10" id="producers">
+            <div class="col-md-10 producersClass" id="producers">
 
 
                 @Html.DropDownListFor(m => m.selected_producerName, Model.producerNames, "", new { @id = "combobox" , @class="ddl ddlProducer" })
@@ -72,7 +72,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.productNames, "Продукт :", htmlAttributes: new { @class = "control-label col-md-2" })
 
-            <div class="col-md-10" id="products">
+            <div class="col-md-10 productsClass" id="products">
 
 
                 @Html.DropDownListFor(m => m.selected_productName, Model.productNames, "", new { @id = "productCombobox", @class="ddl ddlProduct"})
@@ -98,7 +98,8 @@
                 @Html.ValidationMessageFor(model => model.price, "", new { @class = "text-danger" })
             </div>
         </div>
-
+           
+            </div>
         @*<div class="form-group">
 
             @Html.HiddenFor(m => Model.isDeleted)
