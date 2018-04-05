@@ -14,8 +14,8 @@ namespace ProductsDistribution.Models.ViewModels
         public string product_name { get; set; }
         [Display(Name = "Трайност :")]
         public DateTime durability { get; set; }
-        [Display(Name = "Цена :")]
-        public double price { get; set; }
+        //[Display(Name = "Цена :")]
+        //public double price { get; set; }
         [Display(Name = "Категория :")]
         public string category { get; set; }
 

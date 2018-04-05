@@ -9,6 +9,8 @@ namespace ProductsDistribution.Models.InputModels
 {
     public class AnnouncementInfo
     {
+        [Required(ErrorMessage = "Дата за доставка е задължително поле")]
+        [Display(Name = "Дата за доставка :")]
         public DateTime arrive_date { get; set; }
 
         [Required(ErrorMessage = "Производител е задължително поле")]

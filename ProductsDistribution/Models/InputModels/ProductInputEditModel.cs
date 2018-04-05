@@ -28,10 +28,10 @@ namespace ProductsDistribution.Models.InputModels
         [Min(0.0, ErrorMessage = "Въведете обем по-голям от 0")]
         [Display(Name = "Обем :")]
         public double volume { get; set; }
-        [Required]
-        [Min(0.1, ErrorMessage = "Въведете цена по-голяма от 0.1")]
-        [Display(Name = "Цена :")]
-        public double price { get; set; }
+        //[Required]
+        //[Min(0.1, ErrorMessage = "Въведете цена по-голяма от 0.1")]
+        //[Display(Name = "Цена :")]
+        //public double price { get; set; }
         [DataType(DataType.Date)]
         [Display(Name = "Трайност :")]
         public DateTime durability { get; set; }

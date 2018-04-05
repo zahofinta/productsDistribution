@@ -41,7 +41,7 @@ namespace ProductsDistribution.Services
                 unit = product.unit,
                 rating = product.rating,
                 categoryId = product.categoryId,
-                price = product.price,
+               
                 userId = product.userId
                 
 
@@ -66,7 +66,7 @@ namespace ProductsDistribution.Services
                 categoryId = product.categoryId,
                 rating = 0.0,
                 isEnabled = true,
-                price = product.price,
+             
                 userId = product.userId
             };
             this.productRepository.Insert(productToAdd);
@@ -102,7 +102,7 @@ namespace ProductsDistribution.Services
             productToUpdate.volume = product.volume;
             productToUpdate.other = product.other;
             productToUpdate.categoryId = product.categoryId;
-            productToUpdate.price = product.price;
+           // productToUpdate.price = product.price;
             productToUpdate.unit = product.unit;
 
             this.productRepository.Update(productToUpdate);

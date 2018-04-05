@@ -1,5 +1,5 @@
-﻿@model  ProductsDistribution.Models.InputModels.AnnouncementInfo
-
+﻿
+@model  ProductsDistribution.Models.InputModels.AnnouncementInfo
 @*<head>
         <link href="@Url.Content("~/Content/Themes/base/jquery-ui.css")" rel="stylesheet" type="text/css" />
 
@@ -30,7 +30,7 @@
 
 
 
-@using (Html.BeginForm())
+@using (Html.BeginForm(null,null,FormMethod.Post,new { name = "AnnouncementToPost", id="AnnouncementToPost"}))
 {
 
     <button class="add-announcement" onclick="AddTextBox()">
@@ -55,14 +55,12 @@
 
 
 
-                @Html.Partial("AnnouncementInfo")
+               @* @Html.Partial("AnnouncementInfo") *@
+           
+              @Html.EditorForModel() 
+                 
 
-
-
-                @*@for (int i = 0; i < Model.announcementInfo.Count; i++)
-                    {
-                        @Html.EditorFor(m => m.announcementInfo[i])
-                    }*@
+               
             </tbody>
 
 
@@ -101,9 +99,7 @@
 
     <script>
         $(document.body).on("click", "a.delete-announcement", function () {
-            //$(this).closest('#an').hide();
-            //$(this).prev('input').val('true');
-
+          
             $(this).parents("#announcementForm:first").remove();
             $(this).prev('input').val('true');
             return false;
@@ -136,13 +132,13 @@
     <script type="text/javascript">
 
         function GetDynamicTextBox() {
-            var uniqueId = 0;
-            var div = $("<div />" + "id=" + uniqueId + 1);
-            uniqueId++;
-            //  var textBox = $("<input />").attr("type", "textbox").attr("name", "DynamicTextBox");
+            //var uniqueId = 0;
+            var div = $("<div />");
+            //uniqueId++;
+           
            
             var textBox = $('#announcementForm').html();
-            //  textBox.val(value);
+           
             div.append(textBox);
 
             var button = $("<input />").attr("type", "button").attr("value", "Remove");
@@ -281,6 +277,71 @@
 
     </script>
 
+    <script>
 
+
+
+      
+
+
+
+        $("#submitButton").click(function () {
+
+            var items = new Array();
+            //var arrive_date = $('#arrive_date').val();
+            //var producer = $('#combobox').val();
+            //var product = $('.ddlProduct').val();
+            //var quantity = $('#quantity').val();
+            //var price = $('#price').val();
+
+
+            //var item = {
+            //    arrive_date: arrive_date,
+            //    quantity: quantity,
+            //    price: price,
+            //    selected_producerName: producer,
+            //    selected_productName: product
+
+            //};
+            //items.push(item);
+            //var i = 0;
+            $('.announcementForm').each(function (index) {
+
+              //  i++;
+              //  $(this).attr("id", "announcementInfoForm" + i);
+
+                var arrive_date = $(this).find('#arrive_date').val();
+                var producer = $(this).find('#combobox').val();
+                var product = $(this).find('#productCombobox').val()
+                var quantity = $(this).find('#quantity').val();
+                var price = $(this).find('#price').val();
+
+                var item = {
+                    arrive_date: arrive_date,
+                    quantity: quantity,
+                    price: price,
+                    selected_producerName: producer,
+                    selected_productName: product
+
+                };
+                items.push(item);
+
+            });
+            $.ajax({
+                url: '/Announcement/AddNewAnnouncement',
+                type: 'POST',
+                dataType: 'json',
+                data: { inputModel:  items  },
+                
+                async: false,
+                success: function (data) {
+                    console.log(data);
+                    alert(data);
+                },
+                error: function (xhr, textStatus, exceptionThrown) { alert(JSON.parse(xhr.responseText)); }
+            });
+        });
+
+    </script>
 
 }

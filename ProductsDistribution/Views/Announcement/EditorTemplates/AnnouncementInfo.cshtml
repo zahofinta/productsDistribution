@@ -1,0 +1,141 @@
+﻿@model ProductsDistribution.Models.InputModels.AnnouncementInfo
+
+
+<head>
+    <link href="@Url.Content("~/Content/Themes/base/jquery-ui.css")" rel="stylesheet" type="text/css" />
+
+</head>
+
+<style>
+    .custom-combobox {
+        position: relative;
+        display: inline-block;
+    }
+
+    .custom-combobox-toggle {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        margin-left: -1px;
+        padding: 0;
+        /* support: IE7 */
+        *height: 1.7em;
+        *top: 0.1em;
+    }
+
+    .custom-combobox-input {
+        margin: 0;
+        padding: 0.3em;
+    }
+</style>
+
+
+
+
+
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+
+    <div class="form-horizontal" id="announcement">
+        <h4>AnnouncementInfo</h4>
+        <hr />
+
+
+        <div class="announcementForm">
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            <div class="form-group">
+                @Html.LabelFor(model => model.arrive_date, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.arrive_date, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.arrive_date, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.producerNames, "Производител :", htmlAttributes: new { @class = "control-label col-md-2" })
+
+                <div class="col-md-10 producersClass" id="producers">
+
+
+                    @Html.DropDownListFor(m => m.selected_producerName, Model.producerNames, "", new { @id = "combobox", @class = "ddlProducer" })
+
+
+                    @Html.ValidationMessageFor(model => model.selected_producerName, "", new { @class = "text-danger" })
+
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.productNames, "Продукт :", htmlAttributes: new { @class = "control-label col-md-2" })
+
+                <div class="col-md-10 productsClass" id="products">
+
+
+                    @Html.DropDownListFor(m => m.selected_productName, Model.productNames, "", new { @id = "productCombobox", @class = "ddl ddlProduct" })
+
+
+                    @Html.ValidationMessageFor(model => model.selected_productName, "", new { @class = "text-danger" })
+
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.quantity, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.quantity, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.quantity, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.price, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.price, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.price, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+        </div>
+        @*<div class="form-group">
+
+                @Html.HiddenFor(m => Model.isDeleted)
+            <a class="delete-announcement"><span>Изтрий</span></a>
+
+            </div>*@
+
+
+
+        @*<div class="form-group">
+                @Html.LabelFor(model => model.Index, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Index, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Index, "", new { @class = "text-danger" })
+                </div>
+            </div>*@
+
+
+    </div>
+
+}
+
+
+@section scripts
+{
+    <script src="@Url.Content("~/Scripts/jquery.autocomplete.js")"></script>
+    <script src="@Url.Content("~/Scripts/jquery-ui.js")"></script>
+    <script src="@Url.Content("~/Scripts/GenerateComboBox.js")"></script>
+
+    <script>
+
+
+    </script>
+}
+
+
+
+
+

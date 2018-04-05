@@ -75,11 +75,12 @@ namespace ProductsDistribution.Controllers
         }
         [HttpPost]
 
-        public ActionResult AddNewAnnouncement(AnnouncementInfo  inputModel)
+        public ActionResult AddNewAnnouncement(List<AnnouncementInfo>  inputModel)
         {
 
-            inputModel.producerNames = GetProducerNamesByUserId();
-            //inputModel.producerNames = GetProducerNamesByUserId();
+            List<AnnouncementInfo> ai = inputModel;
+            ai = inputModel;
+
           //  string selected_producerName = inputModel.selected_producerName;
           //  ProductAnnouncementInputModel p = new ProductAnnouncementInputModel();
           //  p.productNames = GetProductNamesByProducerNameAndUserId(selected_producerName);

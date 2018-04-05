@@ -15,10 +15,15 @@ namespace ProductsDistribution.Models
         public int announcement_to_product_id{get;set;}
 
         [Required]
-        [Min(0.0, ErrorMessage = "Please enter max quantity greater than 0")]
-       
+        [Min(0.0, ErrorMessage = "Въведете  максимално количество по-голямо от 0")]
+
 
         public double max_quantity { get; set; }
+
+        [Required]
+        [Min(0.0, ErrorMessage = "Въведете цена по-голяма от 0")]
+
+        public double price { get; set; }
 
         public int announcement_id { get; set; }
 

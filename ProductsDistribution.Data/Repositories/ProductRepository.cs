@@ -24,7 +24,7 @@ namespace ProductsDistribution.Data.Repositories
                                              {
                                                   product_id = p.product_id,
                                                  product_name = p.product_name,
-                                                 price = p.price,                                              
+                                                                                      
                                                  weight= p.weight,
                                                  volume = p.volume,
                                                  durability= p.durability,
@@ -63,7 +63,7 @@ namespace ProductsDistribution.Data.Repositories
                                                   {
                                                       product_id = p.product_id,
                                                       product_name = p.product_name,
-                                                      price = p.price,
+                                                     
                                                       durability = p.durability,
                                                       cut = p.cut,
                                                       product_description = p.product_description,

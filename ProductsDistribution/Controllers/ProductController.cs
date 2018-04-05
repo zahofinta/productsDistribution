@@ -63,7 +63,6 @@ namespace ProductsDistribution.Controllers
             {
                 product_id = product.product_id,
                 durability = product.durability,
-                price = product.price,
                 product_name = product.product_name,
                 category = this.categoryService.GetById(product.categoryId).category_name
                 
@@ -77,7 +76,7 @@ namespace ProductsDistribution.Controllers
             {
                 product_id = product.product_id,
                 product_name = product.product_name,
-                price = product.price,
+               
                 product_description = product.product_description,
                 cut = product.cut,
                 volume = product.volume,
@@ -99,7 +98,7 @@ namespace ProductsDistribution.Controllers
             {
                 product_id = product.product_id,
                 product_name = product.product_name,
-                price = product.price,
+              
                 product_description = product.product_description,
                 cut = product.cut,
                 volume = product.volume,
@@ -176,7 +175,7 @@ namespace ProductsDistribution.Controllers
 
                     product_name = inputModel.product_name,
                     product_description = inputModel.product_description,
-                    price = inputModel.price,
+                   
                     cut = inputModel.cut,
                     durability = inputModel.durability,
                     other = inputModel.other,
@@ -249,7 +248,7 @@ namespace ProductsDistribution.Controllers
                     product_id = id,
                     product_name = inputEditModel.product_name,
                     product_description = inputEditModel.product_description,
-                    price = inputEditModel.price,
+                  
                     cut = inputEditModel.cut,
                     durability = inputEditModel.durability,
                     other = inputEditModel.other,
