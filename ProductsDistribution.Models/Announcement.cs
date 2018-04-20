@@ -14,9 +14,9 @@ namespace ProductsDistribution.Models
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int announcement_id { get; set; }
-        [Required]
-        [DataType(DataType.Date)]
-        public DateTime arrive_date { get; set; }
+//[Required]
+//[DataType(DataType.Date)]
+      //  public DateTime arrive_date { get; set; }
 
         public bool isEnabled { get; set; }
 

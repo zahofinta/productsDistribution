@@ -43,8 +43,8 @@ namespace ProductsDistribution.Controllers
 
         private IEnumerable<SelectListItem> GetCategories()
         {
-            var categories = this.categoryService.GetAllCategoryParentNames();
-
+            //var categories = this.categoryService.GetAllCategoryParentNames();
+            var categories = this.categoryService.GetAllCategoryNames();
             return new SelectList(categories);
         }
 

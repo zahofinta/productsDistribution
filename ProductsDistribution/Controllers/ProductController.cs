@@ -56,6 +56,17 @@ namespace ProductsDistribution.Controllers
             return new SelectList(units);
         }
 
+        private IEnumerable<SelectListItem> GetCuts()
+        {
+
+            var cuts = new List<String>()
+            {
+                "пакет","кутия","буркан","бутилка","връзка","друго"
+            };
+
+            return new SelectList(cuts);
+        }
+
 
         ProductViewModelShort MapProductBaseDTOToProductViewModelShort(ProductBaseDTO product)
         {
@@ -78,7 +89,7 @@ namespace ProductsDistribution.Controllers
                 product_name = product.product_name,
                
                 product_description = product.product_description,
-                cut = product.cut,
+                selected_cut = product.cut,
                 volume = product.volume,
                 other = product.other,
                 selected_unit = product.unit,
@@ -86,7 +97,8 @@ namespace ProductsDistribution.Controllers
                 weight = product.weight,
                 parent_categories = GetParentCategories(),
                 userId = product.userId,
-                units = GetUnits()
+                units = GetUnits(),
+                cuts = GetCuts()
             };
 
         }
@@ -140,7 +152,8 @@ namespace ProductsDistribution.Controllers
             ProductInputModel inputModel = new ProductInputModel
             {
                 parent_categories = GetParentCategories(),
-                units = GetUnits()
+                units = GetUnits(),
+                cuts = GetCuts()
 
             };
 
@@ -155,17 +168,27 @@ namespace ProductsDistribution.Controllers
 
             inputModel.parent_categories = GetParentCategories();
             inputModel.units = GetUnits();
-            string selected_parent_category = inputModel.selected_ParentCategory;
-            inputModel.child_categories = GetChildCategories(selected_parent_category);
+            inputModel.cuts = GetCuts();
+            string selected_parent_category,selected;
+            int selected_child_category_id;
+          //  string selected_parent_category = inputModel.selected_ParentCategory;
+          //  inputModel.child_categories = GetChildCategories(selected_parent_category);
             if (!this.ModelState.IsValid)
             {
+            //    selected_parent_category = inputModel.selected_ParentCategory;
+            //    inputModel.child_categories = GetChildCategories(selected_parent_category);
 
+
+            //     selected = inputModel.selected_ChildCategory;
+            //     selected_child_category_id = categoryService.GetCategoryId(selected);
                 return View(inputModel);
             }
 
+             selected_parent_category = inputModel.selected_ParentCategory;
+            inputModel.child_categories = GetChildCategories(selected_parent_category);
 
-            string selected = inputModel.selected_ChildCategory;
-            int selected_child_category_id = categoryService.GetCategoryId(selected);
+             selected = inputModel.selected_ChildCategory;
+             selected_child_category_id = categoryService.GetCategoryId(selected);
 
             try
             {
@@ -176,7 +199,7 @@ namespace ProductsDistribution.Controllers
                     product_name = inputModel.product_name,
                     product_description = inputModel.product_description,
                    
-                    cut = inputModel.cut,
+                    cut = inputModel.selected_cut,
                     durability = inputModel.durability,
                     other = inputModel.other,
                     volume = inputModel.volume,
@@ -227,14 +250,16 @@ namespace ProductsDistribution.Controllers
         {
             inputEditModel.parent_categories = GetParentCategories();
             inputEditModel.units = GetUnits();
-            string selected_parent_category = inputEditModel.selected_ParentCategory;
-            inputEditModel.child_categories = GetChildCategories(selected_parent_category);
+            inputEditModel.cuts = GetCuts();
+          //  string selected_parent_category = inputEditModel.selected_ParentCategory;
+          //  inputEditModel.child_categories = GetChildCategories(selected_parent_category);
             if (!this.ModelState.IsValid)
             {
 
                 return View(inputEditModel);
             }
-
+            string selected_parent_category = inputEditModel.selected_ParentCategory;
+            inputEditModel.child_categories = GetChildCategories(selected_parent_category);
 
             string selected = inputEditModel.selected_ChildCategory;
             int selected_child_category_id = categoryService.GetCategoryId(selected);
@@ -249,7 +274,7 @@ namespace ProductsDistribution.Controllers
                     product_name = inputEditModel.product_name,
                     product_description = inputEditModel.product_description,
                   
-                    cut = inputEditModel.cut,
+                    cut = inputEditModel.selected_cut,
                     durability = inputEditModel.durability,
                     other = inputEditModel.other,
                     volume = inputEditModel.volume,

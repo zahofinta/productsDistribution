@@ -225,7 +225,9 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\InputModels\AddedProductsToAnnouncement.cs" />
     <Compile Include="Models\InputModels\AnnouncementInfo.cs" />
+    <Compile Include="Models\InputModels\AnnouncementInfoInputModel.cs" />
     <Compile Include="Models\InputModels\AnnouncementInputModel.cs" />
     <Compile Include="Models\InputModels\CategoryInputEditModel.cs" />
     <Compile Include="Models\InputModels\CategoryInputModel.cs" />
@@ -270,6 +272,7 @@
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\GenerateChildCategoriesDynamically.js" />
     <Content Include="Scripts\GenerateComboBox.js" />
+    <Content Include="Scripts\GenerateChildCategoriesDynamicallyEdit.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
@@ -339,7 +342,6 @@
     <Content Include="Views\Producer\AddNewProducer.cshtml" />
     <Content Include="Views\Producer\EditProducer.cshtml" />
     <Content Include="Views\Producer\Details.cshtml" />
-    <Content Include="Views\Announcement\_ProductAnnouncementInputModel.cshtml" />
     <Content Include="Views\Announcement\AddNewAnnouncement.cshtml" />
     <Content Include="Views\Account\EditProfile.cshtml" />
     <Content Include="Views\Account\ChangePassword.cshtml" />

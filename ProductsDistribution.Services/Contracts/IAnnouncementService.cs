@@ -12,7 +12,7 @@ namespace ProductsDistribution.Services.Contracts
     AnnouncementDTO GetById(int id);
 
 
-    void AddNewAnnouncement(AnnouncementDTO announcement);
+    int AddNewAnnouncement(AnnouncementDTO announcement);
 
 
     void Update(AnnouncementDTO announcement);

@@ -54,13 +54,11 @@
             <tbody id="an">
 
 
+             @Html.Partial("EditorTemplates/AnnouncementInfo")
+              @*  @Html.EditorForModel() *@
 
-               @* @Html.Partial("AnnouncementInfo") *@
-           
-              @Html.EditorForModel() 
-                 
 
-               
+
             </tbody>
 
 
@@ -70,20 +68,20 @@
 
 
 
-        <div id="forms">
+    <div id="forms">
 
 
 
+    </div>
+
+
+
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Изпрати" class="btn btn-default" id="submitButton" />
         </div>
-
-
-
-
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Изпрати" class="btn btn-default" id="submitButton" />
-            </div>
-        </div>
+    </div>
 }
 
 
@@ -97,19 +95,18 @@
 
 
 
-    <script>
+    @*<script>
         $(document.body).on("click", "a.delete-announcement", function () {
-          
+
             $(this).parents("#announcementForm:first").remove();
             $(this).prev('input').val('true');
             return false;
         });
 
-    </script>
+    </script>*@
     <script>
 
         $('.add-announcement').click(function () {
-            // var index = parseInt($('.form-horizontal:last').data('rownum')) + 1;
 
             $.ajax({
                 url: "/Announcement/AddNewAnnouncement",
@@ -135,10 +132,10 @@
             //var uniqueId = 0;
             var div = $("<div />");
             //uniqueId++;
-           
-           
+
+
             var textBox = $('#announcementForm').html();
-           
+
             div.append(textBox);
 
             var button = $("<input />").attr("type", "button").attr("value", "Remove");
@@ -153,30 +150,6 @@
         function AddTextBox() {
             var div = GetDynamicTextBox();
             $("#forms").append(div);
-
-
-            //$.ajax({
-            //    url: "/Announcement/LoadProducerNamesByUserId",
-            //    type: "post",
-            //    success: function (data) {
-
-            //        var producerNames = "<select id='ddlProducerNames'>";
-
-            //        producerNames = producerNames + '<option value=""></option>';
-            //        for (var i = 0; i < data.length; i++) {
-            //            producerNames = producerNames + '<option value=' + data[i] + '>' + data[i] + '</option>';
-            //        }
-            //        producerNames = producerNames + '</select>';
-
-            //        $('#combobox').html(producerNames);
-
-
-
-
-            //    }
-
-            //});
-
 
         }
 
@@ -217,7 +190,7 @@
 
 
             //    });
-                
+
 
             //});
 
@@ -242,7 +215,7 @@
                 //    }); // var v = _this.val();
 
 
-                      $.ajax({
+                $.ajax({
                     type: "post",
                     url: "/Announcement/LoadProductNamesByProducerNameAndUserId",
                     data: { producerName: $(this).val() },
@@ -259,7 +232,7 @@
                         products = products + '</select>';
                         _this.closest('.announcementForm').find('.ddlProduct').html(products);
 
-                      //  $('.ddlProducer').closest('.announcementForm').find('.ddlProduct').html(products);
+                        //  $('.ddlProducer').closest('.announcementForm').find('.ddlProduct').html(products);
                         //nai-blizkiq vtori dropdown do izbraniq purvi
                     }
 
@@ -270,7 +243,7 @@
 
             });
 
-           
+
 
 
         });
@@ -279,14 +252,8 @@
 
     <script>
 
-
-
-      
-
-
-
-        $("#submitButton").click(function () {
-
+        function GetValuesFromForm()
+        {
             var items = new Array();
             //var arrive_date = $('#arrive_date').val();
             //var producer = $('#combobox').val();
@@ -307,8 +274,8 @@
             //var i = 0;
             $('.announcementForm').each(function (index) {
 
-              //  i++;
-              //  $(this).attr("id", "announcementInfoForm" + i);
+                //  i++;
+                //  $(this).attr("id", "announcementInfoForm" + i);
 
                 var arrive_date = $(this).find('#arrive_date').val();
                 var producer = $(this).find('#combobox').val();
@@ -327,19 +294,73 @@
                 items.push(item);
 
             });
+
+            return items;
+        }
+
+
+
+
+
+        $("#submitButton").click(function (e) {
+            e.preventDefault();
+            var items = GetValuesFromForm();
+            //var items = new Array();
+            ////var arrive_date = $('#arrive_date').val();
+            ////var producer = $('#combobox').val();
+            ////var product = $('.ddlProduct').val();
+            ////var quantity = $('#quantity').val();
+            ////var price = $('#price').val();
+
+
+            ////var item = {
+            ////    arrive_date: arrive_date,
+            ////    quantity: quantity,
+            ////    price: price,
+            ////    selected_producerName: producer,
+            ////    selected_productName: product
+
+            ////};
+            ////items.push(item);
+            ////var i = 0;
+            //$('.announcementForm').each(function (index) {
+
+            //    //  i++;
+            //    //  $(this).attr("id", "announcementInfoForm" + i);
+
+            //    var arrive_date = $(this).find('#arrive_date').val();
+            //    var producer = $(this).find('#combobox').val();
+            //    var product = $(this).find('#productCombobox').val()
+            //    var quantity = $(this).find('#quantity').val();
+            //    var price = $(this).find('#price').val();
+
+            //    var item = {
+            //        arrive_date: arrive_date,
+            //        quantity: quantity,
+            //        price: price,
+            //        selected_producerName: producer,
+            //        selected_productName: product
+
+            //    };
+            //    items.push(item);
+
+            //});
             $.ajax({
                 url: '/Announcement/AddNewAnnouncement',
                 type: 'POST',
                 dataType: 'json',
-                data: { inputModel:  items  },
-                
-                async: false,
+                data: { inputModel: items },
+                async:false,
                 success: function (data) {
-                    console.log(data);
-                    alert(data);
+                   // console.log(data);
+                    //   alert(data);
+
+                   // window.location.href=@Url.Action("Index", "Home");
+                   
                 },
                 error: function (xhr, textStatus, exceptionThrown) { alert(JSON.parse(xhr.responseText)); }
             });
+
         });
 
     </script>

@@ -12,19 +12,21 @@ namespace ProductsDistribution.Models.InputModels
     { 
         public int product_id { get; set; }
         public string userId { get; set; }
+
         [Required(ErrorMessage = "Име на продукт е задължително поле")]
         [Display(Name = "Име на продукт :")]
         public string product_name { get; set; }
         [Required(ErrorMessage = "Описание на продукт е задължително поле")]
         [Display(Name = "Описание на продукта :")]
         public string product_description { get; set; }
-        [Required(ErrorMessage = "Разфасовка е задължително поле")]
+
         [Display(Name = "Разфасовка :")]
         public string cut { get; set; }
         [Required(ErrorMessage = "Тегло е задължително поле")]
         [Display(Name = "Тегло :")]
         [Min(0.0, ErrorMessage = "Въведете тегло по-голямо от 0")]
         public double weight { get; set; }
+        [Required(ErrorMessage = "Тегло е задължително поле")]
         [Min(0.0, ErrorMessage = "Въведете обем по-голям от 0")]
         [Display(Name = "Обем :")]
         public double volume { get; set; }
@@ -38,15 +40,17 @@ namespace ProductsDistribution.Models.InputModels
         [Display(Name = "Допълнение към описанието :")]
         public string other { get; set; }
 
-
         [Required]
         [Display(Name = "Мерна единица :")]
         public string selected_unit { get; set; }
-
         [Required(ErrorMessage = "Категория е задължително поле")]
         public string selected_ParentCategory { get; set; }
         [Required(ErrorMessage = "Подкатегория е задължително поле")]
         public string selected_ChildCategory { get; set; }
+
+
+        [Display(Name = "Разфасовка :")]
+        public string selected_cut { get; set; }
 
 
         [Required(ErrorMessage = "Категория е задължително поле")]
@@ -59,5 +63,9 @@ namespace ProductsDistribution.Models.InputModels
         [Required(ErrorMessage = "Мерна единица е задължително поле")]
         [Display(Name = "Мерна единица :")]
         public IEnumerable<SelectListItem> units = new List<SelectListItem>();
+
+
+        [Display(Name = "Разфасовка:")]
+        public IEnumerable<SelectListItem> cuts = new List<SelectListItem>();
     }
 }

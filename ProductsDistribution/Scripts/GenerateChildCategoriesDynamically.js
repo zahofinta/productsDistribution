@@ -7,6 +7,7 @@ var volume_;
 var price_;
 var durability_;
 var other_;
+var unit_;
 var selected_ParentCategory_;
 var selected_ChildCategory_;
 
@@ -22,6 +23,16 @@ function Submit(model) {
             contentType: 'application/json; charset=utf-8',
 
             success: function (data) {
+
+                var child_category = "<select id='ddlChildCategory'>";
+
+                child_category = child_category + '<option value=""></option>';
+                for (var i = 0; i < data.length; i++) {
+                    child_category = child_category + '<option value=' + data[i] + '>' + data[i] + '</option>';
+                }
+                child_category = child_category + '</select>';
+
+                $('#ddlChildCategory1').html(child_category);
 
                 alert(this.data);
 
@@ -62,6 +73,7 @@ $(document).ready(function () {
                 price_ = $('#price').val();
                 durability_ = $('#durability').val();
                 other_ = $('#other').val();
+                unit_ = $('#unit').val();
                 selected_ParentCategory_ = $('#ddlParentCategory').val();
                 selected_ChildCategory_ = $('#ddlChildCategory1 option:selected').val();
 
@@ -74,6 +86,7 @@ $(document).ready(function () {
                     price: price_,
                     durability: durability_,
                     other: other_,
+                    unit : unit_,
                     selected_ParentCategory: selected_ParentCategory_,
                     selected_ChildCategory: selected_ChildCategory_
                 };

@@ -27,24 +27,27 @@ namespace ProductsDistribution.Services
             return new AnnouncementDTO()
             {
                 announcement_id = announcement.announcement_id,
-                arrive_date = announcement.arrive_date,
+              //  arrive_date = announcement.arrive_date,
                 status = announcement.status,
                 userId = announcement.userId
 
             };
         }
-        public void AddNewAnnouncement(AnnouncementDTO announcement)
+        public int AddNewAnnouncement(AnnouncementDTO announcement)
         {
             var announcementToAdd = new Announcement
             {
-                announcement_id = announcement.announcement_id,
-                arrive_date = announcement.arrive_date,
+              //  announcement_id = announcement.announcement_id,
+                //arrive_date = announcement.arrive_date,
                 isEnabled = true,
                 status = 0,
                 userId = announcement.userId
             };
             this.announcementRepository.Insert(announcementToAdd);
 
+            int addedAnnouncementID = announcementToAdd.announcement_id;
+
+            return addedAnnouncementID;
         }
 
         public void DeleteAnnouncement(AnnouncementDTO item)
@@ -68,7 +71,7 @@ namespace ProductsDistribution.Services
         public void Update(AnnouncementDTO announcement)
         {
             var announcementToUpdate = this.announcementRepository.Get(x => x.announcement_id == announcement.announcement_id);
-            announcementToUpdate.arrive_date = announcement.arrive_date;
+           // announcementToUpdate.arrive_date = announcement.arrive_date;
             announcementToUpdate.status = announcement.status;
 
             this.announcementRepository.Update(announcementToUpdate);

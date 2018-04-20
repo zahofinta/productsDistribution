@@ -15,7 +15,7 @@ namespace ProductsDistribution.Services.Contracts
         IEnumerable<ProducerDTO> GetAllProducersByUserShort(string userId);
 
         int GetProducerIdByName(string producerName);
-         int AddNewProducer(ProducerDTO producer);
+        int AddNewProducer(ProducerDTO producer);
 
         ProducerDTO GetProducerByIdAndUserId(int id, string userId);
 

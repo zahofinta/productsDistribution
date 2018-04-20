@@ -17,7 +17,7 @@ namespace ProductsDistribution.Models
         public string product_name { get; set; }
         [Required]
         public string product_description { get; set; }
-        [Required]
+        
         public string cut { get; set; }
        // [Required]
       //  [Min(0.0, ErrorMessage = "Въведете цена по-голяма от 0")]
@@ -25,6 +25,7 @@ namespace ProductsDistribution.Models
         [Required]
         [Min(0.0, ErrorMessage = "Въведете тегло по-голямо от 0")]
         public double weight { get; set; }
+        [Required]
         [Min(0.0, ErrorMessage = "Въведете обем по-голям от 0")]
         public double volume { get; set; }
 

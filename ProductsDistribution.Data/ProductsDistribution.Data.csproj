@@ -122,6 +122,14 @@
     <Compile Include="Migrations\201804041103545_MovePricePropertyFromProductToAnnouncementToProduct.Designer.cs">
       <DependentUpon>201804041103545_MovePricePropertyFromProductToAnnouncementToProduct.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201804151412266_Move_ArriveDate_From_Announcement_To_Announcement2Product.cs" />
+    <Compile Include="Migrations\201804151412266_Move_ArriveDate_From_Announcement_To_Announcement2Product.Designer.cs">
+      <DependentUpon>201804151412266_Move_ArriveDate_From_Announcement_To_Announcement2Product.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201804201712549_AddCutDropdown_Menu.cs" />
+    <Compile Include="Migrations\201804201712549_AddCutDropdown_Menu.Designer.cs">
+      <DependentUpon>201804201712549_AddCutDropdown_Menu.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="ProductsDistributionDBContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -160,6 +168,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201804041103545_MovePricePropertyFromProductToAnnouncementToProduct.resx">
       <DependentUpon>201804041103545_MovePricePropertyFromProductToAnnouncementToProduct.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201804151412266_Move_ArriveDate_From_Announcement_To_Announcement2Product.resx">
+      <DependentUpon>201804151412266_Move_ArriveDate_From_Announcement_To_Announcement2Product.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201804201712549_AddCutDropdown_Menu.resx">
+      <DependentUpon>201804201712549_AddCutDropdown_Menu.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

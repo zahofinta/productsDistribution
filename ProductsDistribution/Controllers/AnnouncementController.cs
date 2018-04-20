@@ -62,51 +62,61 @@ namespace ProductsDistribution.Controllers
             var producers = this.producerService.GetProductNamesByProducerNameAndUserId(producerName, this.User.Identity.GetUserId());
             return Json(producers, JsonRequestBehavior.AllowGet);
         }
+
+        
         [HttpGet]
         public ActionResult AddNewAnnouncement()
         {
-            // AnnouncementInputModel announcement = new AnnouncementInputModel();
+            // AnnouncementInfoInputModel ai = new AnnouncementInfoInputModel();
+
+          //   ai.announcement.producerNames = GetProducerNamesByUserId();
+           // List<AnnouncementInfo> ai = new List<AnnouncementInfo>();
+      
             AnnouncementInfo ai = new AnnouncementInfo();
             ai.producerNames = GetProducerNamesByUserId();
-          
-   
-
             return View(ai);
         }
+
+      
         [HttpPost]
 
-        public ActionResult AddNewAnnouncement(List<AnnouncementInfo>  inputModel)
-        {
+        //tyka e problema !!!
+        public ActionResult AddNewAnnouncement(List<AnnouncementInfo> inputModel)
 
-            List<AnnouncementInfo> ai = inputModel;
-            ai = inputModel;
-
-          //  string selected_producerName = inputModel.selected_producerName;
-          //  ProductAnnouncementInputModel p = new ProductAnnouncementInputModel();
-          //  p.productNames = GetProductNamesByProducerNameAndUserId(selected_producerName);
-            // po dadeno ime na proizvoditel i id na potrebitel da se izkarat vsichkite imena na  produkti
-            if (!this.ModelState.IsValid)
+        { 
+            AnnouncementInfoInputModel input = new AnnouncementInfoInputModel();
+            input.announcements = inputModel;
+            
+         //   inputModel.announcement.producerNames = GetProducerNamesByUserId();
+        //  List<AnnouncementInfo> input = inputModel;
+           //ai = inputModel;
+         if(!this.ModelState.IsValid)
             {
-
                 return View(inputModel);
             }
+            AnnouncementDTO announcementToInsert = new AnnouncementDTO();
+            announcementToInsert.status = 0;
+            announcementToInsert.userId = this.User.Identity.GetUserId();
 
-           /* this.announcementService.AddNewAnnouncement(new AnnouncementDTO
+            int addedAnnouncementID = this.announcementService.AddNewAnnouncement(announcementToInsert);
+
+            foreach (var item in inputModel)
             {
-                arrive_date = inputModel.arrive_date,
-                status = 0,
-                userId = this.User.Identity.GetUserId(), 
+                this.AnnouncementToProductService.AddNewAnnouncementToProduct(new AnnouncementToProductDTO()
+                {
+                    announcement_id = addedAnnouncementID,
+                    arrive_date = item.arrive_date,
+                    max_quantity = item.quantity,
+                    price = item.price,
+                    product_id = this.productService.GetProductIdByName(item.selected_productName,this.User.Identity.GetUserId())
 
-            });
-            */
-           /*  this.AnnouncementToProductService.AddNewAnnouncementToProduct(new AnnouncementToProductDTO
-            {
-                
+                });
+            }
 
-            });
-            */
 
-            return View(inputModel);
+
+            return RedirectToAction("Index","Home");
+          //  return Json(Url.Action("Index", "Home"));
         }
     }
 }

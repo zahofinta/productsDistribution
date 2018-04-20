@@ -17,13 +17,14 @@ namespace ProductsDistribution.Models.InputModels
         [Required(ErrorMessage = "Описание на продукт е задължително поле")]
         [Display(Name = "Описание на продукта :")]
         public string product_description { get; set; }
-        [Required(ErrorMessage = "Разфасовка е задължително поле")]
+        
         [Display(Name = "Разфасовка :")]
         public string cut { get; set; }
         [Required(ErrorMessage = "Тегло е задължително поле")]
         [Display(Name = "Тегло :")]
         [Min(0.0, ErrorMessage = "Въведете тегло по-голямо от 0")]
         public double weight { get; set; }
+        [Required(ErrorMessage = "Тегло е задължително поле")]
         [Min(0.0, ErrorMessage = "Въведете обем по-голям от 0")]
         [Display(Name = "Обем :")]
         public double volume { get; set; }
@@ -45,7 +46,11 @@ namespace ProductsDistribution.Models.InputModels
         [Required(ErrorMessage = "Подкатегория е задължително поле")]
         public string selected_ChildCategory { get; set; }
 
-        
+
+        [Display(Name = "Разфасовка :")]
+        public string selected_cut { get; set; }
+       
+
         [Required(ErrorMessage = "Категория е задължително поле")]
         [Display(Name = "Kатегория :")]
         public IEnumerable<SelectListItem> parent_categories = new List<SelectListItem>();
@@ -57,5 +62,8 @@ namespace ProductsDistribution.Models.InputModels
         [Display(Name = "Мерна единица :")]
         public IEnumerable<SelectListItem> units = new List<SelectListItem>();
 
+        
+        [Display(Name = "Разфасовка:")]
+        public IEnumerable<SelectListItem> cuts = new List<SelectListItem>();
     }
 }

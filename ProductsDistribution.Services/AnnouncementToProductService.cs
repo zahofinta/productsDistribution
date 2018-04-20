@@ -29,7 +29,9 @@ namespace ProductsDistribution.Services
                 announcement_to_product_id = announcementToProduct.announcement_to_product_id,
                 announcement_id = announcementToProduct.announcement_id,
                 max_quantity = announcementToProduct.max_quantity,
-                product_id = announcementToProduct.product_id
+                product_id = announcementToProduct.product_id,
+                price = announcementToProduct.price,
+                arrive_date = announcementToProduct.arrive_date
 
             };
         }
@@ -37,10 +39,13 @@ namespace ProductsDistribution.Services
         {
             var announcementToProductToAdd = new AnnouncementToProduct
             {
-                announcement_to_product_id = announcementToProduct.announcement_to_product_id,
+              //  announcement_to_product_id = announcementToProduct.announcement_to_product_id,
                 announcement_id = announcementToProduct.announcement_id,
                 max_quantity = announcementToProduct.max_quantity,
-                product_id = announcementToProduct.product_id
+                product_id = announcementToProduct.product_id,
+                price = announcementToProduct.price,
+                arrive_date = announcementToProduct.arrive_date
+                
                
             };
             this.announcementToProductRepository.Insert(announcementToProductToAdd);
@@ -70,6 +75,8 @@ namespace ProductsDistribution.Services
             announcementToProductToUpdate.announcement_id = announcementToProduct.announcement_id;
             announcementToProductToUpdate.max_quantity = announcementToProduct.max_quantity;
             announcementToProductToUpdate.product_id = announcementToProduct.product_id;
+            announcementToProductToUpdate.price = announcementToProduct.price;
+            announcementToProductToUpdate.arrive_date = announcementToProduct.arrive_date;
             this.announcementToProductRepository.Update(announcementToProductToUpdate);
         }
     }

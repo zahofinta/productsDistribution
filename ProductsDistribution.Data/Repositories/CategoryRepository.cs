@@ -9,8 +9,10 @@ using System.Data.Entity;
 
 namespace ProductsDistribution.Data.Repositories
 {
+   
     public class CategoryRepository : GenericEfRepository<Category>, ICategoryRepository
     {
+        
         public CategoryRepository(DbContext dbContext) : base(dbContext)
         {
 
@@ -21,18 +23,36 @@ namespace ProductsDistribution.Data.Repositories
             return categories.Where(x => x.Category_parent_id == null).Select(x => x.category_name).ToList();
         }
 
+
+        List<Category> GetChildren(List<Category> categories, int id)
+        {
+            return categories
+                .Where(x => x.Category_parent_id == id)
+                .Union(categories.Where(x => x.Category_parent_id == id)
+                    .SelectMany(y => GetChildren(categories, y.category_id))
+                ).ToList();
+        }
+
         public List<string> GetAllSubCategories(string categoryName)
         {
             var categories = this._dbSet;
+            var categories_filter_by_name = (from c in categories
+                                             where c.category_name.Equals(categoryName) && c.Category_parent_id == null
+                                             select c.category_name).ToList();
+
+
+            var ress = GetChildren(categories.ToList(), GetCategoryId(categoryName));
             var sub_categories_names = (from c in categories
-                                        where c.Category_parent_id == null && c.category_name.Equals(categoryName)
-                                        from subcategory in categories
-                                        where subcategory.Category_parent_id == c.category_id
-                                        select subcategory.category_name).ToList();
+                                        where  c.category_name.Equals(categoryName) 
+                                        from subcategory in categories 
+                                        where subcategory.category_id == c.Category_parent_id
+                                        select subcategory.category_name+ "->"+ c.category_name).ToList();
 
+            var result = categories_filter_by_name.Union(sub_categories_names);
 
-
-            return sub_categories_names;
+            return ress.Select(x=>x.category_name).ToList();
+           // return result.ToList();
+           // return sub_categories_names;
             //return categories.Where(x => x.category_name == categoryName && x.category_id == x.Category_parent_id).Select(x=>x.category_name).ToList();
         }
 
