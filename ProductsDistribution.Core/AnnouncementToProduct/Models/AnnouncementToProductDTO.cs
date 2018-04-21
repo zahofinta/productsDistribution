@@ -11,7 +11,7 @@ namespace ProductsDistribution.Core.AnnouncementToProduct.Models
 
         public double max_quantity { get; set; }
 
-        public DateTime arrive_date { get; set; }
+       // public DateTime arrive_date { get; set; }
 
         public double price { get; set; }
 

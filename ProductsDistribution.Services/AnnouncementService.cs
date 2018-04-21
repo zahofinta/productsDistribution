@@ -27,7 +27,8 @@ namespace ProductsDistribution.Services
             return new AnnouncementDTO()
             {
                 announcement_id = announcement.announcement_id,
-              //  arrive_date = announcement.arrive_date,
+                arrive_date = announcement.arrive_date,
+                title = announcement.title,
                 status = announcement.status,
                 userId = announcement.userId
 
@@ -38,7 +39,9 @@ namespace ProductsDistribution.Services
             var announcementToAdd = new Announcement
             {
               //  announcement_id = announcement.announcement_id,
-                //arrive_date = announcement.arrive_date,
+                arrive_date = announcement.arrive_date,
+                title = announcement.title,
+                publish_date = DateTime.Now,
                 isEnabled = true,
                 status = 0,
                 userId = announcement.userId
@@ -71,7 +74,8 @@ namespace ProductsDistribution.Services
         public void Update(AnnouncementDTO announcement)
         {
             var announcementToUpdate = this.announcementRepository.Get(x => x.announcement_id == announcement.announcement_id);
-           // announcementToUpdate.arrive_date = announcement.arrive_date;
+           announcementToUpdate.arrive_date = announcement.arrive_date;
+            announcementToUpdate.title = announcement.title;
             announcementToUpdate.status = announcement.status;
 
             this.announcementRepository.Update(announcementToUpdate);

@@ -81,7 +81,7 @@ namespace ProductsDistribution.Controllers
         [HttpPost]
 
         //tyka e problema !!!
-        public ActionResult AddNewAnnouncement(List<AnnouncementInfo> inputModel)
+        public ActionResult AddNewAnnouncement(List<AnnouncementInfo> inputModel,string title,DateTime arrive_date)
 
         { 
             AnnouncementInfoInputModel input = new AnnouncementInfoInputModel();
@@ -95,6 +95,9 @@ namespace ProductsDistribution.Controllers
                 return View(inputModel);
             }
             AnnouncementDTO announcementToInsert = new AnnouncementDTO();
+            announcementToInsert.title = title;
+            announcementToInsert.publish_date = DateTime.Now;
+            announcementToInsert.arrive_date = arrive_date;
             announcementToInsert.status = 0;
             announcementToInsert.userId = this.User.Identity.GetUserId();
 
@@ -105,7 +108,7 @@ namespace ProductsDistribution.Controllers
                 this.AnnouncementToProductService.AddNewAnnouncementToProduct(new AnnouncementToProductDTO()
                 {
                     announcement_id = addedAnnouncementID,
-                    arrive_date = item.arrive_date,
+                   // arrive_date = item.arrive_date,
                     max_quantity = item.quantity,
                     price = item.price,
                     product_id = this.productService.GetProductIdByName(item.selected_productName,this.User.Identity.GetUserId())

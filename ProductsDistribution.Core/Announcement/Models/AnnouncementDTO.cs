@@ -11,7 +11,10 @@ namespace ProductsDistribution.Core.Announcement.Models
     {
         public int announcement_id { get; set; }
    
-       // public DateTime arrive_date { get; set; }
+        public DateTime arrive_date { get; set; }
+
+        public DateTime publish_date { get; set; }
+        public string title { get; set; }
         public Status status { get; set; }
 
         public string userId { get; set; }

@@ -12,9 +12,9 @@ var selected_ParentCategory_;
 var selected_ChildCategory_;
 
 function Submit(model) {
-    $('#submitButton').click(function () {
+    $('#submitButton').click(function (e) {
 
-
+        //e.preventDefault();
         $.ajax({
             type: 'POST',
             url: "/Product/AddNewProduct",
@@ -24,17 +24,9 @@ function Submit(model) {
 
             success: function (data) {
 
-                var child_category = "<select id='ddlChildCategory'>";
+                
 
-                child_category = child_category + '<option value=""></option>';
-                for (var i = 0; i < data.length; i++) {
-                    child_category = child_category + '<option value=' + data[i] + '>' + data[i] + '</option>';
-                }
-                child_category = child_category + '</select>';
-
-                $('#ddlChildCategory1').html(child_category);
-
-                alert(this.data);
+                //alert(this.data);
 
             }
 

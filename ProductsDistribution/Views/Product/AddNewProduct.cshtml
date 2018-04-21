@@ -110,7 +110,7 @@
                
                 @Html.ValidationMessageFor(model => model.selected_ParentCategory, "", new { @class = "text-danger" }) 
              
-               @Html.DropDownListFor(m => m.selected_ParentCategory, Model.parent_categories, new { @id = "ddlParentCategory" })
+               @Html.DropDownListFor(m => m.selected_ParentCategory, Model.parent_categories,"", new { @id = "ddlParentCategory" })
             </div>
         </div>
 
@@ -119,7 +119,7 @@
 
             <div class="col-md-10" id="subcategories">
             
-                @Html.DropDownListFor(m => m.selected_ChildCategory, Model.child_categories, "", new { @id = "ddlChildCategory1" })
+                @Html.DropDownListFor(m => m.selected_ChildCategory, Model.child_categories, new { @id = "ddlChildCategory1" })
                
              
                 @Html.ValidationMessageFor(model => model.selected_ChildCategory, "", new { @class = "text-danger" })

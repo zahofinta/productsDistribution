@@ -170,57 +170,59 @@ namespace ProductsDistribution.Controllers
             inputModel.units = GetUnits();
             inputModel.cuts = GetCuts();
             string selected_parent_category,selected;
+            selected = "";
             int selected_child_category_id;
           //  string selected_parent_category = inputModel.selected_ParentCategory;
           //  inputModel.child_categories = GetChildCategories(selected_parent_category);
             if (!this.ModelState.IsValid)
             {
-            //    selected_parent_category = inputModel.selected_ParentCategory;
-            //    inputModel.child_categories = GetChildCategories(selected_parent_category);
-
-
-            //     selected = inputModel.selected_ChildCategory;
-            //     selected_child_category_id = categoryService.GetCategoryId(selected);
+                
                 return View(inputModel);
             }
 
              selected_parent_category = inputModel.selected_ParentCategory;
-            inputModel.child_categories = GetChildCategories(selected_parent_category);
-
-             selected = inputModel.selected_ChildCategory;
-             selected_child_category_id = categoryService.GetCategoryId(selected);
-
-            try
+            if (selected_parent_category != "")
             {
+                inputModel.child_categories = GetChildCategories(selected_parent_category);
 
-                this.productService.AddNewProduct(new ProductBaseDTO
+                selected = inputModel.selected_ChildCategory;
+                selected_child_category_id = categoryService.GetCategoryId(selected);
+
+
+                //selected = inputModel.selected_ChildCategory;
+                //selected_child_category_id = categoryService.GetCategoryId(selected);
+                try
                 {
 
-                    product_name = inputModel.product_name,
-                    product_description = inputModel.product_description,
-                   
-                    cut = inputModel.selected_cut,
-                    durability = inputModel.durability,
-                    other = inputModel.other,
-                    volume = inputModel.volume,
-                    weight = inputModel.weight,
-                    rating = 0.0,
-                    categoryId = selected_child_category_id,
-                    userId = this.User.Identity.GetUserId(),
-                    unit = inputModel.selected_unit
-                    
+                    this.productService.AddNewProduct(new ProductBaseDTO
+                    {
 
-                });
+                        product_name = inputModel.product_name,
+                        product_description = inputModel.product_description,
 
-            }
-            catch (DbUpdateException e)
+                        cut = inputModel.selected_cut,
+                        durability = inputModel.durability,
+                        other = inputModel.other,
+                        volume = inputModel.volume,
+                        weight = inputModel.weight,
+                        rating = 0.0,
+                        categoryId = selected_child_category_id,
+                        userId = this.User.Identity.GetUserId(),
+                        unit = inputModel.selected_unit
 
-            when (e.InnerException?.InnerException is SqlException sqlEx &&
-            (sqlEx.Number == 2601 || sqlEx.Number == 2627))
-            {
 
-                ModelState.AddModelError("product_name", "Продуктът вече съществува");
-                return View(inputModel);
+                    });
+
+                }
+                catch (DbUpdateException e)
+
+                when (e.InnerException?.InnerException is SqlException sqlEx &&
+                (sqlEx.Number == 2601 || sqlEx.Number == 2627))
+                {
+
+                    ModelState.AddModelError("product_name", "Продуктът вече съществува");
+                    return View(inputModel);
+                }
             }
 
 
@@ -251,51 +253,58 @@ namespace ProductsDistribution.Controllers
             inputEditModel.parent_categories = GetParentCategories();
             inputEditModel.units = GetUnits();
             inputEditModel.cuts = GetCuts();
-          //  string selected_parent_category = inputEditModel.selected_ParentCategory;
-          //  inputEditModel.child_categories = GetChildCategories(selected_parent_category);
+
+            string selected_parent_category, selected;
+            selected = "";
+            int selected_child_category_id;
+            //  string selected_parent_category = inputEditModel.selected_ParentCategory;
+            //  inputEditModel.child_categories = GetChildCategories(selected_parent_category);
             if (!this.ModelState.IsValid)
             {
 
                 return View(inputEditModel);
             }
-            string selected_parent_category = inputEditModel.selected_ParentCategory;
-            inputEditModel.child_categories = GetChildCategories(selected_parent_category);
+             selected_parent_category = inputEditModel.selected_ParentCategory;
 
-            string selected = inputEditModel.selected_ChildCategory;
-            int selected_child_category_id = categoryService.GetCategoryId(selected);
-
-
-            try
+            if (selected_parent_category != "")
             {
+                inputEditModel.child_categories = GetChildCategories(selected_parent_category);
 
-                this.productService.Update(new ProductBaseDTO
+                 selected = inputEditModel.selected_ChildCategory;
+                selected_child_category_id = categoryService.GetCategoryId(selected);
+
+
+                try
                 {
-                    product_id = id,
-                    product_name = inputEditModel.product_name,
-                    product_description = inputEditModel.product_description,
-                  
-                    cut = inputEditModel.selected_cut,
-                    durability = inputEditModel.durability,
-                    other = inputEditModel.other,
-                    volume = inputEditModel.volume,
-                    weight = inputEditModel.weight,
-                    categoryId = selected_child_category_id,
-                    unit = inputEditModel.selected_unit
 
-                });
+                    this.productService.Update(new ProductBaseDTO
+                    {
+                        product_id = id,
+                        product_name = inputEditModel.product_name,
+                        product_description = inputEditModel.product_description,
+
+                        cut = inputEditModel.selected_cut,
+                        durability = inputEditModel.durability,
+                        other = inputEditModel.other,
+                        volume = inputEditModel.volume,
+                        weight = inputEditModel.weight,
+                        categoryId = selected_child_category_id,
+                        unit = inputEditModel.selected_unit
+
+                    });
+
+                }
+                catch (DbUpdateException e)
+
+                when (e.InnerException?.InnerException is SqlException sqlEx &&
+                (sqlEx.Number == 2601 || sqlEx.Number == 2627))
+                {
+
+                    ModelState.AddModelError("product_name", "Продуктът вече съществува");
+                    return View(inputEditModel);
+                }
 
             }
-            catch (DbUpdateException e)
-
-            when (e.InnerException?.InnerException is SqlException sqlEx &&
-            (sqlEx.Number == 2601 || sqlEx.Number == 2627))
-            {
-
-                ModelState.AddModelError("product_name", "Продуктът вече съществува");
-                return View(inputEditModel);
-            }
-
-
             return RedirectToAction("DisplayProducts");
 
 
