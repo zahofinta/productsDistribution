@@ -14,9 +14,9 @@ namespace ProductsDistribution.Models
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int announcement_to_product_id{get;set;}
 
-        [Required]
-        [DataType(DataType.Date)]
-        public DateTime arrive_date { get; set; }
+        //[Required]
+        //[DataType(DataType.Date)]
+        //public DateTime arrive_date { get; set; }
         [Required]
         [Min(0.0, ErrorMessage = "Въведете  максимално количество по-голямо от 0")]
 

@@ -130,6 +130,10 @@
     <Compile Include="Migrations\201804201712549_AddCutDropdown_Menu.Designer.cs">
       <DependentUpon>201804201712549_AddCutDropdown_Menu.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201804211112112_AddedPublishDateAndTitleToAnnouncementTable_Moved_ArriveDate_To_AnnouncementTable.cs" />
+    <Compile Include="Migrations\201804211112112_AddedPublishDateAndTitleToAnnouncementTable_Moved_ArriveDate_To_AnnouncementTable.Designer.cs">
+      <DependentUpon>201804211112112_AddedPublishDateAndTitleToAnnouncementTable_Moved_ArriveDate_To_AnnouncementTable.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="ProductsDistributionDBContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -174,6 +178,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201804201712549_AddCutDropdown_Menu.resx">
       <DependentUpon>201804201712549_AddCutDropdown_Menu.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201804211112112_AddedPublishDateAndTitleToAnnouncementTable_Moved_ArriveDate_To_AnnouncementTable.resx">
+      <DependentUpon>201804211112112_AddedPublishDateAndTitleToAnnouncementTable_Moved_ArriveDate_To_AnnouncementTable.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

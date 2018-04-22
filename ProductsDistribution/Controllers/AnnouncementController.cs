@@ -73,7 +73,7 @@ namespace ProductsDistribution.Controllers
            // List<AnnouncementInfo> ai = new List<AnnouncementInfo>();
       
             AnnouncementInfo ai = new AnnouncementInfo();
-            ai.producerNames = GetProducerNamesByUserId();
+            ai.firstProductInfo.producerNames= GetProducerNamesByUserId();
             return View(ai);
         }
 
@@ -81,19 +81,76 @@ namespace ProductsDistribution.Controllers
         [HttpPost]
 
         //tyka e problema !!!
-        public ActionResult AddNewAnnouncement(List<AnnouncementInfo> inputModel,string title,DateTime arrive_date)
+        //mai trqbva kato input da e obekt ot AnnouncementInfo
+        public ActionResult AddNewAnnouncement(AnnouncementInfo inputModel)
 
-        { 
-            AnnouncementInfoInputModel input = new AnnouncementInfoInputModel();
-            input.announcements = inputModel;
-            
-         //   inputModel.announcement.producerNames = GetProducerNamesByUserId();
-        //  List<AnnouncementInfo> input = inputModel;
-           //ai = inputModel;
-         if(!this.ModelState.IsValid)
+        {
+            //AnnouncementInfo ai = new AnnouncementInfo();
+         
+
+
+          /*  if (!this.ModelState.IsValid)
             {
                 return View(inputModel);
             }
+            */
+
+
+            AnnouncementInfo ai = inputModel;
+
+          //  ai.remainingProducts = inputModel;
+
+
+            AnnouncementDTO announcementToInsert = new AnnouncementDTO();
+            announcementToInsert.title = inputModel.title;
+            announcementToInsert.publish_date = DateTime.Now;
+            announcementToInsert.arrive_date = inputModel.arrive_date;
+            announcementToInsert.status = 0;
+            announcementToInsert.userId = this.User.Identity.GetUserId();
+
+            int addedAnnouncementID = this.announcementService.AddNewAnnouncement(announcementToInsert);
+
+            foreach (var item in inputModel.remainingProducts)
+            {
+                this.AnnouncementToProductService.AddNewAnnouncementToProduct(new AnnouncementToProductDTO()
+                {
+                    announcement_id = addedAnnouncementID,
+                   // arrive_date = item.arrive_date,
+                    max_quantity = item.quantity,
+                    price = item.price,
+                    product_id = this.productService.GetProductIdByName(item.selected_productName,this.User.Identity.GetUserId())
+
+                });
+            }
+
+
+            //return JavaScript("window.location='/Index/Home'");
+             return RedirectToAction("Index","Home");
+            //  return Json(Url.Action("Index", "Home"));
+        }
+
+       /* [HttpPost]
+
+        //tyka e problema !!!
+        //mai trqbva kato input da e obekt ot AnnouncementInfo
+        public ActionResult AddNewAnnouncement(List<ProductInfo> inputModel, string title, DateTime arrive_date)
+
+        {
+            AnnouncementInfo ai = new AnnouncementInfo();
+
+
+
+            if (!this.ModelState.IsValid)
+            {
+                return View(ai);
+            }
+
+
+            // AnnouncementInfo ai = new AnnouncementInfo();
+
+            //  ai.remainingProducts = inputModel;
+
+
             AnnouncementDTO announcementToInsert = new AnnouncementDTO();
             announcementToInsert.title = title;
             announcementToInsert.publish_date = DateTime.Now;
@@ -108,18 +165,18 @@ namespace ProductsDistribution.Controllers
                 this.AnnouncementToProductService.AddNewAnnouncementToProduct(new AnnouncementToProductDTO()
                 {
                     announcement_id = addedAnnouncementID,
-                   // arrive_date = item.arrive_date,
+                    // arrive_date = item.arrive_date,
                     max_quantity = item.quantity,
                     price = item.price,
-                    product_id = this.productService.GetProductIdByName(item.selected_productName,this.User.Identity.GetUserId())
+                    product_id = this.productService.GetProductIdByName(item.selected_productName, this.User.Identity.GetUserId())
 
                 });
             }
 
 
 
-            return RedirectToAction("Index","Home");
-          //  return Json(Url.Action("Index", "Home"));
-        }
+            return RedirectToAction("Index", "Home");
+            //  return Json(Url.Action("Index", "Home"));
+        }*/
     }
 }

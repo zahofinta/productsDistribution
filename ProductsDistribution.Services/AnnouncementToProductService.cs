@@ -31,7 +31,7 @@ namespace ProductsDistribution.Services
                 max_quantity = announcementToProduct.max_quantity,
                 product_id = announcementToProduct.product_id,
                 price = announcementToProduct.price,
-                arrive_date = announcementToProduct.arrive_date
+               // arrive_date = announcementToProduct.arrive_date
 
             };
         }
@@ -44,7 +44,7 @@ namespace ProductsDistribution.Services
                 max_quantity = announcementToProduct.max_quantity,
                 product_id = announcementToProduct.product_id,
                 price = announcementToProduct.price,
-                arrive_date = announcementToProduct.arrive_date
+                //arrive_date = announcementToProduct.arrive_date
                 
                
             };
@@ -76,7 +76,7 @@ namespace ProductsDistribution.Services
             announcementToProductToUpdate.max_quantity = announcementToProduct.max_quantity;
             announcementToProductToUpdate.product_id = announcementToProduct.product_id;
             announcementToProductToUpdate.price = announcementToProduct.price;
-            announcementToProductToUpdate.arrive_date = announcementToProduct.arrive_date;
+           // announcementToProductToUpdate.arrive_date = announcementToProduct.arrive_date;
             this.announcementToProductRepository.Update(announcementToProductToUpdate);
         }
     }

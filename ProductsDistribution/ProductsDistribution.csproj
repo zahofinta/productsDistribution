@@ -225,7 +225,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
-    <Compile Include="Models\InputModels\AddedProductsToAnnouncement.cs" />
+    <Compile Include="Models\InputModels\ProductInfo.cs" />
     <Compile Include="Models\InputModels\AnnouncementInfo.cs" />
     <Compile Include="Models\InputModels\AnnouncementInfoInputModel.cs" />
     <Compile Include="Models\InputModels\AnnouncementInputModel.cs" />
@@ -361,7 +361,9 @@
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="packages.config" />
+    <None Include="packages.config">
+      <SubType>Designer</SubType>
+    </None>
     <Content Include="Scripts\jquery-1.10.2.min.map" />
   </ItemGroup>
   <ItemGroup>

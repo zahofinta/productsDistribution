@@ -27,15 +27,32 @@
             padding: 0.3em;
         }
     </style>*@
-
+<button class="add-announcement" onclick="AddTextBox()">
+    Добави
+</button>
 
 
 @using (Html.BeginForm(null,null,FormMethod.Post,new { name = "AnnouncementToPost", id="AnnouncementToPost"}))
 {
 
-    <button class="add-announcement" onclick="AddTextBox()">
-        Добави
-    </button>
+
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.arrive_date, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.arrive_date, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.arrive_date, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.title, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.title, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.title, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
     <div id="announcementForm">
 
         <table id="announcements">
@@ -79,7 +96,7 @@
 
     <div class="form-group">
         <div class="col-md-offset-2 col-md-10">
-            <input type="submit" value="Изпрати" class="btn btn-default" id="submitButton" />
+            <input type="submit" value="Изпрати" class="btn btn-default" id="submitButton" onclick='window.location = "@Url.Action("Index", "Home")"' />
         </div>
     </div>
 }
@@ -106,23 +123,23 @@
     </script>*@
     <script>
 
-        $('.add-announcement').click(function () {
+        //$('.add-announcement').click(function () {
 
-            $.ajax({
-                url: "/Announcement/AddNewAnnouncement",
-                type: "GET",
-                cache: false,
-                success: function (html) {
+        //    $.ajax({
+        //        url: "/Announcement/AddNewAnnouncement",
+        //        type: "GET",
+        //        cache: false,
+        //        success: function (html) {
+
+        //            // $("#forms").append(div);
+        //            // var content = $('#announcement').html();
+        //            //  $('#forms').append(html);
 
 
-                    // var content = $('#announcement').html();
-                    //  $('#forms').append(html);
-
-
-                }
-            });
-            return false;
-        });
+        //        }
+        //    });
+        //    return false;
+        //});
 
     </script>
 
@@ -143,13 +160,15 @@
             div.append(button);
 
 
-
-
             return div;
         }
         function AddTextBox() {
             var div = GetDynamicTextBox();
+
+           
+
             $("#forms").append(div);
+
 
         }
 
@@ -166,53 +185,12 @@
         $(document).ready(function () {
 
 
-            //$('.ddlProducer').change(function () {
-            //    $.ajax({
-            //        type: "post",
-            //        url: "/Announcement/LoadProductNamesByProducerNameAndUserId",
-            //        data: { producerName: $('.ddlProducer').val() },
-            //        datatype: "json",
-            //        traditional: true,
-            //        success: function (data) {
-
-            //            var products = "<select id='ddlProducts'>";
-
-            //            products = products + '<option value=""></option>';
-            //            for (var i = 0; i < data.length; i++) {
-            //                products = products + '<option value=' + data[i] + '>' + data[i] + '</option>';
-            //            }
-            //            products = products + '</select>';
-
-            //            $('.ddlProducer').closest('.announcementForm').find('.ddlProduct').html(products);
-            //          //  $('.ddlProducer').closest('.announcementForm').find('.ddlProduct').html(products);
-            //            //nai-blizkiq vtori dropdown do izbraniq purvi
-            //        }
-
-
-            //    });
-
-
-            //});
+          
 
             $(document).on("change", ".ddlProducer", function (e) {
                 var _this = $(this);
 
-                //// to do  :Change below url variable value as needed for your code
-                //var urlToGetSecondDropDownData = "/Announcement/LoadProductNamesByProducerNameAndUserId";
-
-                //$.post(urlToGetSecondDropDownData,
-                //    function (data) {
-                //        var items = "";
-                //        $.each(data,
-                //            function (index, item) {
-                //                items += "<option value='" + item.Value + "'>"
-                //                    + item.Text + "</option>";
-                //            });
-                //        _this.closest(".announcementForm")                // Get the same table row
-                //            .find(".ddlProduct")  // Find the second dropdown
-                //            .html(items);                 // update the content of it
-
-                //    }); // var v = _this.val();
+               
 
 
                 $.ajax({
@@ -251,116 +229,102 @@
     </script>
 
     <script>
+        $(document).ready(function () {
 
-        function GetValuesFromForm()
-        {
-            var items = new Array();
-            //var arrive_date = $('#arrive_date').val();
-            //var producer = $('#combobox').val();
-            //var product = $('.ddlProduct').val();
-            //var quantity = $('#quantity').val();
-            //var price = $('#price').val();
+            function GetValuesFromForm() {
+                var items = new Array();
+
+                $('.announcementForm').each(function (index) {
+
+                    //var arrive_date = $(this).find('#arrive_date').val();
+                    //var producer = $(this).find('#combobox').attr('value');
+                    var producer = $(this).find('#combobox option:selected').text();
+                    //  var product = $(this).find('#productCombobox').attr('value');
+                    var product = $(this).find('#productCombobox option:selected').text();
+                    var quantity = $(this).find('#quantity').val();
+                    var price = $(this).find('#price').val();
+
+                    var item = {
+
+                        quantity: quantity,
+                        price: price,
+                        selected_producerName: producer,
+                        selected_productName: product
+
+                    };
+                    items.push(item);
+
+                });
+
+                return items;
+            }
 
 
-            //var item = {
-            //    arrive_date: arrive_date,
-            //    quantity: quantity,
-            //    price: price,
-            //    selected_producerName: producer,
-            //    selected_productName: product
+            
+            $("#AnnouncementToPost").submit(function (e) {
 
-            //};
-            //items.push(item);
-            //var i = 0;
-            $('.announcementForm').each(function (index) {
+                e.preventDefault();
+               // e.stopImmediatePropagation();
+                var items = GetValuesFromForm();
 
-                //  i++;
-                //  $(this).attr("id", "announcementInfoForm" + i);
 
-                var arrive_date = $(this).find('#arrive_date').val();
-                var producer = $(this).find('#combobox').val();
-                var product = $(this).find('#productCombobox').val()
-                var quantity = $(this).find('#quantity').val();
-                var price = $(this).find('#price').val();
-
-                var item = {
-                    arrive_date: arrive_date,
-                    quantity: quantity,
-                    price: price,
-                    selected_producerName: producer,
-                    selected_productName: product
+                var announcementInfoModel = {
+                    arrive_date: $('#arrive_date').val(),
+                    title: $('#title').val(),
+                    remainingProducts: items
 
                 };
-                items.push(item);
+                $.ajax({
+                    url: '/Announcement/AddNewAnnouncement',
+                    type: 'POST',
+                    dataType: 'json',
+                    data: { inputModel: announcementInfoModel },
+                    async: false,
+                    success: function (data) {
+                        // console.log(data);
+                        //   alert(data);
+                       
+
+                    },
+                    error: function (xhr, textStatus, exceptionThrown) { alert(JSON.parse(xhr.responseText)); }
+                });
+
 
             });
+            
+        
 
-            return items;
-        }
+            /*
+            $("#submitButton").click(function (e) {
+                  e.preventDefault();
+                 // e.stopImmediatePropagation();
+                  var items = GetValuesFromForm();
+                
 
+                  var announcementInfoModel = {
+                      arrive_date: $('#arrive_date').val(),
+                      title: $('#title').val(),
+                      remainingProducts: items
 
+                  };
+                $.ajax({
+                    url: '/Announcement/AddNewAnnouncement',
+                    type: 'POST',
+                    dataType: 'json',
+                    data: { inputModel: announcementInfoModel },
+                    async: false,
+                    success: function (data) {
+                        // console.log(data);
+                        //   alert(data);
+ 
 
-
-
-        $("#submitButton").click(function (e) {
-            e.preventDefault();
-            var items = GetValuesFromForm();
-            //var items = new Array();
-            ////var arrive_date = $('#arrive_date').val();
-            ////var producer = $('#combobox').val();
-            ////var product = $('.ddlProduct').val();
-            ////var quantity = $('#quantity').val();
-            ////var price = $('#price').val();
-
-
-            ////var item = {
-            ////    arrive_date: arrive_date,
-            ////    quantity: quantity,
-            ////    price: price,
-            ////    selected_producerName: producer,
-            ////    selected_productName: product
-
-            ////};
-            ////items.push(item);
-            ////var i = 0;
-            //$('.announcementForm').each(function (index) {
-
-            //    //  i++;
-            //    //  $(this).attr("id", "announcementInfoForm" + i);
-
-            //    var arrive_date = $(this).find('#arrive_date').val();
-            //    var producer = $(this).find('#combobox').val();
-            //    var product = $(this).find('#productCombobox').val()
-            //    var quantity = $(this).find('#quantity').val();
-            //    var price = $(this).find('#price').val();
-
-            //    var item = {
-            //        arrive_date: arrive_date,
-            //        quantity: quantity,
-            //        price: price,
-            //        selected_producerName: producer,
-            //        selected_productName: product
-
-            //    };
-            //    items.push(item);
-
-            //});
-            $.ajax({
-                url: '/Announcement/AddNewAnnouncement',
-                type: 'POST',
-                dataType: 'json',
-                data: { inputModel: items },
-                async:false,
-                success: function (data) {
-                   // console.log(data);
-                    //   alert(data);
-
-                   // window.location.href=@Url.Action("Index", "Home");
-                   
-                },
-                error: function (xhr, textStatus, exceptionThrown) { alert(JSON.parse(xhr.responseText)); }
+                    },
+                    error: function (xhr, textStatus, exceptionThrown) { alert(JSON.parse(xhr.responseText)); }
+                  });
+                
             });
-
+            */
+            
         });
 
     </script>
