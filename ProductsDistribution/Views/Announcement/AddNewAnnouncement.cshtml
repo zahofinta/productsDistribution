@@ -28,14 +28,15 @@
         }
     </style>*@
 <button class="add-announcement" onclick="AddTextBox()">
-    Добави
+    Добави продукт
 </button>
 
 
-@using (Html.BeginForm(null,null,FormMethod.Post,new { name = "AnnouncementToPost", id="AnnouncementToPost"}))
+@using (Html.BeginForm(null, null, FormMethod.Post, new { name = "AnnouncementToPost", id = "AnnouncementToPost" }))
 {
 
-
+    @Html.AntiForgeryToken()
+    HtmlHelper.UnobtrusiveJavaScriptEnabled = false;
 
     <div class="form-group">
         @Html.LabelFor(model => model.arrive_date, htmlAttributes: new { @class = "control-label col-md-2" })
@@ -92,11 +93,11 @@
     </div>
 
 
-
+    /* onclick='window.location = "@Url.Action("Index", "Home")"' */
 
     <div class="form-group">
         <div class="col-md-offset-2 col-md-10">
-            <input type="submit" value="Изпрати" class="btn btn-default" id="submitButton" onclick='window.location = "@Url.Action("Index", "Home")"' />
+            <input type="submit" value="Изпрати" class="btn btn-default" id="submitButton"  />
         </div>
     </div>
 }
@@ -105,10 +106,14 @@
 @section scripts
 {
 
-    @*<script src="@Url.Content("~/Scripts/jquery.autocomplete.js")"></script>
-        <script src="@Url.Content("~/Scripts/jquery-ui.js")"></script>
-        <script src="@Url.Content("~/Scripts/GenerateComboBox.js")"></script>*@
+@Scripts.Render("~/bundles/jqueryval")
+@Scripts.Render("~/bundles/custom-validator")
 
+@*@<script src="@Url.Content("~/Scripts/jquery.autocomplete.js")"></script>
+        <script src="@Url.Content("~/Scripts/jquery-ui.js")"></script>
+        <script src="@Url.Content("~/Scripts/GenerateComboBox.js")"></script> *@
+
+<script src="@Url.Content("~/Scripts/script-custom-validator.js")"></script>
 
 
 
@@ -121,6 +126,13 @@
         });
 
     </script>*@
+ 
+        
+
+
+
+
+
     <script>
 
         //$('.add-announcement').click(function () {
@@ -149,13 +161,30 @@
             //var uniqueId = 0;
             var div = $("<div />");
             //uniqueId++;
-
-
+            //$('#announcementForm').find('.text-danger').empty();
             var textBox = $('#announcementForm').html();
+            
+            /*
+            var textBox = jQuery.validator.format($.trim($("#announcementForm").html()));
+
+            $('#comobox,#productCombobox,#title,#arrive_date,#quantity,#price').each(function () {
+                $(this).rules("add", {
+                    required: true
+                });
+            });
+
+            $("#AnnouncementToPost").validate({
+                rules: {
+                    title: "required"
+                   
+                }
+            }); 
+            */
 
             div.append(textBox);
+            
 
-            var button = $("<input />").attr("type", "button").attr("value", "Remove");
+            var button = $("<input />").attr("type", "button").attr("value", "Премахни продукт");
             button.attr("onclick", "RemoveTextBox(this)");
             div.append(button);
 
@@ -164,11 +193,12 @@
         }
         function AddTextBox() {
             var div = GetDynamicTextBox();
-
-           
+            // div.removeClass('.text-danger');
+          //  $(div).remove('.text-danger');
+            
 
             $("#forms").append(div);
-
+           // $("#forms").find('.text-danger').empty();
 
         }
 
@@ -185,12 +215,12 @@
         $(document).ready(function () {
 
 
-          
+
 
             $(document).on("change", ".ddlProducer", function (e) {
                 var _this = $(this);
 
-               
+
 
 
                 $.ajax({
@@ -231,6 +261,8 @@
     <script>
         $(document).ready(function () {
 
+           // $.validator.unobtrusive.parse("#AnnouncementToPost");
+
             function GetValuesFromForm() {
                 var items = new Array();
 
@@ -260,7 +292,7 @@
             }
 
 
-            
+
             $("#AnnouncementToPost").submit(function (e) {
 
                 e.preventDefault();
@@ -283,7 +315,7 @@
                     success: function (data) {
                         // console.log(data);
                         //   alert(data);
-                       
+
 
                     },
                     error: function (xhr, textStatus, exceptionThrown) { alert(JSON.parse(xhr.responseText)); }
@@ -291,15 +323,15 @@
 
 
             });
-            
-        
+
+
 
             /*
             $("#submitButton").click(function (e) {
                   e.preventDefault();
                  // e.stopImmediatePropagation();
                   var items = GetValuesFromForm();
-                
+
 
                   var announcementInfoModel = {
                       arrive_date: $('#arrive_date').val(),
@@ -316,16 +348,16 @@
                     success: function (data) {
                         // console.log(data);
                         //   alert(data);
- 
+
 
                     },
                     error: function (xhr, textStatus, exceptionThrown) { alert(JSON.parse(xhr.responseText)); }
                   });
-                
+
             });
             */
-            
-        });
+
+});
 
     </script>
 

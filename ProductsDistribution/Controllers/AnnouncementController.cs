@@ -89,11 +89,11 @@ namespace ProductsDistribution.Controllers
          
 
 
-          /*  if (!this.ModelState.IsValid)
+            if (!this.ModelState.IsValid)
             {
                 return View(inputModel);
             }
-            */
+            
 
 
             AnnouncementInfo ai = inputModel;
@@ -123,9 +123,9 @@ namespace ProductsDistribution.Controllers
                 });
             }
 
-
+            return RedirectToAction("Index", "Home");
             //return JavaScript("window.location='/Index/Home'");
-             return RedirectToAction("Index","Home");
+            // return View(inputModel);
             //  return Json(Url.Action("Index", "Home"));
         }
 

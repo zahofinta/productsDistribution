@@ -290,6 +290,7 @@
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
     <None Include="Scripts\_references.js" />
+    <Content Include="Scripts\script-custom-validator.js" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>

@@ -47,7 +47,7 @@ namespace ProductsDistribution.Models.InputModels
         public DateTime arrive_date { get; set; }
 
         [Required(ErrorMessage ="Заглавие на обява е задължително поле")]
-
+        [Display(Name = "Заглавие на обява  :")]
         public string title { get; set; }
 
         public ProductInfo firstProductInfo { get; set; }
