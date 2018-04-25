@@ -31,6 +31,12 @@ namespace ProductsDistribution.Controllers
             return View();
         }
 
+        public JsonResult GetCategoriesTreeView()
+        {
+            var DbResult = this.categoryService.GetAllCategories();
+            return Json(DbResult, JsonRequestBehavior.AllowGet);
+        }
+
         private IEnumerable<SelectListItem> GetParentCategories()
         {
             var categories = this.categoryService.GetAllCategoryParentNames();
@@ -151,7 +157,7 @@ namespace ProductsDistribution.Controllers
 
             ProductInputModel inputModel = new ProductInputModel
             {
-                parent_categories = GetParentCategories(),
+                //parent_categories = GetParentCategories(),
                 units = GetUnits(),
                 cuts = GetCuts()
 
@@ -162,35 +168,21 @@ namespace ProductsDistribution.Controllers
 
         }
 
+       
+
+
         [HttpPost]
+   
         public ActionResult AddNewProduct(ProductInputModel inputModel)
         {
-
-            inputModel.parent_categories = GetParentCategories();
-            inputModel.units = GetUnits();
-            inputModel.cuts = GetCuts();
-            string selected_parent_category,selected;
-            selected = "";
-            int selected_child_category_id;
-          //  string selected_parent_category = inputModel.selected_ParentCategory;
-          //  inputModel.child_categories = GetChildCategories(selected_parent_category);
+          
             if (!this.ModelState.IsValid)
             {
                 
                 return View(inputModel);
             }
 
-             selected_parent_category = inputModel.selected_ParentCategory;
-            if (selected_parent_category != "")
-            {
-                inputModel.child_categories = GetChildCategories(selected_parent_category);
-
-                selected = inputModel.selected_ChildCategory;
-                selected_child_category_id = categoryService.GetCategoryId(selected);
-
-
-                //selected = inputModel.selected_ChildCategory;
-                //selected_child_category_id = categoryService.GetCategoryId(selected);
+           
                 try
                 {
 
@@ -206,7 +198,7 @@ namespace ProductsDistribution.Controllers
                         volume = inputModel.volume,
                         weight = inputModel.weight,
                         rating = 0.0,
-                        categoryId = selected_child_category_id,
+                        categoryId = this.categoryService.GetCategoryId(inputModel.selected_category),
                         userId = this.User.Identity.GetUserId(),
                         unit = inputModel.selected_unit
 
@@ -223,7 +215,7 @@ namespace ProductsDistribution.Controllers
                     ModelState.AddModelError("product_name", "Продуктът вече съществува");
                     return View(inputModel);
                 }
-            }
+            
 
 
             return RedirectToAction("DisplayProducts");

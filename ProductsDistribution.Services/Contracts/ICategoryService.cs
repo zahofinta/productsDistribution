@@ -24,6 +24,8 @@ namespace ProductsDistribution.Services.Contracts
 
         List<string> GetAllSubCategoriesByName(string categoryName);
 
+         List<CategoryDTO> GetAllCategories();
+
         CategoryDTO GetCategoryByCategoryName(string categoryName);
 
         // CategoryDTO DeleteCategory(CategoryDTO item);

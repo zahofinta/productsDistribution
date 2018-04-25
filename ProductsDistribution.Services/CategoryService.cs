@@ -91,6 +91,12 @@ namespace ProductsDistribution.Services
             return all_category_names_and_ids;
         }
 
+        public List<CategoryDTO> GetAllCategories()
+        {
+            var all_categories = categoryRepository.GetAll().Select(x => new CategoryDTO { category_id = x.category_id, category_name = x.category_name, CategoryDTO_parent_id = x.Category_parent_id, category_description = x.category_description });
+            return all_categories.ToList();
+        }
+
         public int GetCategoryId(string categoryName)
         {
            return  CategoryRepository.GetCategoryId(categoryName);

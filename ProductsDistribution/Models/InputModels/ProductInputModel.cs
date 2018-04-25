@@ -41,22 +41,22 @@ namespace ProductsDistribution.Models.InputModels
         [Required]
         [Display(Name = "Мерна единица :")]
         public string selected_unit { get; set; }
-        [Required(ErrorMessage = "Категория е задължително поле")]
-        public string selected_ParentCategory{ get; set; }
-        [Required(ErrorMessage = "Подкатегория е задължително поле")]
-        public string selected_ChildCategory { get; set; }
+        //[Required(ErrorMessage = "Категория е задължително поле")]
+        //public string selected_ParentCategory{ get; set; }
+        
+        public string selected_category { get; set; }
 
 
         [Display(Name = "Разфасовка :")]
         public string selected_cut { get; set; }
        
 
-        [Required(ErrorMessage = "Категория е задължително поле")]
-        [Display(Name = "Kатегория :")]
-        public IEnumerable<SelectListItem> parent_categories = new List<SelectListItem>();
-        [Required(ErrorMessage = "Подкатегория е задължително поле")]
-        [Display(Name = "Подкатегория :")]
-        public IEnumerable<SelectListItem> child_categories = new List<SelectListItem>();
+        //[Required(ErrorMessage = "Категория е задължително поле")]
+        //[Display(Name = "Kатегория :")]
+        //public IEnumerable<SelectListItem> parent_categories = new List<SelectListItem>();
+        //[Required(ErrorMessage = "Подкатегория е задължително поле")]
+        //[Display(Name = "Подкатегория :")]
+        //public IEnumerable<SelectListItem> child_categories = new List<SelectListItem>();
 
         [Required(ErrorMessage = "Мерна единица е задължително поле")]
         [Display(Name = "Мерна единица :")]

@@ -109,11 +109,11 @@
 @Scripts.Render("~/bundles/jqueryval")
 @Scripts.Render("~/bundles/custom-validator")
 
-@*@<script src="@Url.Content("~/Scripts/jquery.autocomplete.js")"></script>
+@*<script src="@Url.Content("~/Scripts/jquery.autocomplete.js")"></script> 
         <script src="@Url.Content("~/Scripts/jquery-ui.js")"></script>
         <script src="@Url.Content("~/Scripts/GenerateComboBox.js")"></script> *@
 
-<script src="@Url.Content("~/Scripts/script-custom-validator.js")"></script>
+@*@<script src="@Url.Content("~/Scripts/script-custom-validator.js")"></script> *@
 
 
 
@@ -157,6 +157,12 @@
 
     <script type="text/javascript">
 
+        function resetFormValidator(formId) {
+            $(formId).removeData('validator');
+            $(formId).removeData('unobtrusiveValidation');
+            $.validator.unobtrusive.parse(formId);
+        }
+
         function GetDynamicTextBox() {
             //var uniqueId = 0;
             var div = $("<div />");
@@ -193,13 +199,24 @@
         }
         function AddTextBox() {
             var div = GetDynamicTextBox();
-            // div.removeClass('.text-danger');
-          //  $(div).remove('.text-danger');
-            
+
+
+
+
+
+         
+           // var template = jQuery.validator.format($.trim(div));
+
+          
 
             $("#forms").append(div);
-           // $("#forms").find('.text-danger').empty();
 
+            
+                
+           // $("#forms").find('.text-danger').empty();
+           // $.validator.unobtrusive.parse();
+            
+           
         }
 
         function RemoveTextBox(button) {

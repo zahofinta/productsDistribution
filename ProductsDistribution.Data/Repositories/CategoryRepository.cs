@@ -79,7 +79,7 @@ namespace ProductsDistribution.Data.Repositories
         {
             var categories = this._dbSet;
             int category_id=0;
-            if (categoryName != "")
+            if (categoryName != "" && categoryName != null)
             {
                  category_id = categories.SingleOrDefault(x => x.category_name == categoryName).category_id;
             }

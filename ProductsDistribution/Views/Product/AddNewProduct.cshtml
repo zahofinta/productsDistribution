@@ -4,7 +4,7 @@
     ViewBag.Title = "AddNewProduct";
 }
    
-
+<link href="@Url.Content("~/Content/jqx.base.css")" rel="stylesheet" type="text/css" />
 
 <h2>AddNewProduct</h2>
 
@@ -105,36 +105,46 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.parent_categories,"Категория :", htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-               
-                @Html.ValidationMessageFor(model => model.selected_ParentCategory, "", new { @class = "text-danger" }) 
-             
-               @Html.DropDownListFor(m => m.selected_ParentCategory, Model.parent_categories,"", new { @id = "ddlParentCategory" })
+          
+                <div id='content'>
+                    <div class="col-md-10">
+
+                        <div id='jqxWidget' name='selected_category'></div>
+
+                    </div>
+                </div>
+            </div>
+            @*<div class="form-group">
+                @Html.LabelFor(model => model.parent_categories,"Категория :", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+
+                    @Html.ValidationMessageFor(model => model.selected_ParentCategory, "", new { @class = "text-danger" })
+
+                   @Html.DropDownListFor(m => m.selected_ParentCategory, Model.parent_categories,"", new { @id = "ddlParentCategory" })
+                </div>
+            </div>
+
+            <div class="form-group">
+               @Html.LabelFor(model => model.child_categories,"Подкатегория :", htmlAttributes: new { @class = "control-label col-md-2" })
+
+                <div class="col-md-10" id="subcategories">
+
+                    @Html.DropDownListFor(m => m.selected_ChildCategory, Model.child_categories, new { @id = "ddlChildCategory1" })
+
+
+                    @Html.ValidationMessageFor(model => model.selected_ChildCategory, "", new { @class = "text-danger" })
+
+                </div>*@
+
+            <p id="test"></p>
+
+
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Добави" class="btn btn-default" id="submitButton" />
+                </div>
             </div>
         </div>
-
-        <div class="form-group">
-           @Html.LabelFor(model => model.child_categories,"Подкатегория :", htmlAttributes: new { @class = "control-label col-md-2" })
-
-            <div class="col-md-10" id="subcategories">
-            
-                @Html.DropDownListFor(m => m.selected_ChildCategory, Model.child_categories, new { @id = "ddlChildCategory1" })
-               
-             
-                @Html.ValidationMessageFor(model => model.selected_ChildCategory, "", new { @class = "text-danger" })
-              
-            </div>
-        </div>
-        <p id="test"></p>
-     
-
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Добави" class="btn btn-default"  id="submitButton" />
-            </div>
-        </div>
-    </div>
 }
 
 
@@ -142,7 +152,120 @@
     @Html.ActionLink("Back to List", "Index")
 </div>
 
+  
+    
+
 @section scripts {
-  <script src="@Url.Content("~/Scripts/GenerateChildCategoriesDynamically.js")"></script>
+ <script src="@Url.Content("~/Scripts/GenerateChildCategoriesDynamically.js")"></script> 
+
+
+
+
+<script src="@Url.Content("~/Scripts/demos.js")"></script>
+<script src="@Url.Content("~/Scripts/jquery-1.10.2.min.js")"></script>
+<script src="@Url.Content("~/Scripts/jqxcore.js")"></script>
+<script src="@Url.Content("~/Scripts/jqxdata.js")"></script>
+<script src="@Url.Content("~/Scripts/jqxbuttons.js")"></script>
+<script src="@Url.Content("~/Scripts/jqxscrollbar.js")"></script>
+<script src="@Url.Content("~/Scripts/jqxpanel.js")"></script>
+<script src="@Url.Content("~/Scripts/jqxtree.js")"></script>
+
+@*<script type="text/javascript">
+
+         $(document).ready(function () {
+
+             // prepare the data
+             var source =
+                 {
+                     datatype: "json",
+                     datafields: [
+                         { name: 'category_id' },
+                         { name: 'CategoryDTO_parent_id' },
+                         { name: 'category_name' },
+                         { name: 'category_description' }
+                     ],
+
+                     id: 'category_id',
+                     url: '/Product/GetCategoriesTreeView',
+                     async: false
+
+                 };
+
+             // create data adapter.
+             var dataAdapter = new $.jqx.dataAdapter(source);
+
+             // perform Data Binding.
+             dataAdapter.dataBind();
+
+
+
+
+             // get the tree items. The first parameter is the item's id. The second parameter is the parent item's id. The 'items' parameter represents
+             // the sub items collection name. Each jqxTree item has a 'label' property, but in the JSON data, we have a 'text' field. The last parameter
+             // specifies the mapping between the 'text' and 'label' fields.
+
+             var records = dataAdapter.getRecordsHierarchy('category_id', 'CategoryDTO_parent_id', 'items', [{ name: 'category_name', map: 'label' }]);
+
+             $('#jqxWidget').jqxTree({ source: records, width: '300px' });
+
+             var selected;
+               //  var item = $('#jqxWidget').jqxTree('getItem');
+               //  alert("Value: " + item.value + "; Text: " + item.label);
+
+                 $('#jqxWidget').on('select', function (event) {
+                     var args = event.args;
+                     var item = $('#jqxWidget').jqxTree('getItem', args.element);
+                    // alert("Value: " + item.value + "; Text: " + item.label);
+
+                     selected = item.label;
+                     //alert(selected);
+                     //$('#submitButton').click(function (e) {
+
+                     //  //  e.preventDefault();
+                     //    $.ajax({
+                     //        type: 'POST',
+                     //        url: "/Product/AddNewProduct",
+                     //        data: { test: item.label},
+                     //        traditional: true,
+                     //        contentType: 'application/json; charset=utf-8',
+
+                     //        success: function (data) {
+
+                     //         //   alert("Value: " + item.value + "; Text: " + item.label);
+
+                     //           // alert(this.data);
+
+                     //        }
+
+                     //        });
+                     //});
+                 });
+
+            // alert($('#jqxWidget').val());
+                 $('#submitButton').click(function (e) {
+                  
+                     //alert(item);
+                   //  e.preventDefault();
+                    
+                 //e.preventDefault();
+             $.ajax({
+                 type: 'POST',
+                 url: "/Product/AddNewProduct",
+                 data: { test: selected },
+                 traditional: true,
+                 contentType: 'application/json; charset=utf-8',
+
+                 success: function (data) {
+
+                     alert("Value: " + item.value + "; Text: " + item.label);
+
+                    // alert(this.data);
+
+                 }
+
+                 });
+             });
+         });
+</script>*@  
 
 }
