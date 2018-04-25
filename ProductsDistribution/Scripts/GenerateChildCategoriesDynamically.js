@@ -99,7 +99,9 @@ $(document).ready(function () {
        
     });
 
-   
+    $('#jqxbutton').click(function () {
+        $("#jqxWidget").jqxTree('selectItem', null);
+    });
 
  
 

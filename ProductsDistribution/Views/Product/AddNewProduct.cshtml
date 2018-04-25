@@ -3,145 +3,180 @@
 @{
     ViewBag.Title = "AddNewProduct";
 }
-   
+
 <link href="@Url.Content("~/Content/jqx.base.css")" rel="stylesheet" type="text/css" />
+<style type="text/css">
+    .text-input {
+        height: 21px;
+        width: 200px;
+    }
 
-<h2>AddNewProduct</h2>
+    .register-table {
+        margin-top: 10px;
+        margin-bottom: 10px;
+    }
+
+        .register-table td,
+        .register-table tr {
+            margin: 0px;
+            padding: 2px;
+            border-spacing: 0px;
+            border-collapse: collapse;
+            font-family: Verdana;
+            font-size: 12px;
+        }
+
+    h3 {
+        display: inline-block;
+        margin: 0px;
+    }
+</style>
 
 
-@using (Html.BeginForm())
+
+
+
+<h2>Добави нов продукт</h2>
+
+
+@using (Html.BeginForm(null, null, FormMethod.Post, new { name = "ProductToPost", id = "ProductToPost" }))
 {
     @Html.AntiForgeryToken()
 
-    <div class="form-horizontal">
-        <h4>ProductInputModel</h4>
-        <hr />
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        <div class="form-group">
-            @Html.LabelFor(model => model.product_name, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.product_name, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.product_name, "", new { @class = "text-danger" })
-            </div>
-        </div>
+    
+        <div class="form-horizontal">
+            <jqx-validator settings="elementSettings">
+                <h4></h4>
+                <hr />
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                <div class="form-group">
+                    @Html.LabelFor(model => model.product_name, htmlAttributes: new { @class = "control-label col-md-2 productname" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.product_name, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.product_name, "", new { @class = "text-danger" })
+                    </div>
+                </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.product_description, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.product_description, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.product_description, "", new { @class = "text-danger" })
-            </div>
-        </div>
+                <div class="form-group">
+                    @Html.LabelFor(model => model.product_description, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.product_description, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.product_description, "", new { @class = "text-danger" })
+                    </div>
+                </div>
 
-        @*<div class="form-group">
-            @Html.LabelFor(model => model.cut, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.cut, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.cut, "", new { @class = "text-danger" })
-            </div>
-        </div>*@
+                @*<div class="form-group">
+                @Html.LabelFor(model => model.cut, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.cut, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.cut, "", new { @class = "text-danger" })
+                </div>
+            </div>*@
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.cuts, "Разфасовка :", htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-
-                @Html.ValidationMessageFor(model => model.selected_cut, "", new { @class = "text-danger" })
-
-                @Html.DropDownListFor(m => m.selected_cut, Model.cuts, "", new { @id = "cut" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.weight, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.weight, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.weight, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.volume, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.volume, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.volume, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        @*<div class="form-group">
-            @Html.LabelFor(model => model.price, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.price, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.price, "", new { @class = "text-danger" })
-            </div>
-        </div>*@
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.units, "Мерна единица :", htmlAttributes: new { @class = "control-label col-md-2" })
-
-            <div class="col-md-10" id="subcategories">
-
-                @Html.DropDownListFor(m => m.selected_unit, Model.units, "", new { @id = "selectedUnit" })
-
-
-                @Html.ValidationMessageFor(model => model.selected_unit, "", new { @class = "text-danger" })
-
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.durability, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.durability, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.durability, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.other, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.other, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.other, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-          
-                <div id='content'>
+                <div class="form-group">
+                    @Html.LabelFor(model => model.cuts, "Разфасовка :", htmlAttributes: new { @class = "control-label col-md-2" })
                     <div class="col-md-10">
 
-                        <div id='jqxWidget' name='selected_category'></div>
+                        @Html.ValidationMessageFor(model => model.selected_cut, "", new { @class = "text-danger" })
+
+                        @Html.DropDownListFor(m => m.selected_cut, Model.cuts, "", new { @id = "cut" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.weight, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.weight, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.weight, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.volume, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.volume, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.volume, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                @*<div class="form-group">
+                @Html.LabelFor(model => model.price, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.price, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.price, "", new { @class = "text-danger" })
+                </div>
+            </div>*@
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.units, "Мерна единица :", htmlAttributes: new { @class = "control-label col-md-2" })
+
+                    <div class="col-md-10" id="subcategories">
+
+                        @Html.DropDownListFor(m => m.selected_unit, Model.units, "", new { @id = "selectedUnit" })
+
+
+                        @Html.ValidationMessageFor(model => model.selected_unit, "", new { @class = "text-danger" })
 
                     </div>
                 </div>
-            </div>
-            @*<div class="form-group">
-                @Html.LabelFor(model => model.parent_categories,"Категория :", htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
 
-                    @Html.ValidationMessageFor(model => model.selected_ParentCategory, "", new { @class = "text-danger" })
-
-                   @Html.DropDownListFor(m => m.selected_ParentCategory, Model.parent_categories,"", new { @id = "ddlParentCategory" })
+                <div class="form-group">
+                    @Html.LabelFor(model => model.durability, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.durability, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.durability, "", new { @class = "text-danger" })
+                    </div>
                 </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.other, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.other, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.other, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+
+                <div class="form-group">
+                    <b style="position:relative;margin-left:7em; top:20px;">Категория:</b><div id='content' class="col-md-offset-2">
+                        <div class="col-md-10">
+
+                            <div id='jqxWidget' name='selected_category'></div>
+
+                        </div>
+                        <input type="button" style="margin: 10px;" id="jqxbutton" value=" Изчисти избраната категория" />
+                    </div>
+
+                </div>
+            </jqx-validator>
+    @*<div class="form-group">
+            @Html.LabelFor(model => model.parent_categories,"Категория :", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+
+                @Html.ValidationMessageFor(model => model.selected_ParentCategory, "", new { @class = "text-danger" })
+
+               @Html.DropDownListFor(m => m.selected_ParentCategory, Model.parent_categories,"", new { @id = "ddlParentCategory" })
             </div>
+        </div>
 
-            <div class="form-group">
-               @Html.LabelFor(model => model.child_categories,"Подкатегория :", htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="form-group">
+           @Html.LabelFor(model => model.child_categories,"Подкатегория :", htmlAttributes: new { @class = "control-label col-md-2" })
 
-                <div class="col-md-10" id="subcategories">
+            <div class="col-md-10" id="subcategories">
 
-                    @Html.DropDownListFor(m => m.selected_ChildCategory, Model.child_categories, new { @id = "ddlChildCategory1" })
+                @Html.DropDownListFor(m => m.selected_ChildCategory, Model.child_categories, new { @id = "ddlChildCategory1" })
 
 
-                    @Html.ValidationMessageFor(model => model.selected_ChildCategory, "", new { @class = "text-danger" })
+                @Html.ValidationMessageFor(model => model.selected_ChildCategory, "", new { @class = "text-danger" })
 
-                </div>*@
+            </div>*@
 
-            <p id="test"></p>
+    <p id="test"></p>
 
 
             <div class="form-group">
                 <div class="col-md-offset-2 col-md-10">
-                    <input type="submit" value="Добави" class="btn btn-default" id="submitButton" />
+                    <input type="submit" value="Добави" class="btn btn-default" id="submitButton"  />
                 </div>
             </div>
         </div>
@@ -152,120 +187,157 @@
     @Html.ActionLink("Back to List", "Index")
 </div>
 
-  
-    
+
+
 
 @section scripts {
- <script src="@Url.Content("~/Scripts/GenerateChildCategoriesDynamically.js")"></script> 
+    <script src="@Url.Content("~/Scripts/GenerateChildCategoriesDynamically.js")"></script>
 
 
 
 
-<script src="@Url.Content("~/Scripts/demos.js")"></script>
-<script src="@Url.Content("~/Scripts/jquery-1.10.2.min.js")"></script>
-<script src="@Url.Content("~/Scripts/jqxcore.js")"></script>
-<script src="@Url.Content("~/Scripts/jqxdata.js")"></script>
-<script src="@Url.Content("~/Scripts/jqxbuttons.js")"></script>
-<script src="@Url.Content("~/Scripts/jqxscrollbar.js")"></script>
-<script src="@Url.Content("~/Scripts/jqxpanel.js")"></script>
-<script src="@Url.Content("~/Scripts/jqxtree.js")"></script>
+    <script src="@Url.Content("~/Scripts/demos.js")"></script>
+    <script src="@Url.Content("~/Scripts/jquery-1.10.2.min.js")"></script>
+    <script src="@Url.Content("~/Scripts/jqxcore.js")"></script>
+    <script src="@Url.Content("~/Scripts/jqxdata.js")"></script>
+    <script src="@Url.Content("~/Scripts/jqxbuttons.js")"></script>
+    <script src="@Url.Content("~/Scripts/jqxscrollbar.js")"></script>
+    <script src="@Url.Content("~/Scripts/jqxpanel.js")"></script>
+    <script src="@Url.Content("~/Scripts/jqxtree.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Scripts/webcomponents-lite.min.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Scripts/jqxcore.elements.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Scripts/jqxvalidator.js")"></script>
 
-@*<script type="text/javascript">
 
+    <script type="text/javascript">
+        JQXElements.settings["elementSettings"] =
+            {
+                hintType: "label", animationDuration: 0, rules: rules, arrow: false, theme: "light"
+            }
+
+
+        var rules = [
+            { input: '#product_name', message: 'Product_name is required!', action: 'keyup, blur', rule: 'required' },
+            { input: '#userInput', message: 'Your username must be between 3 and 12 characters!', action: 'keyup, blur', rule: 'length=3,12' },
+            { input: '#passwordInput', message: 'Password is required!', action: 'keyup, blur', rule: 'required' },
+            { input: '#passwordInput', message: 'Your password must be between 4 and 12 characters!', action: 'keyup, blur', rule: 'length=4,12' },
+            { input: '#passwordConfirmInput', message: 'Password is required!', action: 'keyup, blur', rule: 'required' },
+           ];
+        JQXElements.settings["validatorSettings"] = {
+            hintType: "label", animationDuration: 0, rules: rules, arrow: false, theme: "light"
+        };
+
+        function validate() {
+            document.querySelector('jqx-validator').validate();
+            return false;
+        }
+    </script>
+<script type="text/javascript">
          $(document).ready(function () {
-
-             // prepare the data
-             var source =
-                 {
-                     datatype: "json",
-                     datafields: [
-                         { name: 'category_id' },
-                         { name: 'CategoryDTO_parent_id' },
-                         { name: 'category_name' },
-                         { name: 'category_description' }
-                     ],
-
-                     id: 'category_id',
-                     url: '/Product/GetCategoriesTreeView',
-                     async: false
-
-                 };
-
-             // create data adapter.
-             var dataAdapter = new $.jqx.dataAdapter(source);
-
-             // perform Data Binding.
-             dataAdapter.dataBind();
-
-
-
-
-             // get the tree items. The first parameter is the item's id. The second parameter is the parent item's id. The 'items' parameter represents
-             // the sub items collection name. Each jqxTree item has a 'label' property, but in the JSON data, we have a 'text' field. The last parameter
-             // specifies the mapping between the 'text' and 'label' fields.
-
-             var records = dataAdapter.getRecordsHierarchy('category_id', 'CategoryDTO_parent_id', 'items', [{ name: 'category_name', map: 'label' }]);
-
-             $('#jqxWidget').jqxTree({ source: records, width: '300px' });
-
-             var selected;
-               //  var item = $('#jqxWidget').jqxTree('getItem');
-               //  alert("Value: " + item.value + "; Text: " + item.label);
-
-                 $('#jqxWidget').on('select', function (event) {
-                     var args = event.args;
-                     var item = $('#jqxWidget').jqxTree('getItem', args.element);
-                    // alert("Value: " + item.value + "; Text: " + item.label);
-
-                     selected = item.label;
-                     //alert(selected);
-                     //$('#submitButton').click(function (e) {
-
-                     //  //  e.preventDefault();
-                     //    $.ajax({
-                     //        type: 'POST',
-                     //        url: "/Product/AddNewProduct",
-                     //        data: { test: item.label},
-                     //        traditional: true,
-                     //        contentType: 'application/json; charset=utf-8',
-
-                     //        success: function (data) {
-
-                     //         //   alert("Value: " + item.value + "; Text: " + item.label);
-
-                     //           // alert(this.data);
-
-                     //        }
-
-                     //        });
-                     //});
-                 });
-
-            // alert($('#jqxWidget').val());
-                 $('#submitButton').click(function (e) {
-                  
-                     //alert(item);
-                   //  e.preventDefault();
-                    
-                 //e.preventDefault();
-             $.ajax({
-                 type: 'POST',
-                 url: "/Product/AddNewProduct",
-                 data: { test: selected },
-                 traditional: true,
-                 contentType: 'application/json; charset=utf-8',
-
-                 success: function (data) {
-
-                     alert("Value: " + item.value + "; Text: " + item.label);
-
-                    // alert(this.data);
-
-                 }
-
-                 });
+             $('#ProductToPost').jqxValidator({
+                 rules: [
+                     { input: '#product_name', message: 'Име на продукт е задължително поле!', action: 'keyup', rule: 'required' },
+                     { input: '#product_description', message: 'Описание на продукт е задължително поле!', action: 'keyup', rule: 'required' }], theme: 'summer'
              });
          });
-</script>*@  
+</script>
+    
+    @*<script type="text/javascript">
+
+                 $(document).ready(function () {
+
+                     // prepare the data
+                     var source =
+                         {
+                             datatype: "json",
+                             datafields: [
+                                 { name: 'category_id' },
+                                 { name: 'CategoryDTO_parent_id' },
+                                 { name: 'category_name' },
+                                 { name: 'category_description' }
+                             ],
+
+                             id: 'category_id',
+                             url: '/Product/GetCategoriesTreeView',
+                             async: false
+
+                         };
+
+                     // create data adapter.
+                     var dataAdapter = new $.jqx.dataAdapter(source);
+
+                     // perform Data Binding.
+                     dataAdapter.dataBind();
+
+
+
+
+                     // get the tree items. The first parameter is the item's id. The second parameter is the parent item's id. The 'items' parameter represents
+                     // the sub items collection name. Each jqxTree item has a 'label' property, but in the JSON data, we have a 'text' field. The last parameter
+                     // specifies the mapping between the 'text' and 'label' fields.
+
+                     var records = dataAdapter.getRecordsHierarchy('category_id', 'CategoryDTO_parent_id', 'items', [{ name: 'category_name', map: 'label' }]);
+
+                     $('#jqxWidget').jqxTree({ source: records, width: '300px' });
+
+                     var selected;
+                       //  var item = $('#jqxWidget').jqxTree('getItem');
+                       //  alert("Value: " + item.value + "; Text: " + item.label);
+
+                         $('#jqxWidget').on('select', function (event) {
+                             var args = event.args;
+                             var item = $('#jqxWidget').jqxTree('getItem', args.element);
+                            // alert("Value: " + item.value + "; Text: " + item.label);
+
+                             selected = item.label;
+                             //alert(selected);
+                             //$('#submitButton').click(function (e) {
+
+                             //  //  e.preventDefault();
+                             //    $.ajax({
+                             //        type: 'POST',
+                             //        url: "/Product/AddNewProduct",
+                             //        data: { test: item.label},
+                             //        traditional: true,
+                             //        contentType: 'application/json; charset=utf-8',
+
+                             //        success: function (data) {
+
+                             //         //   alert("Value: " + item.value + "; Text: " + item.label);
+
+                             //           // alert(this.data);
+
+                             //        }
+
+                             //        });
+                             //});
+                         });
+
+                    // alert($('#jqxWidget').val());
+                         $('#submitButton').click(function (e) {
+
+                             //alert(item);
+                           //  e.preventDefault();
+
+                         //e.preventDefault();
+                     $.ajax({
+                         type: 'POST',
+                         url: "/Product/AddNewProduct",
+                         data: { test: selected },
+                         traditional: true,
+                         contentType: 'application/json; charset=utf-8',
+
+                         success: function (data) {
+
+                             alert("Value: " + item.value + "; Text: " + item.label);
+
+                            // alert(this.data);
+
+                         }
+
+                         });
+                     });
+                 });
+        </script>*@
 
 }

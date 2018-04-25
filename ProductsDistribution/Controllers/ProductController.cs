@@ -175,6 +175,8 @@ namespace ProductsDistribution.Controllers
    
         public ActionResult AddNewProduct(ProductInputModel inputModel)
         {
+            inputModel.units = GetUnits();
+            inputModel.cuts = GetCuts();
           
             if (!this.ModelState.IsValid)
             {

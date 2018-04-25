@@ -41,9 +41,9 @@ namespace ProductsDistribution.Models.InputModels
         [Required]
         [Display(Name = "Мерна единица :")]
         public string selected_unit { get; set; }
-        //[Required(ErrorMessage = "Категория е задължително поле")]
+       
         //public string selected_ParentCategory{ get; set; }
-        
+        [Required(ErrorMessage = "Категория е задължително поле")]
         public string selected_category { get; set; }
 
 
