@@ -1,67 +1,86 @@
 ﻿@model ProductsDistribution.Models.InputModels.ProducerInputModel
 
+@{
+    ViewBag.Title = "AddNewProducer";
+}
+<link href="@Url.Content("~/Content/jqx.base.css")" rel="stylesheet" type="text/css" /> 
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1 maximum-scale=1 minimum-scale=1" />
+    
 
-
-
-
-
-@using (Html.BeginForm())
+@using (Html.BeginForm(null, null, FormMethod.Post, new { name = "ProducerToPost", id = "ProducerToPost" }))
 {
     @Html.AntiForgeryToken()
 
     <div class="form-horizontal">
-        <h4>ProducerInputModel</h4>
-        <hr />
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        <div class="form-group">
-            @Html.LabelFor(model => model.producer_name, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.producer_name, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.producer_name, "", new { @class = "text-danger" })
+        <jqx-validator settings="elementSettings">
+            <h4>Добави нов производител</h4>
+            <hr />
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            <div class="form-group">
+                @Html.LabelFor(model => model.producer_name, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.producer_name, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.producer_name, "", new { @class = "text-danger" })
+                </div>
             </div>
-        </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.telephone_number, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.telephone_number, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.telephone_number, "", new { @class = "text-danger" })
+            <div class="form-group">
+                @Html.LabelFor(model => model.telephone_number, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.telephone_number, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.telephone_number, "", new { @class = "text-danger" })
+                </div>
             </div>
-        </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.producer_address, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.producer_address, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.producer_address, "", new { @class = "text-danger" })
+            <div class="form-group">
+                @Html.LabelFor(model => model.producer_address, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.producer_address, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.producer_address, "", new { @class = "text-danger" })
+                </div>
             </div>
-        </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.producer_email, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.producer_email, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.producer_email, "", new { @class = "text-danger" })
+            <div class="form-group">
+                @Html.LabelFor(model => model.producer_email, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.producer_email, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.producer_email, "", new { @class = "text-danger" })
+                </div>
             </div>
-        </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.products,"Продукти :", htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
+            @*<div class="form-group">
+                @Html.LabelFor(model => model.products,"Продукти :", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
 
-                @Html.ValidationMessageFor(model => model.selected_products, "", new { @class = "text-danger" })
+                    @Html.ValidationMessageFor(model => model.selected_products, "", new { @class = "text-danger" })
 
-                @Html.DropDownListFor(m => m.selected_products, Model.products, new { @multiple = "multiple", @placeholder = "Моля изберете продукти", @class = "ddlMultiSlectBox" })
-              
+                    @Html.DropDownListFor(m => m.selected_products, Model.products, new { @multiple = "multiple", @placeholder = "Моля изберете продукти", @class = "ddlMultiSlectBox" })
+
+                </div>
+            </div>*@
+         
+            <div id='content'>
+
+                <div>
+                    <div style='float: left;' id='jqxWidget'>
+                    </div>
+                    <div style="float: left; margin-left: 20px; font-size: 13px; font-family: Verdana;">
+                        <div id="selectionlog"></div>
+                        <div style='max-width: 300px; margin-top: 20px;' id="checkedItemsLog"></div>
+                    </div>
+
+                </div>
+
             </div>
-        </div>
 
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-default" />
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Create" class="btn btn-default" />
+                </div>
             </div>
-        </div>
-    </div>
+            </jqx-validator>
+</div>
 }
 
 <div>
@@ -70,13 +89,99 @@
 
 
 @section scripts {
+<script src="@Url.Content("~/Scripts/jquery-1.10.2.min.js")"></script>
+<script src="@Url.Content("~/Scripts/demos.js")"></script>
+<script src="@Url.Content("~/Scripts/jqxcore.js")"></script>
 
 
-<script src="../../Scripts/jquery.sumoselect.js" type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/jqxdata.js")"></script>
+<script src="@Url.Content("~/Scripts/jqxbuttons.js")"></script>
+<script src="@Url.Content("~/Scripts/jqxscrollbar.js")"></script>
+
+<script src="@Url.Content("~/Scripts/jqxlistbox.js")"></script>
+<script src="@Url.Content("~/Scripts/jqxdropdownlist.js")"></script>
+<script src="@Url.Content("~/Scripts/jqxcheckbox.js")"></script>
+
+<script type="text/javascript" src="@Url.Content("~/Scripts/webcomponents-lite.min.js")"></script>
+<script type="text/javascript" src="@Url.Content("~/Scripts/jqxcore.elements.js")"></script>
+<script type="text/javascript" src="@Url.Content("~/Scripts/jqxvalidator.js")"></script>
+
+<script type="text/javascript">
+         JQXElements.settings["elementSettings"] =
+             {
+                 hintType: "label", animationDuration: 0, rules: rules, arrow: false, theme: "light"
+             }
+
+
+         var rules = [
+             { input: '#product_name', message: 'Product_name is required!', action: 'keyup, blur', rule: 'required' },
+             { input: '#userInput', message: 'Your username must be between 3 and 12 characters!', action: 'keyup, blur', rule: 'length=3,12' },
+             { input: '#passwordInput', message: 'Password is required!', action: 'keyup, blur', rule: 'required' },
+             { input: '#passwordInput', message: 'Your password must be between 4 and 12 characters!', action: 'keyup, blur', rule: 'length=4,12' },
+             { input: '#passwordConfirmInput', message: 'Password is required!', action: 'keyup, blur', rule: 'required' },
+         ];
+         JQXElements.settings["validatorSettings"] = {
+             hintType: "label", animationDuration: 0, rules: rules, arrow: false, theme: "light"
+         };
+
+         function validate() {
+             document.querySelector('jqx-validator').validate();
+             return false;
+         }
+</script>
+<script type="text/javascript">
+         $(document).ready(function () {
+             $('#ProducerToPost').jqxValidator({
+                 rules: [
+                     { input: '#producer_name', message: 'Име на производител е задължително поле!', action: 'keyup', rule: 'required' },
+                     { input: '#telephone_number', message: 'Телефонен номер е задължително поле!', action: 'keyup', rule: 'required' },
+                     { input: '#producer_email', message: 'И-мейл е задължително поле!', action: 'keyup', rule: 'required' },                   
+                     { input: '#producer_address', message: 'Адрес е задължително поле!', action: 'keyup', rule: 'required' },
+
+
+
+                 ], theme: 'summer'
+             });
+         });
+</script>
+
+<script type="text/javascript">
+         $(document).ready(function () {
+            
+             // prepare the data
+             var source =
+                 {
+                     datatype: "json",
+                     datafields: [
+                         { name: 'product_id' },
+                         { name: 'product_name' },
+                         { name: 'weight' },
+                         { name: 'volume' },
+                         { name: 'durability' },
+                         { name: 'rating' },
+                         { name: 'categoryId'}
+                    
+                     ],
+                     id: 'product_id',
+                     url: '/Producer/GetCurrentUserProducts',
+                     async: false
+                 };
+             var dataAdapter = new $.jqx.dataAdapter(source);
+             // Create a jqxDropDownList
+             $("#jqxWidget").jqxDropDownList({ checkboxes: true, source: dataAdapter, displayMember: "product_name", valueMember: "product_name", width: 200, height: 25 });
+             $("#jqxWidget").jqxDropDownList('checkIndex', 0);
+             var items = $("#jqxWidget").jqxDropDownList('getCheckedItems');
+             // subscribe to the checkChange event.
+             
+             
+         });
+</script>
+
+@*<script src="../../Scripts/jquery.sumoselect.js" type="text/javascript"></script>
 <link href="../../Content/dropdownliststyle.css" rel="stylesheet" type="text/css" />
 <script type="text/javascript">
     $(document).ready(function () {
         window.asd = $('.ddlMultiSlectBox').SumoSelect({ csvDispCount: 4 });
     });
-</script>
+</script>*@
 }

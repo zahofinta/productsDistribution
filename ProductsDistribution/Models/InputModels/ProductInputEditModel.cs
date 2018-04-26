@@ -31,34 +31,34 @@ namespace ProductsDistribution.Models.InputModels
         [Display(Name = "Обем :")]
         public double volume { get; set; }
         //[Required]
-        //[Min(0.1, ErrorMessage = "Въведете цена по-голяма от 0.1")]
-        //[Display(Name = "Цена :")]
-        //public double price { get; set; }
+
         [DataType(DataType.Date)]
         [Display(Name = "Трайност :")]
+        //[Display(Name = "Трайност"),DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:MM/dd/yy H:mm:ss tt}")]
         public DateTime durability { get; set; }
+
         [Display(Name = "Допълнение към описанието :")]
         public string other { get; set; }
 
         [Required]
         [Display(Name = "Мерна единица :")]
         public string selected_unit { get; set; }
+
+        //public string selected_ParentCategory{ get; set; }
         [Required(ErrorMessage = "Категория е задължително поле")]
-        public string selected_ParentCategory { get; set; }
-        [Required(ErrorMessage = "Подкатегория е задължително поле")]
-        public string selected_ChildCategory { get; set; }
+        public string selected_category { get; set; }
 
 
         [Display(Name = "Разфасовка :")]
         public string selected_cut { get; set; }
 
 
-        [Required(ErrorMessage = "Категория е задължително поле")]
-        [Display(Name = "Kатегория :")]
-        public IEnumerable<SelectListItem> parent_categories = new List<SelectListItem>();
-        [Required(ErrorMessage = "Подкатегория е задължително поле")]
-        [Display(Name = "Подкатегория :")]
-        public IEnumerable<SelectListItem> child_categories = new List<SelectListItem>();
+        //[Required(ErrorMessage = "Категория е задължително поле")]
+        //[Display(Name = "Kатегория :")]
+        //public IEnumerable<SelectListItem> parent_categories = new List<SelectListItem>();
+        //[Required(ErrorMessage = "Подкатегория е задължително поле")]
+        //[Display(Name = "Подкатегория :")]
+        //public IEnumerable<SelectListItem> child_categories = new List<SelectListItem>();
 
         [Required(ErrorMessage = "Мерна единица е задължително поле")]
         [Display(Name = "Мерна единица :")]

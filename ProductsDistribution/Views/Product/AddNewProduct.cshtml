@@ -112,10 +112,10 @@
 
                     <div class="col-md-10" id="subcategories">
 
-                        @Html.DropDownListFor(m => m.selected_unit, Model.units, "", new { @id = "selectedUnit" })
+                        @Html.DropDownListFor(m => m.selected_unit, Model.units, new { @id = "selectedUnit" })
 
 
-                        @Html.ValidationMessageFor(model => model.selected_unit, "", new { @class = "text-danger" })
+                        @Html.ValidationMessageFor(model => model.selected_unit,"", new { @class = "text-danger" })
 
                     </div>
                 </div>
@@ -191,7 +191,7 @@
 
 
 @section scripts {
-    <script src="@Url.Content("~/Scripts/GenerateChildCategoriesDynamically.js")"></script>
+    <script src="@Url.Content("~/Scripts/GenerateJqxTree.js")"></script>
 
 
 
@@ -237,7 +237,27 @@
              $('#ProductToPost').jqxValidator({
                  rules: [
                      { input: '#product_name', message: 'Име на продукт е задължително поле!', action: 'keyup', rule: 'required' },
-                     { input: '#product_description', message: 'Описание на продукт е задължително поле!', action: 'keyup', rule: 'required' }], theme: 'summer'
+                     { input: '#product_description', message: 'Описание на продукт е задължително поле!', action: 'keyup', rule: 'required' },
+                     { input: '#weight', message: 'Тегло е задължително поле!', action: 'keyup', rule: 'required' },
+                     {
+                         input: '#weight', message: 'Полето тегло трябва да е число !', action: 'keyup', rule: function () {
+                             var value = $("#weight").val();
+                             var result = !isNaN(value);
+                             return result;
+                         } },
+                     { input: '#volume', message: 'Обем е задължително поле!', action: 'keyup', rule: 'required' },
+                     {
+                         input: '#volume', message: 'Полето обем трябва да е число!', action: 'keyup', rule: function () {
+                             var value = $("#volume").val();
+                             var result = !isNaN(value);
+                             return result;
+                         }
+                     },
+                     { input: '#jqxWidget', message: 'Категория е задължително поле!', action: 'blur', rule: 'required' },
+                     
+                         
+                     
+                 ], theme: 'summer'
              });
          });
 </script>

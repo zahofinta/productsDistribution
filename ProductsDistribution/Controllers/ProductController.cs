@@ -101,7 +101,6 @@ namespace ProductsDistribution.Controllers
                 selected_unit = product.unit,
                 durability = product.durability,
                 weight = product.weight,
-                parent_categories = GetParentCategories(),
                 userId = product.userId,
                 units = GetUnits(),
                 cuts = GetCuts()
@@ -244,29 +243,17 @@ namespace ProductsDistribution.Controllers
         [HttpPost]
         public ActionResult EditProduct(int id,ProductInputEditModel inputEditModel)
         {
-            inputEditModel.parent_categories = GetParentCategories();
+           
             inputEditModel.units = GetUnits();
             inputEditModel.cuts = GetCuts();
 
-            string selected_parent_category, selected;
-            selected = "";
-            int selected_child_category_id;
-            //  string selected_parent_category = inputEditModel.selected_ParentCategory;
-            //  inputEditModel.child_categories = GetChildCategories(selected_parent_category);
+          
             if (!this.ModelState.IsValid)
             {
 
                 return View(inputEditModel);
             }
-             selected_parent_category = inputEditModel.selected_ParentCategory;
-
-            if (selected_parent_category != "")
-            {
-                inputEditModel.child_categories = GetChildCategories(selected_parent_category);
-
-                 selected = inputEditModel.selected_ChildCategory;
-                selected_child_category_id = categoryService.GetCategoryId(selected);
-
+           
 
                 try
                 {
@@ -282,7 +269,7 @@ namespace ProductsDistribution.Controllers
                         other = inputEditModel.other,
                         volume = inputEditModel.volume,
                         weight = inputEditModel.weight,
-                        categoryId = selected_child_category_id,
+                        categoryId = this.categoryService.GetCategoryId(inputEditModel.selected_category),
                         unit = inputEditModel.selected_unit
 
                     });
@@ -298,7 +285,7 @@ namespace ProductsDistribution.Controllers
                     return View(inputEditModel);
                 }
 
-            }
+            
             return RedirectToAction("DisplayProducts");
 
 

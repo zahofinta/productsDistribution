@@ -1,6 +1,7 @@
 ﻿using DataAnnotationsExtensions;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
@@ -29,12 +30,12 @@ namespace ProductsDistribution.Models.InputModels
         [Display(Name = "Обем :")]
         public double volume { get; set; }
         //[Required]
-        //[Min(0.1, ErrorMessage = "Въведете цена по-голяма от 0.1")]
-        //[Display(Name = "Цена :")]
-        //public double price { get; set; }
-        [DataType(DataType.Date)]
-        [Display(Name = "Трайност :")]
-        public DateTime durability { get; set; }
+
+         [DataType(DataType.Date)]
+         [Display(Name = "Трайност :")]
+        //[Display(Name = "Трайност"),DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:MM/dd/yy H:mm:ss tt}")]
+         public DateTime durability { get; set; }
+        
         [Display(Name = "Допълнение към описанието :")]
         public string other { get; set; }
 

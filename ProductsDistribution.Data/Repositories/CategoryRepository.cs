@@ -78,11 +78,14 @@ namespace ProductsDistribution.Data.Repositories
         public int GetCategoryId(string categoryName)
         {
             var categories = this._dbSet;
-            int category_id=0;
+            int category_id = 0;
+
             if (categoryName != "" && categoryName != null)
             {
-                 category_id = categories.SingleOrDefault(x => x.category_name == categoryName).category_id;
+                category_id = categories.SingleOrDefault(x => x.category_name == categoryName).category_id;
             }
+
+
             return category_id;
         }
         public CategoryDTO MapCategory(Category category)

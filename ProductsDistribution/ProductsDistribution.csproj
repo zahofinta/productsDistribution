@@ -272,9 +272,8 @@
     <Content Include="fonts\FontAwesome.otf" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\demos.js" />
-    <Content Include="Scripts\GenerateChildCategoriesDynamically.js" />
+    <Content Include="Scripts\GenerateJqxTree.js" />
     <Content Include="Scripts\GenerateComboBox.js" />
-    <Content Include="Scripts\GenerateChildCategoriesDynamicallyEdit.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
@@ -290,9 +289,12 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\jqxangular.js" />
     <Content Include="Scripts\jqxbuttons.js" />
+    <Content Include="Scripts\jqxcheckbox.js" />
     <Content Include="Scripts\jqxcore.elements.js" />
     <Content Include="Scripts\jqxcore.js" />
     <Content Include="Scripts\jqxdata.js" />
+    <Content Include="Scripts\jqxdropdownlist.js" />
+    <Content Include="Scripts\jqxlistbox.js" />
     <Content Include="Scripts\jqxpanel.js" />
     <Content Include="Scripts\jqxscrollbar.js" />
     <Content Include="Scripts\jqxtree.js" />

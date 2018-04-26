@@ -10,7 +10,7 @@ namespace ProductsDistribution.Models.InputModels
     public class ProducerInputModel
     {
   
-        [Required]
+        [Required(ErrorMessage = "Име на производител е задължително поле")]
         [Display(Name = "Име на производител :")]
         public string producer_name { get; set; }
 
@@ -18,7 +18,7 @@ namespace ProductsDistribution.Models.InputModels
         [RegularExpression(@"^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$", ErrorMessage = "Невалиден телефонен номер")]
         [Display(Name = "Телефонен номер :")]
         public string telephone_number { get; set; }
-        [Required]
+        [Required(ErrorMessage = "Адрес на производител е задължително поле")]
         [Display(Name = "Адрес :")]
         public string producer_address { get; set; }
 
