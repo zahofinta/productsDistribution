@@ -1,33 +1,14 @@
 ﻿
 @model  ProductsDistribution.Models.InputModels.AnnouncementInfo
-@*<head>
-        <link href="@Url.Content("~/Content/Themes/base/jquery-ui.css")" rel="stylesheet" type="text/css" />
 
-    </head>
+<link href="@Url.Content("~/Content/jqx.base.css")" rel="stylesheet" type="text/css" />
 
-    <style>
-        .custom-combobox {
-            position: relative;
-            display: inline-block;
-        }
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1 maximum-scale=1 minimum-scale=1" />
 
-        .custom-combobox-toggle {
-            position: absolute;
-            top: 0;
-            bottom: 0;
-            margin-left: -1px;
-            padding: 0;
-            /* support: IE7 */
-            *height: 1.7em;
-            *top: 0.1em;
-        }
 
-        .custom-combobox-input {
-            margin: 0;
-            padding: 0.3em;
-        }
-    </style>*@
-<button class="add-announcement" onclick="AddTextBox()">
+
+<button class="add-announcement"  >
     Добави продукт
 </button>
 
@@ -36,104 +17,172 @@
 {
 
     @Html.AntiForgeryToken()
-    HtmlHelper.UnobtrusiveJavaScriptEnabled = false;
-
-    <div class="form-group">
-        @Html.LabelFor(model => model.arrive_date, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.arrive_date, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.arrive_date, "", new { @class = "text-danger" })
+    //HtmlHelper.UnobtrusiveJavaScriptEnabled = false;
+    
+  
+        <div class="form-group">
+            @Html.LabelFor(model => model.arrive_date, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.arrive_date, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.arrive_date, "", new { @class = "text-danger" })
+            </div>
         </div>
-    </div>
 
-    <div class="form-group">
-        @Html.LabelFor(model => model.title, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.title, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.title, "", new { @class = "text-danger" })
+        <div class="form-group">
+            @Html.LabelFor(model => model.title, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.title, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.title, "", new { @class = "text-danger" })
+            </div>
         </div>
-    </div>
 
-    <div id="announcementForm">
+        <div id="announcementForm">
 
-        <table id="announcements">
-            <thead>
-                <tr></tr>
-                @*<tr>
-                        <th>Дата на пристигане на доставката</th>
-                        <th>Производител</th>
-                        <th>Продукт</th>
-                        <th>Цена</th>
-                        <th>Максимално количество за доставка</th>
+            <table id="announcements">
+                <thead>
+                    <tr></tr>
+                    @*<tr>
+                            <th>Дата на пристигане на доставката</th>
+                            <th>Производител</th>
+                            <th>Продукт</th>
+                            <th>Цена</th>
+                            <th>Максимално количество за доставка</th>
 
-                        <th></th>
-                    </tr>*@
-            </thead>
-            <tbody id="an">
-
-
-             @Html.Partial("EditorTemplates/AnnouncementInfo")
-              @*  @Html.EditorForModel() *@
+                            <th></th>
+                        </tr>*@
+                </thead>
+                <tbody id="an">
 
 
-
-            </tbody>
-
-
-        </table>
-
-    </div>
+                    @Html.Partial("EditorTemplates/AnnouncementInfo")
+                    @*  @Html.EditorForModel() *@
 
 
 
-    <div id="forms">
+                </tbody>
 
 
+            </table>
 
-    </div>
-
-
-    /* onclick='window.location = "@Url.Action("Index", "Home")"' */
-
-    <div class="form-group">
-        <div class="col-md-offset-2 col-md-10">
-            <input type="submit" value="Изпрати" class="btn btn-default" id="submitButton"  />
         </div>
-    </div>
+
+
+
+        <div id="forms">
+
+
+
+        </div>
+
+
+
+     
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Изпрати" class="btn btn-default" id="submitButton" />
+            </div>
+            
+        </div>
+
+
+
+       
+
+
+
 }
 
 
-@section scripts
+        @section scripts
 {
 
-@Scripts.Render("~/bundles/jqueryval")
-@Scripts.Render("~/bundles/custom-validator")
+            @Scripts.Render("~/bundles/jqueryval")
+            @Scripts.Render("~/bundles/custom-validator")
 
-@*<script src="@Url.Content("~/Scripts/jquery.autocomplete.js")"></script> 
-        <script src="@Url.Content("~/Scripts/jquery-ui.js")"></script>
-        <script src="@Url.Content("~/Scripts/GenerateComboBox.js")"></script> *@
+            <script src="@Url.Content("~/Scripts/jquery-1.10.2.min.js")"></script>
+            <script src="@Url.Content("~/Scripts/jquery.validate.js")"></script>
+            <script src="@Url.Content("~/Scripts/jquery.validate.unobtrusive.js")"></script> 
 
-@*@<script src="@Url.Content("~/Scripts/script-custom-validator.js")"></script> *@
-
-
-
-    @*<script>
-        $(document.body).on("click", "a.delete-announcement", function () {
-
-            $(this).parents("#announcementForm:first").remove();
-            $(this).prev('input').val('true');
-            return false;
-        });
-
-    </script>*@
- 
-        
+            <script src="@Url.Content("~/Scripts/demos.js")"></script>
+            <script src="@Url.Content("~/Scripts/jqxcore.js")"></script>
 
 
+            <script src="@Url.Content("~/Scripts/jqxdata.js")"></script>
+            <script src="@Url.Content("~/Scripts/jqxbuttons.js")"></script>
+            <script src="@Url.Content("~/Scripts/jqxscrollbar.js")"></script>
+
+            @*<script src="@Url.Content("~/Scripts/jqxlistbox.js")"></script>
+                <script src="@Url.Content("~/Scripts/jqxdropdownlist.js")"></script>
+                <script src="@Url.Content("~/Scripts/jqxcheckbox.js")"></script>*@
+
+            <script type="text/javascript" src="@Url.Content("~/Scripts/webcomponents-lite.min.js")"></script>
+            <script type="text/javascript" src="@Url.Content("~/Scripts/jqxcore.elements.js")"></script>
+            <script type="text/javascript" src="@Url.Content("~/Scripts/jqxvalidator.js")"></script>
+            <script type="text/javascript" src="@Url.Content("~/Scripts/bootstrapValidator.js")"></script>
+
+
+         
+
+                      @*<script type="text/javascript">
+                JQXElements.settings["elementSettings"] =
+                    {
+                        hintType: "label", animationDuration: 0, rules: rules, arrow: false, theme: "light"
+                    }
+
+
+                var rules = [
+                    { input: '#arrive_date', message: 'Дата за доставка е задължително поле!', action: 'keyup', rule: 'required' },
+                    { input: '#title', message: 'Заглавие на обява е задължително поле!', action: 'keyup', rule: 'required' },];
+                JQXElements.settings["validatorSettings"] = {
+                    hintType: "label", animationDuration: 0, rules: rules, arrow: false, theme: "light"
+                };
+
+                function validate() {
+                    document.querySelector('jqx-validator').validate();
+                    return false;
+                }
+            </script>*@
+            @*<script type="text/javascript">
+                $(document).ready(function () {
+                    $('#AnnouncementToPost').jqxValidator({
+                        rules: [
+                            { input: '#arrive_date', message: 'Дата за доставка е задължително поле!', action: 'keyup', rule: 'required' },
+                            { input: '#title', message: 'Заглавие на обява е задължително поле!', action: 'keyup', rule: 'required' },
+                            { input: '#price', message: 'Цена е задължително поле!', action: 'keyup', rule: 'required' },
+                            { input: '#quantity', message: 'Количество е задължително поле!', action: 'keyup', rule: 'required' },
+                            {
+                                input: '#price', message: 'Полето цена трябва да  е  число!', action: 'keyup', rule: function () {
+                                    var value = $("#price").val();
+                                    var result = !isNaN(value);
+                                    return result;
+                                } },
+                            {
+                                input: '#quantity', message: 'Полето количество трябва да е число!', action: 'keyup', rule: function () {
+                                    var value = $("#quantity").val();
+                                    var result = !isNaN(value);
+                                    return result;
+                                } }
 
 
 
-    <script>
+                        ], theme: 'summer'
+                    });
+                });
+            </script>*@
+
+
+     
+            
+            
+
+
+
+            <script>
+               
+            
+                
+                
 
         //$('.add-announcement').click(function () {
 
@@ -153,229 +202,376 @@
         //    return false;
         //});
 
-    </script>
-
-    <script type="text/javascript">
-
-        function resetFormValidator(formId) {
-            $(formId).removeData('validator');
-            $(formId).removeData('unobtrusiveValidation');
-            $.validator.unobtrusive.parse(formId);
-        }
-
-        function GetDynamicTextBox() {
-            //var uniqueId = 0;
-            var div = $("<div />");
-            //uniqueId++;
-            //$('#announcementForm').find('.text-danger').empty();
-            var textBox = $('#announcementForm').html();
-            
-            /*
-            var textBox = jQuery.validator.format($.trim($("#announcementForm").html()));
-
-            $('#comobox,#productCombobox,#title,#arrive_date,#quantity,#price').each(function () {
-                $(this).rules("add", {
-                    required: true
-                });
-            });
-
-            $("#AnnouncementToPost").validate({
-                rules: {
-                    title: "required"
-                   
-                }
-            }); 
-            */
-
-            div.append(textBox);
-            
-
-            var button = $("<input />").attr("type", "button").attr("value", "Премахни продукт");
-            button.attr("onclick", "RemoveTextBox(this)");
-            div.append(button);
+            </script>
 
 
-            return div;
-        }
-        function AddTextBox() {
-            var div = GetDynamicTextBox();
-
-
-
-
-
-         
-           // var template = jQuery.validator.format($.trim(div));
-
-          
-
-            $("#forms").append(div);
-
-            
-                
-           // $("#forms").find('.text-danger').empty();
-           // $.validator.unobtrusive.parse();
-            
            
-        }
-
-        function RemoveTextBox(button) {
-            $(button).parent().remove();
-        }
 
 
 
+            <script>
+               
+             
 
-    </script>
+                    //$("#AnnouncementToPost").validate({
+                    //    rules: {
+                    //        "price_0": {
+                    //            required: true
+                    //        }
+                    //    }
+                    //});
 
-    <script>
-        $(document).ready(function () {
+             
+                
+
+                    // the following method must come AFTER .validate()
+
+                    // ADD the rule to EXISTING fields
+
+               
+
+                    // dynamically edit the form and add the rule
+
+                    // ADD the rule to DYNAMICALLY created fields
+
+
+                    // $("#AnnouncementToPost").validate();
+                    // the following method must come AFTER .validate()
+
+                    // ADD the rule to EXISTING fields
 
 
 
+                    // dynamically edit the form and add the rule
 
-            $(document).on("change", ".ddlProducer", function (e) {
-                var _this = $(this);
-
-
+                    // ADD the rule to DYNAMICALLY created fields
 
 
-                $.ajax({
-                    type: "post",
-                    url: "/Announcement/LoadProductNamesByProducerNameAndUserId",
-                    data: { producerName: $(this).val() },
-                    datatype: "json",
-                    traditional: true,
-                    success: function (data) {
-
-                        var products = "<select id='ddlProducts'>";
-
-                        products = products + '<option value=""></option>';
-                        for (var i = 0; i < data.length; i++) {
-                            products = products + '<option value=' + data[i] + '>' + data[i] + '</option>';
-                        }
-                        products = products + '</select>';
-                        _this.closest('.announcementForm').find('.ddlProduct').html(products);
-
-                        //  $('.ddlProducer').closest('.announcementForm').find('.ddlProduct').html(products);
-                        //nai-blizkiq vtori dropdown do izbraniq purvi
+                    function RemoveTextBox(button) {
+                        $(button).parent().remove();
                     }
 
 
+
+                    function GetDynamicTextBox() {
+
+                        var div = $("<div />");
+
+
+                        var textBox = $('#announcementForm').html();
+
+
+                        div.append(textBox);
+
+
+                        var button = $("<input />").attr("type", "button").attr("value", "Премахни продукт");
+                        button.attr("onclick", "RemoveTextBox(this)");
+                        div.append(button);
+
+
+                        return div;
+                    }
+
+                    var counter = 1;
+
+                 
+                    function AddTextBox() {
+
+
+                        var div = GetDynamicTextBox();
+                        div.find('.announcementForm .validatePrice').attr('name', 'price_' + counter);
+
+                        $("#forms").append(div);
+
+                        counter += 1;
+
+                      //  $("#AnnouncementToPost").validate();
+
+
+                        
+                        //  error.appendTo(element.next());
+                        //Update jqxValidator's rules
+
+                    }
+
+                    $(".add-announcement").on('click', function () {
+                        // $("#myform").append('<input type="text" name="four" /><br />');
+                        AddTextBox();
+                        //  $("#AnnouncementToPost").validate();
+                        //   $(".validatePrice").rules('add', myRule);
+                    });
+                
+
+            </script>
+
+            <script>
+                $(document).ready(function () {
+
+
+
+
+                    $(document).on("change", ".ddlProducer", function (e) {
+                        var _this = $(this);
+
+
+
+
+                        $.ajax({
+                            type: "post",
+                            url: "/Announcement/LoadProductNamesByProducerNameAndUserId",
+                            data: { producerName: $(this).val() },
+                            datatype: "json",
+                            traditional: true,
+                            success: function (data) {
+
+                                var products = "<select id='ddlProducts'>";
+
+                                products = products + '<option value=""></option>';
+                                for (var i = 0; i < data.length; i++) {
+                                    products = products + '<option value=' + data[i] + '>' + data[i] + '</option>';
+                                }
+                                products = products + '</select>';
+                                _this.closest('.announcementForm').find('.ddlProduct').html(products);
+
+                                //  $('.ddlProducer').closest('.announcementForm').find('.ddlProduct').html(products);
+                                //nai-blizkiq vtori dropdown do izbraniq purvi
+                            }
+
+
+                        });
+
+
+
+                    });
+
+
+
+
                 });
 
+            </script>
+
+            <script>
+                $(document).ready(function () {
+
+                    // $.validator.unobtrusive.parse("#AnnouncementToPost");
+
+                    function GetValuesFromForm() {
+                        var items = new Array();
+
+                        $('.announcementForm').each(function (index) {
+
+                            //var arrive_date = $(this).find('#arrive_date').val();
+                            //var producer = $(this).find('#combobox').attr('value');
+                            var producer = $(this).find('#combobox option:selected').text();
+                            //  var product = $(this).find('#productCombobox').attr('value');
+                            var product = $(this).find('#productCombobox option:selected').text();
+                            var quantity = $(this).find('#quantity').val();
+                            var price = $(this).find('#price').val();
+
+                            var item = {
+
+                                quantity: quantity,
+                                price: price,
+                                selected_producerName: producer,
+                                selected_productName: product
+
+                            };
+                            items.push(item);
+
+                        });
+
+                        return items;
+                    }
+
+                    function isNumber(number) {
+                        //  var value = $("#quantity").val();
+                        if (number > 0) {
+                            var result = !isNaN(number);
+                        }
+                        return result;
+
+                    }
+
+                    function validateElement($elem,$required,$isNumber,requiredMessage,isNumberMessage)
+                    {
+                        var valid = true;
+                        $($elem).each(function () {
+                            if ($(this).val().trim() == '') {
+
+                                $(this).next($isNumber).empty();
+                                if ($(this).next($required).length > 0) {
+
+                                    $(this).next($required).empty();
+
+                                }
+
+                                $(this).after(requiredMessage);
+
+                                valid = false;
+                                return;
+                                //}
+                            }
+                            else {
+                                $(this).next($required).empty();
+                                $(this).next($isNumber).empty();
+
+                                var result = isNumber($(this).val());
+                                if (!result) {
+                                    $(this).after(isNumberMessage);
+                                    valid = false;
+                                    return;
+
+                                }
+                                else {
+                                    $(this).next($isNumber).empty();
+                                }
+                            }
+
+                        });
+                        if (valid) {
+                            $($required).empty();
+                            //  $('.isPriceNumber').empty();
+                         //   alert("form is valid");
+                            
+                        } else {
+
+                          //  alert("form is invalid");
+                            e.preventDefault();
+                        }
+                        return valid;
+                    }
 
 
-            });
+
+                    $("#AnnouncementToPost").submit(function (e) {
+
+                        e.preventDefault();
+                        // e.stopImmediatePropagation();
+                        var items = GetValuesFromForm();
 
 
 
 
-        });
+                        var announcementInfoModel = {
+                            arrive_date: $('#arrive_date').val(),
+                            title: $('#title').val(),
+                            remainingProducts: items
 
-    </script>
+                        };
+                        //Валидация на полетата price и quantity
 
-    <script>
-        $(document).ready(function () {
+                        var isPriceValid = validateElement('.validatePrice', '.requiredPrice', '.isPriceNumber', "<p class='requiredPrice'>Цена е задължително поле!</p>", "<p class='isPriceNumber'>Полето цена трябва да е положително число!</p>");
+                        var isQuantityValid = validateElement('.validateQuantity', '.requiredQuantity', '.isQuantityNumber', "<p class='requiredQuantity'>Максимално количество е задължително поле!</p>", "<p class='isQuantityNumber'>Полето максимално количество трябва да е положително число!</p>");
+                        if (isPriceValid && isQuantityValid) {
+                            alert("Валидни !!");
 
-           // $.validator.unobtrusive.parse("#AnnouncementToPost");
+                        }
 
-            function GetValuesFromForm() {
-                var items = new Array();
+                            //var valid = true;
+                            //$('.validatePrice').each(function () {
+                            //    if ($(this).val().trim() == '') {
 
-                $('.announcementForm').each(function (index) {
+                            //        $(this).next('.isPriceNumber').empty();
+                            //        if ($(this).next('.requiredPrice').length > 0) {
 
-                    //var arrive_date = $(this).find('#arrive_date').val();
-                    //var producer = $(this).find('#combobox').attr('value');
-                    var producer = $(this).find('#combobox option:selected').text();
-                    //  var product = $(this).find('#productCombobox').attr('value');
-                    var product = $(this).find('#productCombobox option:selected').text();
-                    var quantity = $(this).find('#quantity').val();
-                    var price = $(this).find('#price').val();
+                            //            $(this).next('.requiredPrice').empty();                 
 
-                    var item = {
+                            //        }
 
-                        quantity: quantity,
-                        price: price,
-                        selected_producerName: producer,
-                        selected_productName: product
+                            //            $(this).after("<p class='requiredPrice'>Въвеждането на цена е задължително!</p>");
 
-                    };
-                    items.push(item);
+                            //            return;
+                            //           valid = false;
+                            //        //}
+                            //    }
+                            //    else
+                            //    {
+                            //        $(this).next('.requiredPrice').empty();
+                            //        $(this).next('.isPriceNumber').empty();
+
+                            //        var result = isNumber($(this).val());
+                            //        if (!result) {
+                            //            $(this).after("<p class='isPriceNumber'>Полето цена трябва да е число!</p>");
+                            //valid = false;
+                            // return;
+
+                            //        }
+                            //        else {
+                            //            $(this).next('.isPriceNumber').empty();
+                            //        }
+                            //    }
+
+                            //});
+                            //if (valid) {
+                            //    $('.requiredPrice').empty();
+                            //  //  $('.isPriceNumber').empty();
+                            //    alert("form is valid");
+                            //} else {
+
+                            //    alert("form is invalid");
+                            //    e.preventDefault();
+                            //}
+
+
+                            $.ajax({
+                                url: '/Announcement/AddNewAnnouncement',
+                                type: 'POST',
+                                dataType: 'json',
+                                data: { inputModel: announcementInfoModel },
+                                async: false,
+                                success: function (data) {
+                                    // console.log(data);
+                                    if (data.result = "Redirect")
+                                    {
+                                        window.location.href = data.url;
+                                    }
+                                },
+                                error: function (xhr, textStatus, exceptionThrown) { alert(JSON.parse(xhr.responseText)); }
+                            });
+                        
+                        //$('#AnnouncementToPost').validate(); 
+                    });
+
+                 //   $(".add-announcement").on('click', AddTextBox());
+
+                    // initialize the validator
+                 // $('#AnnouncementToPost').validate();
+
+
+                    /*
+                    $("#submitButton").click(function (e) {
+                          e.preventDefault();
+                         // e.stopImmediatePropagation();
+                          var items = GetValuesFromForm();
+
+
+                          var announcementInfoModel = {
+                              arrive_date: $('#arrive_date').val(),
+                              title: $('#title').val(),
+                              remainingProducts: items
+
+                          };
+                        $.ajax({
+                            url: '/Announcement/AddNewAnnouncement',
+                            type: 'POST',
+                            dataType: 'json',
+                            data: { inputModel: announcementInfoModel },
+                            async: false,
+                            success: function (data) {
+                                // console.log(data);
+                                //   alert(data);
+
+
+                            },
+                            error: function (xhr, textStatus, exceptionThrown) { alert(JSON.parse(xhr.responseText)); }
+                          });
+
+                    });
+                    */
 
                 });
 
-                return items;
-            }
-
-
-
-            $("#AnnouncementToPost").submit(function (e) {
-
-                e.preventDefault();
-               // e.stopImmediatePropagation();
-                var items = GetValuesFromForm();
-
-
-                var announcementInfoModel = {
-                    arrive_date: $('#arrive_date').val(),
-                    title: $('#title').val(),
-                    remainingProducts: items
-
-                };
-                $.ajax({
-                    url: '/Announcement/AddNewAnnouncement',
-                    type: 'POST',
-                    dataType: 'json',
-                    data: { inputModel: announcementInfoModel },
-                    async: false,
-                    success: function (data) {
-                        // console.log(data);
-                        //   alert(data);
-
-
-                    },
-                    error: function (xhr, textStatus, exceptionThrown) { alert(JSON.parse(xhr.responseText)); }
-                });
-
-
-            });
-
-
-
-            /*
-            $("#submitButton").click(function (e) {
-                  e.preventDefault();
-                 // e.stopImmediatePropagation();
-                  var items = GetValuesFromForm();
-
-
-                  var announcementInfoModel = {
-                      arrive_date: $('#arrive_date').val(),
-                      title: $('#title').val(),
-                      remainingProducts: items
-
-                  };
-                $.ajax({
-                    url: '/Announcement/AddNewAnnouncement',
-                    type: 'POST',
-                    dataType: 'json',
-                    data: { inputModel: announcementInfoModel },
-                    async: false,
-                    success: function (data) {
-                        // console.log(data);
-                        //   alert(data);
-
-
-                    },
-                    error: function (xhr, textStatus, exceptionThrown) { alert(JSON.parse(xhr.responseText)); }
-                  });
-
-            });
-            */
-
-});
-
-    </script>
-
-}
+            </script>
+            
+        }

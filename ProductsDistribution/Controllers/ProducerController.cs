@@ -31,14 +31,23 @@ namespace ProductsDistribution.Controllers
         {
             return View();
         }
+        private IEnumerable<SelectListItem> GetCurrentUserProductsSelectList()
+        {
+            var products_by_current_user = this.productService.GetListOfProductNamesByUserId(this.User.Identity.GetUserId());
 
+            return new SelectList(products_by_current_user);
+        }
         public JsonResult GetCurrentUserProducts()
 
             {
-                var products_by_current_user = this.productService.GetAllProductsByUser(this.User.Identity.GetUserId());
+                var products_by_current_user = this.productService.GetListOfProductNamesByUserId(this.User.Identity.GetUserId());
 
+           // JsonResult result = new JsonResult();
+          //  result.Data = products_by_current_user;
                 return Json(products_by_current_user, JsonRequestBehavior.AllowGet);
             }
+
+
             ProducerViewModelShort MapProducerDTOToProducerViewModelShort(ProducerDTO producer)
         {
             return new ProducerViewModelShort
@@ -78,7 +87,7 @@ namespace ProductsDistribution.Controllers
                 producer_address = producer.producer_address,
                 producer_email = producer.producer_email,
                 telephone_number = producer.telephone_number,
-                //products = GetCurrentUserProducts(),
+                products = GetCurrentUserProductsSelectList(),
                 userId = producer.userId,
                
             };
@@ -102,7 +111,7 @@ namespace ProductsDistribution.Controllers
         {
             ProducerInputModel producerInputModel = new ProducerInputModel()
             {
-               // products = GetCurrentUserProducts()
+               products = GetCurrentUserProductsSelectList()
             };
             return View(producerInputModel);
         }
@@ -110,7 +119,7 @@ namespace ProductsDistribution.Controllers
         [HttpPost]
         public ActionResult AddNewProducer(ProducerInputModel inputModel)
         {
-           // inputModel.products = GetCurrentUserProducts();
+            // inputModel.products = GetCurrentUserProducts();
             //var test = this.producerService.GetProductNamesByProducerNameAndUserId("dada", this.User.Identity.GetUserId());
 
             if (!this.ModelState.IsValid)
