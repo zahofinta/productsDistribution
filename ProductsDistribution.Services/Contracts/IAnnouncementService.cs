@@ -8,10 +8,11 @@ namespace ProductsDistribution.Services.Contracts
 {
     public interface IAnnouncementService
 
- { 
-    AnnouncementDTO GetById(int id);
+ {
+        //List<Announcement> GetAllAnnouncements();
+        AnnouncementDTO GetById(int id);
 
-
+        IEnumerable<AnnouncementDTO> GetAllAnnouncements();
     int AddNewAnnouncement(AnnouncementDTO announcement);
 
 

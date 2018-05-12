@@ -2,6 +2,7 @@
 using ProductsDistribution.Core.Announcement.Models;
 using ProductsDistribution.Core.AnnouncementToProduct.Models;
 using ProductsDistribution.Models.InputModels;
+using ProductsDistribution.Models.ViewModels;
 using ProductsDistribution.Services.Contracts;
 using System;
 using System.Collections.Generic;
@@ -63,7 +64,33 @@ namespace ProductsDistribution.Controllers
             return Json(producers, JsonRequestBehavior.AllowGet);
         }
 
-        
+        AnnouncementViewModel MapAnnouncementDTOToAnnouncementViewModel(AnnouncementDTO announcement)
+        {
+            return new AnnouncementViewModel
+            {
+                announcement_id = announcement.announcement_id,
+                arrive_date = announcement.arrive_date,
+                publish_date = announcement.publish_date,
+                title = announcement.title
+
+            };
+        }
+
+        public ActionResult DisplayAllAnnouncements()
+        {
+
+            List<AnnouncementViewModel> viewModel = new List<AnnouncementViewModel>();
+           // string current_user = this.User.Identity.GetUserId();
+            var all_announcements = this.announcementService.GetAllAnnouncements();
+            foreach (AnnouncementDTO announcement in all_announcements)
+            {
+                
+                viewModel.Add(MapAnnouncementDTOToAnnouncementViewModel(announcement));
+            }
+
+            return View(viewModel);
+        }
+
         [HttpGet]
         public ActionResult AddNewAnnouncement()
         {
@@ -128,7 +155,7 @@ namespace ProductsDistribution.Controllers
                 });
             }
             return Json(new { result = "Redirect", url = Url.Action("Index", "Home") });
-            //return RedirectToAction("Index", "Home");
+          
             //return JavaScript("window.location='/Index/Home'");
             // return View(inputModel);
             //  return Json(Url.Action("Index", "Home"));

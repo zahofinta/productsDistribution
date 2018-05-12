@@ -6,19 +6,20 @@ using System.Web;
 using ProductsDistribution.Core.Announcement.Models;
 using ProductsDistribution.Data.Contracts;
 using ProductsDistribution.Models;
+using ProductsDistribution.Data.Repositories;
 
 namespace ProductsDistribution.Services
 {
     public class AnnouncementService : IAnnouncementService
     {
         public readonly IRepository<Announcement> announcementRepository;
+        public readonly AnnouncementRepository AnnouncementRepository;
 
-
-        public AnnouncementService(IRepository<Announcement> announcementRepository)
+        public AnnouncementService(IRepository<Announcement> announcementRepository,AnnouncementRepository AnnouncementRepository)
 
         {
             this.announcementRepository = announcementRepository;
-            
+            this.AnnouncementRepository = AnnouncementRepository;
 
         }
 
@@ -79,6 +80,15 @@ namespace ProductsDistribution.Services
             announcementToUpdate.status = announcement.status;
 
             this.announcementRepository.Update(announcementToUpdate);
+        }
+
+
+       
+
+        public IEnumerable<AnnouncementDTO> GetAllAnnouncements()
+        {
+            // var announcements = this.AnnouncementRepository.GetAllAnnouncements();
+            return this.AnnouncementRepository.GetAllAnnouncements();
         }
     }
 }

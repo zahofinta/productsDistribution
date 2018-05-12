@@ -363,6 +363,7 @@
     <Content Include="Views\Account\ChangePassword.cshtml" />
     <Content Include="Views\Home\AjaxSearchView.cshtml" />
     <Content Include="Views\Announcement\EditorTemplates\AnnouncementInfo.cshtml" />
+    <Content Include="Views\Announcement\DisplayAllAnnouncements.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
