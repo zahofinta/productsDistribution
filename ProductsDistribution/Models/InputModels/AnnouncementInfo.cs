@@ -41,9 +41,14 @@ namespace ProductsDistribution.Models.InputModels
             AddedProductsToAnnouncement = new AddedProductsToAnnouncement();
         }
        */
-        [Required(ErrorMessage = "Дата за доставка е задължително поле")]
-        [DataType(DataType.Date)]
-        [Display(Name = "Дата за доставка :")]
+      //  [Required(ErrorMessage = "Дата за доставка е задължително поле")]
+
+        //  [Display(Name = "Дата за доставка :")]
+
+        
+      //  public string arrive_date { get; set; }
+      [Required]
+        [DisplayFormat(DataFormatString = "{0:dd.MM.yyyy hh:mm tt}", ApplyFormatInEditMode = true)]
         public DateTime arrive_date { get; set; }
 
         [Required(ErrorMessage ="Заглавие на обява е задължително поле")]

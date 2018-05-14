@@ -10,7 +10,8 @@ namespace ProductsDistribution.Models.ViewModels
     {
         public int announcement_id { get; set; }
         [Required]
-        [DataType(DataType.Date)]
+       
+      //  public string arrive_date { get; set; }
         public DateTime arrive_date { get; set; }
 
         [Required]

@@ -23,6 +23,8 @@ namespace ProductsDistribution
                       "~/Scripts/bootstrap.js",
                       "~/Scripts/respond.js"));
 
+
+
             //Jquery validator
             bundles.Add(new ScriptBundle("~/bundles/custom-validator").Include(
                                   "~/Scripts/script-custom-validator.js"));

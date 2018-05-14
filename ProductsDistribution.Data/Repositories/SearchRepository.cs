@@ -1,4 +1,5 @@
-﻿using ProductsDistribution.Data.Contracts;
+﻿using ProductsDistribution.Core.Announcement.Models;
+using ProductsDistribution.Data.Contracts;
 using ProductsDistribution.Models;
 using System;
 using System.Collections.Generic;
@@ -16,6 +17,25 @@ namespace ProductsDistribution.Data.Repositories
 
         }
 
+        public IQueryable<AnnouncementDTO> GetAllAnnouncements()
+        {
+            var announcements = _dbContext.Set<Announcement>();
+            var all_announcements = from a in announcements
+
+                                    select new AnnouncementDTO
+                                    {
+                                        announcement_id = a.announcement_id,
+                                        arrive_date = a.arrive_date,
+
+                                        publish_date = a.publish_date,
+                                        status = a.status,
+                                        title = a.title
+
+                                    };
+            
+            return all_announcements;
+        }
+
         public IQueryable<string> GetProducersAndProductsNames(string name)
         {
             var producers = this._dbSet;
@@ -28,5 +48,7 @@ namespace ProductsDistribution.Data.Repositories
                                                                      select product.product_name);
             return searchResult;
         }
+
+
     }
 }

@@ -41,7 +41,7 @@ namespace ProductsDistribution.Data
             //    .WithMany(p => p.producers_to_products)
             //    .HasForeignKey(pc => pc.product_id);
 
-           
+           // modelBuilder.Properties<DateTime>().Configure(c => c.HasColumnType("datetime2"));
 
             base.OnModelCreating(modelBuilder);
 

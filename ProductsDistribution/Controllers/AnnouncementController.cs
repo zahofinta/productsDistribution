@@ -9,7 +9,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-
+using PagedList;
 namespace ProductsDistribution.Controllers
 {
     public class AnnouncementController : Controller
@@ -63,6 +63,7 @@ namespace ProductsDistribution.Controllers
             var producers = this.producerService.GetProductNamesByProducerNameAndUserId(producerName, this.User.Identity.GetUserId());
             return Json(producers, JsonRequestBehavior.AllowGet);
         }
+      
 
         AnnouncementViewModel MapAnnouncementDTOToAnnouncementViewModel(AnnouncementDTO announcement)
         {
@@ -76,6 +77,7 @@ namespace ProductsDistribution.Controllers
             };
         }
 
+       // [ChildActionOnly]
         public ActionResult DisplayAllAnnouncements()
         {
 
@@ -87,7 +89,7 @@ namespace ProductsDistribution.Controllers
                 
                 viewModel.Add(MapAnnouncementDTOToAnnouncementViewModel(announcement));
             }
-
+            
             return View(viewModel);
         }
 
