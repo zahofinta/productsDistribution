@@ -33,7 +33,4 @@ D:\СТ\Дипломна работа\ProductsDistribution asp net core mvc 2.x\
 D:\СТ\Дипломна работа\ProductsDistribution asp net core mvc 2.x\ProductsDistribution\ProductsDistribution.Data\obj\Debug\ProductsDistribution.Data.Migrations.AddCutDropdown_Menu.resources
 D:\СТ\Дипломна работа\ProductsDistribution asp net core mvc 2.x\ProductsDistribution\ProductsDistribution.Data\obj\Debug\ProductsDistribution.Data.Migrations.AddedPublishDateAndTitleToAnnouncementTable_Moved_ArriveDate_To_AnnouncementTable.resources
 D:\СТ\Дипломна работа\ProductsDistribution asp net core mvc 2.x\ProductsDistribution\ProductsDistribution.Data\obj\Debug\ProductsDistribution.Data.Migrations.DateTime2_Format_Added.resources
-D:\СТ\Дипломна работа\ProductsDistribution asp net core mvc 2.x\ProductsDistribution\ProductsDistribution.Data\obj\Debug\ProductsDistribution.Data.Migrations.Removed_datetime2_format_from_model.resources
-D:\СТ\Дипломна работа\ProductsDistribution asp net core mvc 2.x\ProductsDistribution\ProductsDistribution.Data\obj\Debug\ProductsDistribution.Data.Migrations.type_changed_arriveDate.resources
-D:\СТ\Дипломна работа\ProductsDistribution asp net core mvc 2.x\ProductsDistribution\ProductsDistribution.Data\obj\Debug\ProductsDistribution.Data.Migrations.add_again_arrivedate_datetime2.resources
-D:\СТ\Дипломна работа\ProductsDistribution asp net core mvc 2.x\ProductsDistribution\ProductsDistribution.Data\obj\Debug\ProductsDistribution.Data.Migrations.remove_all_dates_datetime2.resources
+D:\СТ\Дипломна работа\ProductsDistribution asp net core mvc 2.x\ProductsDistribution\ProductsDistribution.Data\obj\Debug\ProductsDistribution.Data.Migrations.remove_datetime2_format.resources

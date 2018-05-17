@@ -16,9 +16,11 @@ namespace ProductsDistribution.Models
         public int announcement_id { get; set; }
 
         [Required]
+      
         
-       // public string arrive_date { get; set; }
-        public DateTime arrive_date { get; set; }
+        [Display(Name = "Дата на доставка :")]
+        // public string arrive_date { get; set; }
+        public DateTime? arrive_date { get; set; }
 
         [Required]
         

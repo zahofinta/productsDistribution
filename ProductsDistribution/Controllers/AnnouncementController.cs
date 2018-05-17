@@ -156,11 +156,13 @@ namespace ProductsDistribution.Controllers
 
                 });
             }
-            return Json(new { result = "Redirect", url = Url.Action("Index", "Home") });
-          
+             return Json(new { result = "Redirect", url = Url.Action("Index", "Home") });
+
             //return JavaScript("window.location='/Index/Home'");
+          //  return RedirectToAction("Index", "Home");
             // return View(inputModel);
-            //  return Json(Url.Action("Index", "Home"));
+              //return Json(Url.Action("Index", "Home"));
+
         }
 
        

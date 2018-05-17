@@ -12,7 +12,8 @@ namespace ProductsDistribution.Models.ViewModels
         [Required]
        
       //  public string arrive_date { get; set; }
-        public DateTime arrive_date { get; set; }
+       
+        public DateTime? arrive_date { get; set; }
 
         [Required]
 

@@ -9,47 +9,14 @@ using System.Web.Mvc;
 namespace ProductsDistribution.Models.InputModels
 {
     public class AnnouncementInfo
-    { /*
-        [Required(ErrorMessage = "Дата за доставка е задължително поле")]
-        [Display(Name = "Дата за доставка :")]
-        public DateTime arrive_date { get; set; }
+    { 
 
-        [Required(ErrorMessage = "Производител е задължително поле")]
-        [Display(Name = "Производител :")]
-        public IEnumerable<SelectListItem> producerNames = new List<SelectListItem>();
+        [Required]
 
-
-        public string selected_producerName { get; set; }
-
-       public AddedProductsToAnnouncement AddedProductsToAnnouncement { get; set; }
-
-        public List<AddedProductsToAnnouncement> addedProducts { get; set; }
-
-        //public string selected_productName { get; set; }
-        //[Required(ErrorMessage = "Максимално количество е задължително поле")]
-        //[Display(Name = "Максимално количество :")]
-        //public double quantity { get; set; }
-        //[Required(ErrorMessage = "Цена е задължително поле")]
-        //[Display(Name = "Цена :")]
-        //public double price { get; set; }
-
-        //[Required(ErrorMessage = "Продукт е задължително поле")]
-        //[Display(Name = "Продукт :")]
-        //public IEnumerable<SelectListItem> productNames = new List<SelectListItem>();
-        /*public AnnouncementInfo()
-        {
-            AddedProductsToAnnouncement = new AddedProductsToAnnouncement();
-        }
-       */
-      //  [Required(ErrorMessage = "Дата за доставка е задължително поле")]
-
-        //  [Display(Name = "Дата за доставка :")]
-
-        
-      //  public string arrive_date { get; set; }
-      [Required]
-        [DisplayFormat(DataFormatString = "{0:dd.MM.yyyy hh:mm tt}", ApplyFormatInEditMode = true)]
-        public DateTime arrive_date { get; set; }
+        [DisplayFormat(DataFormatString= "{0:dd/MM/yy}", ApplyFormatInEditMode= true)]
+     
+        [Display(Name = "Дата на доставка  :")]
+        public DateTime? arrive_date { get; set; }
 
         [Required(ErrorMessage ="Заглавие на обява е задължително поле")]
         [Display(Name = "Заглавие на обява  :")]

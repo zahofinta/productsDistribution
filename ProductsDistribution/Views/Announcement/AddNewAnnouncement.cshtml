@@ -23,7 +23,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.arrive_date, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.arrive_date,string.Empty, new { htmlAttributes = new { @class = "form-control" , @id = "datetimepicker" } })
+                @Html.EditorFor(model => model.arrive_date, new { htmlAttributes = new { @class = "form-control",@id="datetimepicker"  } })
                 @Html.ValidationMessageFor(model => model.arrive_date, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -103,7 +103,8 @@
             <script src="@Url.Content("~/Scripts/jquery-1.10.2.min.js")"></script>
             <script src="@Url.Content("~/Scripts/jquery.validate.js")"></script>
             <script src="@Url.Content("~/Scripts/jquery.validate.unobtrusive.js")"></script> 
-            <script src="@Url.Content("~/Scripts/jquery.datetimepicker.full.min.js")"></script> 
+          <script src="@Url.Content("~/Scripts/moment-with-locales.js")"></script>
+            <script src="@Url.Content("~/Scripts/jquery.datetimepicker.full.min.js")"></script>
 
             <script src="@Url.Content("~/Scripts/demos.js")"></script>
             <script src="@Url.Content("~/Scripts/jqxcore.js")"></script>
@@ -180,31 +181,27 @@
 
 
             <script>
-               
+               // !! da se sloji id na atributa arrive_date !!
+
                 $(document).ready(function () {
+
+                    jQuery.datetimepicker.setLocale('bg');
+
+
+
                     $('#datetimepicker').datetimepicker({
-                        format: 'd.m.y'
+                         format:'d/m/Y H:i',
+                    
+                         lang: 'bg'
+                         
                     });
+                    
+                    $.validator.methods.date = function (value, element) {
+                        return this.optional(element) || moment(value, 'DD/MM/YYYY').isValid();
+                    };
+          });
 
-                });
-
-        //$('.add-announcement').click(function () {
-
-        //    $.ajax({
-        //        url: "/Announcement/AddNewAnnouncement",
-        //        type: "GET",
-        //        cache: false,
-        //        success: function (html) {
-
-        //            // $("#forms").append(div);
-        //            // var content = $('#announcement').html();
-        //            //  $('#forms').append(html);
-
-
-        //        }
-        //    });
-        //    return false;
-        //});
+       
 
             </script>
 
@@ -214,41 +211,6 @@
 
 
             <script>
-               
-             
-
-                    //$("#AnnouncementToPost").validate({
-                    //    rules: {
-                    //        "price_0": {
-                    //            required: true
-                    //        }
-                    //    }
-                    //});
-
-             
-                
-
-                    // the following method must come AFTER .validate()
-
-                    // ADD the rule to EXISTING fields
-
-               
-
-                    // dynamically edit the form and add the rule
-
-                    // ADD the rule to DYNAMICALLY created fields
-
-
-                    // $("#AnnouncementToPost").validate();
-                    // the following method must come AFTER .validate()
-
-                    // ADD the rule to EXISTING fields
-
-
-
-                    // dynamically edit the form and add the rule
-
-                    // ADD the rule to DYNAMICALLY created fields
 
 
                     function RemoveTextBox(button) {
@@ -312,7 +274,7 @@
                 $(document).ready(function () {
 
 
-
+                
 
                     $(document).on("change", ".ddlProducer", function (e) {
                         var _this = $(this);
@@ -363,6 +325,7 @@
                     function GetValuesFromForm() {
                         var items = new Array();
 
+                        //var arrive_date_ = $('#datetimepicker').val();
                         $('.announcementForm').each(function (index) {
 
                             //var arrive_date = $(this).find('#arrive_date').val();
@@ -374,7 +337,7 @@
                             var price = $(this).find('#price').val();
 
                             var item = {
-
+                               
                                 quantity: quantity,
                                 price: price,
                                 selected_producerName: producer,
@@ -456,9 +419,9 @@
 
 
 
-
+                        //da se smeni na arrive_date kato se mahne datetimepicker-a
                         var announcementInfoModel = {
-                            arrive_date: $('#arrive_date').val(),
+                            arrive_date: $('#datetimepicker').val(),
                             title: $('#title').val(),
                             remainingProducts: items
 
@@ -467,55 +430,13 @@
 
                         var isPriceValid = validateElement('.validatePrice', '.requiredPrice', '.isPriceNumber', "<p class='requiredPrice'>Цена е задължително поле!</p>", "<p class='isPriceNumber'>Полето цена трябва да е положително число!</p>");
                         var isQuantityValid = validateElement('.validateQuantity', '.requiredQuantity', '.isQuantityNumber', "<p class='requiredQuantity'>Максимално количество е задължително поле!</p>", "<p class='isQuantityNumber'>Полето максимално количество трябва да е положително число!</p>");
-                        if (isPriceValid && isQuantityValid) {
+
+                        if ( isQuantityValid) {
                             alert("Валидни !!");
 
                         }
 
-                            //var valid = true;
-                            //$('.validatePrice').each(function () {
-                            //    if ($(this).val().trim() == '') {
-
-                            //        $(this).next('.isPriceNumber').empty();
-                            //        if ($(this).next('.requiredPrice').length > 0) {
-
-                            //            $(this).next('.requiredPrice').empty();                 
-
-                            //        }
-
-                            //            $(this).after("<p class='requiredPrice'>Въвеждането на цена е задължително!</p>");
-
-                            //            return;
-                            //           valid = false;
-                            //        //}
-                            //    }
-                            //    else
-                            //    {
-                            //        $(this).next('.requiredPrice').empty();
-                            //        $(this).next('.isPriceNumber').empty();
-
-                            //        var result = isNumber($(this).val());
-                            //        if (!result) {
-                            //            $(this).after("<p class='isPriceNumber'>Полето цена трябва да е число!</p>");
-                            //valid = false;
-                            // return;
-
-                            //        }
-                            //        else {
-                            //            $(this).next('.isPriceNumber').empty();
-                            //        }
-                            //    }
-
-                            //});
-                            //if (valid) {
-                            //    $('.requiredPrice').empty();
-                            //  //  $('.isPriceNumber').empty();
-                            //    alert("form is valid");
-                            //} else {
-
-                            //    alert("form is invalid");
-                            //    e.preventDefault();
-                            //}
+                           
 
 
                             $.ajax({
@@ -537,42 +458,7 @@
                         //$('#AnnouncementToPost').validate(); 
                     });
 
-                 //   $(".add-announcement").on('click', AddTextBox());
-
-                    // initialize the validator
-                 // $('#AnnouncementToPost').validate();
-
-
-                    /*
-                    $("#submitButton").click(function (e) {
-                          e.preventDefault();
-                         // e.stopImmediatePropagation();
-                          var items = GetValuesFromForm();
-
-
-                          var announcementInfoModel = {
-                              arrive_date: $('#arrive_date').val(),
-                              title: $('#title').val(),
-                              remainingProducts: items
-
-                          };
-                        $.ajax({
-                            url: '/Announcement/AddNewAnnouncement',
-                            type: 'POST',
-                            dataType: 'json',
-                            data: { inputModel: announcementInfoModel },
-                            async: false,
-                            success: function (data) {
-                                // console.log(data);
-                                //   alert(data);
-
-
-                            },
-                            error: function (xhr, textStatus, exceptionThrown) { alert(JSON.parse(xhr.responseText)); }
-                          });
-
-                    });
-                    */
+                
 
                 });
 

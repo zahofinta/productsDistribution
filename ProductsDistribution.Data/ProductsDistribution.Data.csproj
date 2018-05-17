@@ -138,9 +138,9 @@
     <Compile Include="Migrations\201805141506210_DateTime2_Format_Added.Designer.cs">
       <DependentUpon>201805141506210_DateTime2_Format_Added.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201805141735383_Removed_datetime2_format_from_model.cs" />
-    <Compile Include="Migrations\201805141735383_Removed_datetime2_format_from_model.Designer.cs">
-      <DependentUpon>201805141735383_Removed_datetime2_format_from_model.cs</DependentUpon>
+    <Compile Include="Migrations\201805150907551_remove_datetime2_format.cs" />
+    <Compile Include="Migrations\201805150907551_remove_datetime2_format.Designer.cs">
+      <DependentUpon>201805150907551_remove_datetime2_format.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="ProductsDistributionDBContext.cs" />
@@ -193,8 +193,8 @@
     <EmbeddedResource Include="Migrations\201805141506210_DateTime2_Format_Added.resx">
       <DependentUpon>201805141506210_DateTime2_Format_Added.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201805141735383_Removed_datetime2_format_from_model.resx">
-      <DependentUpon>201805141735383_Removed_datetime2_format_from_model.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201805150907551_remove_datetime2_format.resx">
+      <DependentUpon>201805150907551_remove_datetime2_format.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
